@@ -1,5 +1,4 @@
-function add(a,b){
-  return a+b
+/* eslint-disable no-unused-vars */
+function add(a, b) {
+  return a + b
 }
-
-
