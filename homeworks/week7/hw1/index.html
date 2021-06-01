@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W7H1</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <section>
+
+        <h1>新拖延運動報名表單</h1>
+        <div class="description">
+            <p>活動日期：2021/05/20~2021/05/21</p>
+            <p>活動地點：台北市大安區新生南路二段1號</p>
+        </div>
+        <div class="must-fill">*必填</div>
+
+        <form calss="submit-form" action="">
+
+            <div class="section-input text-input">
+                <label class="input-title nickname" for="name">暱稱 <span>*</span></label>
+                <input type="text" id="name" placeholder="你速隨">
+                <p class='notice notice-name'></p>
+            </div>
+
+            <div class="section-input">
+                <label class="input-title email" for="enail">電子郵件 <span>*</span></label>
+                <input type="email" id="email" placeholder="伊媚兒">
+                <p class='notice notice-email'></p>
+            </div>
+
+            <div class="section-input" active="">
+                <label class="input-title phone" for="phone-number">電話號碼 <span>*</span></label>
+                <input type="text" id="phone-number" placeholder="給虧嗎">
+                <p class='notice notice-phone'></p>
+            </div>
+
+            <div class="section-input">
+                <div class="input-title">報名類型 <span>*</span></div>
+                <div>
+                    <input class="input-radio" type="radio" name="input-radio" id="imag" value='躺在床上用想像力實作'>
+                    <label for="imag">躺在床上用想像力實作</label>
+                </div>
+
+                <div>
+                    <input class="input-radio" type="radio" name="input-radio" id="twc" value='趴在地上滑手機找現成的'>
+                    <label for="twc">趴在地上滑手機找現成的</label>
+                </div>
+                <p class='notice notice-type'></p>
+            </div>
+            </div>
+
+            <div class="section-input">
+                <label class="input-title howknow" for="how">怎麼知道活動？ <span>*</span></label>
+                <input type="text" id="how" placeholder="從實招來">
+                <p class='notice notice-how'></p>
+            </div>
+
+            <div class="section-input">
+                <label class="input-title others" for="sug">其他</label>
+                <div class="Other-text">
+                    <p>對活動的一些建議</p>
+                </div>
+                <input type="text" id="sug" placeholder="????">
+            </div>
+
+            <button type="submit">提交</button>
+
+        </form>
+    </section>
+    <footer>
+        <p>© 2021 © Copyright. All rights Reserved.</p>
+    </footer>
+
+
+
+    <script>
+
+
+
+
+
+        document.querySelector('form').addEventListener('submit', function (e) {
+
+
+            //抓取各項input值
+            const nameData = document.querySelector('input[id=name]')
+            const emailData = document.querySelector('input[id=email]')
+            const phoneData = document.querySelector('input[id=phone-number]')
+            const howData = document.querySelector('input[id=how]')
+            const othersData = document.querySelector('input[id=sug]')
+
+            //radio需設條件式判斷哪個被勾選
+            let typeCheck = document.querySelectorAll('input[name=input-radio]')
+            let typeData = ''
+            for (let i = 0; i < typeCheck.length; i++) {
+                if (typeCheck[i].checked) {
+                    typeData = typeCheck[i]
+                }
+            }
+
+            console.log(e.target);
+
+
+            if (nameData.value == '') {
+
+                e.preventDefault()
+                document.querySelector('.notice-name').innerText = '請務必輸入暱稱'
+
+            } if (emailData.value == '') {
+
+                e.preventDefault()
+                document.querySelector('.notice-email').innerText = '看不懂中文？ *代表必填'
+
+            } if (phoneData.value == '') {
+
+                e.preventDefault()
+                document.querySelector('.notice-phone').innerText = '不留電話怎麼情話纏綿'
+
+            } if (typeData.value == undefined) {
+
+                e.preventDefault()
+                document.querySelector('.notice-type').innerText = '是不會勾選膩'
+
+            } if (howData.value == '') {
+
+                e.preventDefault()
+                document.querySelector('.notice-how').innerText = '拜託配合一下啦~'
+            }
+
+            if (nameData.value !== '' && emailData.value !== '' && phoneData.value !== ''
+                && typeData.value !== undefined && howData.value !== '') {
+                alert(`
+                 表單完成
+                 暱稱：${nameData.value}
+                 電子郵件：${emailData.value}
+                 電話：${phoneData.value}
+                 報名類型：${typeData.value}
+                 活動來源：${howData.value}
+                 其他建議：${othersData.value}
+                `)
+            }
+
+
+        })
+
+
+
+    </script>
+
+
+</body>
+
+</html>

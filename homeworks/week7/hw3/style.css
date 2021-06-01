@@ -1,0 +1,162 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+main{
+  max-width: 900px;
+  margin: 60px auto;
+  background-color: #faf6d4;
+  min-height: 900px;
+  box-shadow: 2px 2px 10px rgb(136, 136, 136);
+  position: relative;
+}
+
+/* .sectionTitle{
+  border: 2px solid blue;
+} */
+
+/* section  Title */
+.title{
+  color:#179099;
+  font-size: 75px; 
+  font-weight: 500;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.circle{
+  width: 40px;
+  height: 40px;
+  background-color: #53acb3;
+  box-shadow: 2px 2px 5px rgb(136, 136, 136);
+  border-radius: 50%;
+  position: absolute;
+}
+
+.c1{
+  top: 20px;
+  left: 20px;
+}
+
+.c2{
+  top: 20px;
+  right: 20px;
+}
+
+
+/* section  Input */
+.input{
+  text-align: center;
+  padding: 0 40px;
+}
+.sectionInput input{
+  background-color: #faf6d4;
+  width: 100%;
+  height: 50px;
+  font-size: 25px;
+  text-align: center;
+  outline: none;
+  border: #faf6d4;
+  border-bottom:3px solid #179099;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+
+/* section  List */
+.row{
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 70px;
+  padding: 15px 0;
+  border-radius: 10px;
+  
+}
+
+.row:hover{
+  background-color:  #fcf9ec;
+}
+
+.checkText{
+  font-size: 30px;
+  letter-spacing: 0.2em;
+  color: #179099;
+  width: 800px;
+  margin: auto 5px;
+  padding-left: 10px;
+ 
+  
+}
+
+.checkbox{
+  border: #179099 4px solid;
+  border-radius: 8px;
+  font-size: 35px;
+  color: #179099;
+  width: 50px;
+  text-align: center;
+  height: 45px;
+  line-height: 45px;
+  margin:auto 5px;
+  
+}
+.checkbox:hover{
+  cursor: pointer;
+}
+
+
+
+.btn-delete{
+  background-color: transparent;
+  color: #179099;
+  font-size: 30px;
+  width: 40px;
+  /* border: 2px blue solid; */
+  text-align: center;
+  margin: auto 0;
+  
+}
+
+.btn-delete:hover{
+  cursor: pointer;
+}
+
+.btn-edit{
+  background-color: transparent;
+  color: #179099;
+  font-size: 25px;
+  height: 40px;
+  line-height: 40px;
+  width: 60px;
+  /* border: 2px blue solid; */
+  text-align: center;
+  margin: auto 0;
+  display: none;
+}
+
+.btn-edit:hover{
+  cursor: pointer;
+}
+
+.activeText{
+  text-decoration: line-through;
+  color: #B7B5B3;
+}
+
+.activeIcon{
+  color: #B7B5B3;
+}
+
+.activeCheck{
+  color: #B7B5B3;
+  border: #B7B5B3 4px solid;
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 90vw;
+  }
+}
