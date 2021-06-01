@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+
+  body{
+      background: #D9D9D9;
+  }
+
+  section{
+      background: white;
+      width: 650px;
+      margin: 10vh auto;
+      padding: 50px 40px;
+      border-top: 10px solid #FAD312;
+      box-shadow: 2px 2px 6px 0px #97a2a0;
+  }
+
+  h1{
+      font-size: 40px;
+      padding: 10px 0;
+  }
+
+
+  .must-fill{
+      margin: 20px 0px;
+      color:red;
+  }
+
+  .input-title{
+      font-size: 20px;
+      padding: 10px 0;
+      display : block;
+  }
+
+  span{
+    color:red;   
+  }
+
+
+
+  input{
+      
+      margin-bottom:20px;
+      border: 1px solid ;
+      border-color: #D0D0D0;
+      color: #adadad;
+      padding: 2px;
+      font-size: 16px;
+      
+  }
+
+  .select-radio{
+      padding-top: 20px;
+    ;
+  }
+
+  .Other-text{
+      font-size: 14px;
+      margin-top: -10px;
+      margin-bottom: 10px;
+  }
+
+  button{
+      width: 100px;
+      height: 40px;
+      background: #FAD312;
+      border: none;
+      border-radius: 3px;
+  }
+
+  footer {
+    background: #000;
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+  }
+  
+  footer p {
+    line-height: 60px;
+  }
+
+  .submit-text{
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+
+  @media (max-width: 768px) {
+    section {
+      width: 90vw;
+    }
+  }

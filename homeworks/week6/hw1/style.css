@@ -1,0 +1,339 @@
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Questrial, Microsoft JhengHei;
+}
+
+section {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.logo * {
+  font-size: 36px;
+  color: #489846;
+}
+
+.title {
+  display: inline-block;
+  font-size: 36px;
+  margin-bottom: 40px;
+  border-left: 15px solid #a3dea2;
+  padding-left: 16px;
+}
+
+
+
+
+header {
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+header .logo {
+  margin: auto 0;
+  padding-left: 25px;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header__nav a {
+  color: #010101;
+  font-size: 18px;
+  text-align: center;
+  padding: 14px 25px;
+  border-radius: 8px;
+  margin: 20px 5px;
+  transition: background 500ms ease, color 500ms ease;
+}
+
+.header__nav a:hover {
+  background: #ff7286;
+  color: #fefefe;
+}
+
+.header__nav .active {
+  background: #ff7286;
+  color: #fefefe;
+}
+
+
+
+
+
+
+
+
+.banner {
+  position: relative;
+  background: url("2%40tiny.png") left/cover no-repeat;
+  height: 580px;
+  margin-bottom: 80px;
+}
+
+.banner::after {
+  content: "";
+  background: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.banner h1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  color: #fff;
+  z-index: 1;
+}
+
+
+
+
+
+
+.description p {
+  margin-bottom: 20px;
+}
+
+.buttons button {
+  width: 300px;
+  height: 160px;
+  font-size: 36px;
+  font-weight: bold;
+  color: #3e613d;
+  margin: 80px 10px 120px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 300ms ease;
+}
+
+.buttons button:hover {
+  transform: scale(1.05);
+}
+
+.btn-order {
+  background: #a8e8e1;
+}
+
+.btn-search {
+  background: #f9f9b5;
+}
+
+
+
+
+
+.menu__images {
+  display: flex;
+  margin-bottom: 80px;
+}
+
+.menu__images div {
+  max-width: 25%;
+  overflow: hidden;
+}
+
+.menu__images img {
+  max-width: 100%;
+}
+
+
+
+
+
+
+
+.comments {
+  margin-bottom: 90px;
+}
+
+.comments__body {
+  display: flex;  
+  margin-top: 30px;
+}
+
+.comments__comment {
+  position: relative;
+  border: 1px solid #c7e5ec;
+  border-radius: 5px;
+  box-shadow: -1.4px -1.4px 4px 0 #d8eaef;
+  flex: 1;
+  margin-top: 60px;
+  margin : 0 8px;
+  padding: 0 25px;
+  letter-spacing: 0.14px;
+  line-height: 1.5em;
+}
+
+.comments__comment img {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: solid 1px #c1c1c1;
+  border-radius: 50%;
+  background-color: #c1c1c1;
+}
+
+.comments__comment div {
+  margin: 55px 0 50px;
+}
+
+.comments__comment p:last-child {
+  margin-top: 10px;
+}
+
+h4{
+  font-size: 25px;
+}
+
+.comments__comment > div{
+  padding-top: 10px;
+}
+
+
+
+
+
+.location {
+  margin-bottom: 40px;
+}
+
+.location iframe{
+  display: block;
+}
+
+
+
+
+
+.footer__top {
+  background-color: #e8efee;
+  padding: 40px 0;
+  color: #484848;
+}
+
+.footer__top .container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__info {
+  line-height: 2em;
+}
+
+.footer__sites {
+  text-align: right;
+}
+
+.footer__bottom {
+  background: #35564b;
+  color: #fff;
+  text-align: center;
+  padding: 15px 0;
+}
+
+
+
+
+
+
+
+@media(max-width: 768px) {
+
+
+
+  header .container {
+    align-items: center;
+    flex-direction: column;
+  }
+
+  header .logo {
+    margin: 16px auto;
+  }
+
+  .header__nav {
+    background: white;
+    height: 0;
+    top: 50px;
+    border-radius: 5px;
+    transition: 0.5s;
+    margin: 10px 0 30px 0;
+  }
+
+  .header__nav a {
+    margin: 5px;
+  }
+
+  .header__nav.show{
+    height: 50vh;
+  }
+
+ 
+
+  .buttons {
+    margin-bottom: 80px;
+  }
+
+  .buttons button {
+    width: 200px;
+    height: 120px;
+    font-size: 24px;
+    margin: 15px;
+  }
+
+  .menu__images {
+    flex-direction: column;
+  }
+
+  .menu__images div {
+    min-width: 100%;
+  }
+
+  .menu__images img {
+    width: 100%;
+  }
+
+  .comments__body {
+    flex-direction: column;
+  }
+
+  .comments__comment {
+    min-height: 100px;
+    max-width: 70vw;
+    margin: 50px auto 0;
+  }
+
+  .footer__top .container {
+    flex-direction: column-reverse;
+  }
+
+  .footer__sites {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
