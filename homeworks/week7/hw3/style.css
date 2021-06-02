@@ -36,12 +36,12 @@ main{
   position: absolute;
 }
 
-.c1{
+.circle-1{
   top: 20px;
   left: 20px;
 }
 
-.c2{
+.circle-2{
   top: 20px;
   right: 20px;
 }
@@ -52,7 +52,7 @@ main{
   text-align: center;
   padding: 0 40px;
 }
-.sectionInput input{
+.section-input input{
   background-color: #faf6d4;
   width: 100%;
   height: 50px;
@@ -73,22 +73,20 @@ main{
   margin: 0px 70px;
   padding: 15px 0;
   border-radius: 10px;
-  
+  color: #B7B5B3; 
 }
 
 .row:hover{
   background-color:  #fcf9ec;
 }
 
-.checkText{
+.check-text{
   font-size: 30px;
   letter-spacing: 0.2em;
   color: #179099;
   width: 800px;
   margin: auto 5px;
   padding-left: 10px;
- 
-  
 }
 
 .checkbox{
@@ -124,6 +122,7 @@ main{
   cursor: pointer;
 }
 
+/* edit暫無功能，待日後修正擴充 */
 .btn-edit{
   background-color: transparent;
   color: #179099;
@@ -141,16 +140,17 @@ main{
   cursor: pointer;
 }
 
-.activeText{
+
+.active-text{
   text-decoration: line-through;
   color: #B7B5B3;
 }
 
-.activeIcon{
+.active-icon{
   color: #B7B5B3;
 }
 
-.activeCheck{
+.active-check{
   color: #B7B5B3;
   border: #B7B5B3 4px solid;
 }
@@ -158,5 +158,9 @@ main{
 @media (max-width: 768px) {
   main {
     width: 90vw;
+  }
+
+  .checkbox{
+    width: 100px;
   }
 }
