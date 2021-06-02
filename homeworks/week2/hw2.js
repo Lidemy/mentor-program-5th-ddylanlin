@@ -1,5 +1,5 @@
-function reverse(str) {
+function capitalize(str) {
   
 }
 
-reverse('hello');
+console.log(capitalize('hello'));
