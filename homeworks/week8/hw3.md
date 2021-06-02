@@ -1,5 +1,5 @@
 ## 什麼是 Ajax？
-（Asynchronous JavaScript and XML）非同步的 JavaScript 
+
 
 ## 用 Ajax 與我們用表單送出資料的差別在哪？
 
