@@ -22,51 +22,52 @@
 
         <form calss="submit-form" action="">
 
-            <div class="section-input text-input">
-                <label class="input-title nickname" for="name">暱稱 <span>*</span></label>
-                <input type="text" id="name" placeholder="你速隨">
-                <p class='notice notice-name'></p>
+            <div class="section-input hide">
+                <label class="input-title" for="name">暱稱 <span>*</span></label>
+                <input type="text" id="name" name="name" placeholder="你速隨">
+                <p class="notice notice-name">請務必輸入暱稱</p>
             </div>
 
-            <div class="section-input">
-                <label class="input-title email" for="enail">電子郵件 <span>*</span></label>
-                <input type="email" id="email" placeholder="伊媚兒">
-                <p class='notice notice-email'></p>
+            <div class="section-input hide">
+                <label class="input-title" for="enail">電子郵件 <span>*</span></label>
+                <input type="email" id="email" name="email" placeholder="伊媚兒">
+                <p class="notice notice-email">看不懂中文？ *代表必填</p>
             </div>
 
-            <div class="section-input" active="">
-                <label class="input-title phone" for="phone-number">電話號碼 <span>*</span></label>
-                <input type="text" id="phone-number" placeholder="給虧嗎">
-                <p class='notice notice-phone'></p>
+            <div class="section-input hide">
+                <label class="input-title" for="phone-number">電話號碼 <span>*</span></label>
+                <input type="text" id="phone-number" name="phone" placeholder="給虧嗎">
+                <p class="notice notice-phone">不留電話怎麼情話纏綿</p>
             </div>
 
-            <div class="section-input">
+            <div class="section-input hide">
                 <div class="input-title">報名類型 <span>*</span></div>
                 <div>
-                    <input class="input-radio" type="radio" name="input-radio" id="imag" value='躺在床上用想像力實作'>
+                    <input class="input-radio" type="radio" name="input-radio" id="imag" value="躺在床上用想像力實作">
                     <label for="imag">躺在床上用想像力實作</label>
                 </div>
 
                 <div>
-                    <input class="input-radio" type="radio" name="input-radio" id="twc" value='趴在地上滑手機找現成的'>
+                    <input class="input-radio" type="radio" name="input-radio" id="twc" value="趴在地上滑手機找現成的">
                     <label for="twc">趴在地上滑手機找現成的</label>
                 </div>
-                <p class='notice notice-type'></p>
+                <p class="notice notice-type">是不會勾選膩</p>
             </div>
             </div>
 
-            <div class="section-input">
-                <label class="input-title howknow" for="how">怎麼知道活動？ <span>*</span></label>
-                <input type="text" id="how" placeholder="從實招來">
-                <p class='notice notice-how'></p>
+            <div class="section-input hide">
+                <label class="input-title" for="how">怎麼知道活動？ <span>*</span></label>
+                <input type="text" id="how" name="how" placeholder="從實招來">
+                <p class="notice notice-how">拜託配合一下啦~</p>
             </div>
 
+
             <div class="section-input">
-                <label class="input-title others" for="sug">其他</label>
+                <label class="input-title" for="sug">其他</label>
                 <div class="Other-text">
                     <p>對活動的一些建議</p>
                 </div>
-                <input type="text" id="sug" placeholder="????">
+                <input type="text" id="sug" name="sug" placeholder="????">
             </div>
 
             <button type="submit">提交</button>
@@ -79,79 +80,7 @@
 
 
 
-    <script>
-
-
-
-
-
-        document.querySelector('form').addEventListener('submit', function (e) {
-
-
-            //抓取各項input值
-            const nameData = document.querySelector('input[id=name]')
-            const emailData = document.querySelector('input[id=email]')
-            const phoneData = document.querySelector('input[id=phone-number]')
-            const howData = document.querySelector('input[id=how]')
-            const othersData = document.querySelector('input[id=sug]')
-
-            //radio需設條件式判斷哪個被勾選
-            let typeCheck = document.querySelectorAll('input[name=input-radio]')
-            let typeData = ''
-            for (let i = 0; i < typeCheck.length; i++) {
-                if (typeCheck[i].checked) {
-                    typeData = typeCheck[i]
-                }
-            }
-
-            console.log(e.target);
-
-
-            if (nameData.value == '') {
-
-                e.preventDefault()
-                document.querySelector('.notice-name').innerText = '請務必輸入暱稱'
-
-            } if (emailData.value == '') {
-
-                e.preventDefault()
-                document.querySelector('.notice-email').innerText = '看不懂中文？ *代表必填'
-
-            } if (phoneData.value == '') {
-
-                e.preventDefault()
-                document.querySelector('.notice-phone').innerText = '不留電話怎麼情話纏綿'
-
-            } if (typeData.value == undefined) {
-
-                e.preventDefault()
-                document.querySelector('.notice-type').innerText = '是不會勾選膩'
-
-            } if (howData.value == '') {
-
-                e.preventDefault()
-                document.querySelector('.notice-how').innerText = '拜託配合一下啦~'
-            }
-
-            if (nameData.value !== '' && emailData.value !== '' && phoneData.value !== ''
-                && typeData.value !== undefined && howData.value !== '') {
-                alert(`
-                 表單完成
-                 暱稱：${nameData.value}
-                 電子郵件：${emailData.value}
-                 電話：${phoneData.value}
-                 報名類型：${typeData.value}
-                 活動來源：${howData.value}
-                 其他建議：${othersData.value}
-                `)
-            }
-
-
-        })
-
-
-
-    </script>
+    <script src="./script.js"></script>
 
 
 </body>

@@ -18,6 +18,8 @@
       box-shadow: 2px 2px 6px 0px #97a2a0;
   }
 
+ 
+
   h1{
       font-size: 40px;
       padding: 10px 0;
@@ -39,22 +41,19 @@
     color:red;   
   }
 
-
+  .section-input{
+    margin-bottom: 5px;
+  }
 
   input{
       
-      margin-bottom:20px;
+      margin-bottom:0px;
       border: 1px solid ;
       border-color: #D0D0D0;
       color: #adadad;
       padding: 2px;
       font-size: 16px;
       
-  }
-
-  .input-radio{
-      padding-top: 20px;
-    ;
   }
 
   .Other-text{
@@ -64,6 +63,7 @@
   }
 
   button{
+      margin-top: 30px;
       width: 100px;
       height: 40px;
       background: #FAD312;
@@ -77,7 +77,7 @@
     font-size: 13px;
     text-align: center;
   }
-  
+
   footer p {
     line-height: 60px;
   }
@@ -85,10 +85,14 @@
 
   .notice{
     color:red;
-    font-size: 13px;
-    margin-top: -15px;
+    margin-top: 5px;
+    font-size: 12px;
   }
 
+
+  .hide p{
+    visibility: hidden;
+  }
 
   @media (max-width: 768px) {
     section {
