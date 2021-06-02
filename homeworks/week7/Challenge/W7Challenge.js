@@ -18,22 +18,22 @@ document.querySelector('.carousel').addEventListener('click', (e) => {
   const s3Class = document.querySelector('.s3').classList
 
   // 判斷當前頁面做反應
-  function hideArrow(n) {
-    if (n === 1) {
+  function hideArrow(index) {
+    if (index === 1) {
       nextbtnClass.remove('hide')
       prevbtnClass.add('hide')
       s1Class.add('stopS')
       s2Class.remove('stopS')
       s3Class.remove('stopS')
     }
-    if (n === 3) {
+    if (index === 3) {
       nextbtnClass.add('hide')
       prevbtnClass.remove('hide')
       s1Class.remove('stopS')
       s2Class.remove('stopS')
       s3Class.add('stopS')
     }
-    if (n === 2) {
+    if (index === 2) {
       nextbtnClass.remove('hide')
       prevbtnClass.remove('hide')
       s1Class.remove('stopS')
@@ -43,14 +43,14 @@ document.querySelector('.carousel').addEventListener('click', (e) => {
   }
 
   // 以函式方式記錄當前位置 改變並回傳
-  function next(n) {
-    current = n + 1
+  function next(index) {
+    current = index + 1
     hideArrow(current)
     return current
   }
 
-  function prev(n) {
-    current = n - 1
+  function prev(index) {
+    current = index - 1
     hideArrow(current)
     return current
   }
