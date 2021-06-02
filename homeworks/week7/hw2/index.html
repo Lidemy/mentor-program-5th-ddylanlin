@@ -130,14 +130,14 @@
 
     document.querySelector('section').addEventListener('click', function (e) {
 
-      //方法三：使用nextElementSibling方法直接對兄弟層做反應
+      //方法三：使用nextElementSibling方法直接對兄弟層做反應（其他方法當作解題紀錄）
       if (e.target.classList.contains('Question-title')) {
         
         e.target.nextElementSibling.classList.toggle('active-key')
       }
 
 
-      // // 方法二：直接開關 class (標籤裡的class需設定好)
+      // // 方法二：直接開關class (標籤裡的class需設定好) 
       // function toggleClass(Qu, An) {
       //   if (e.target.classList.contains(Qu)) {
       //     document.querySelector(`.${An}`).classList.toggle('active-key')
