@@ -1,6 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
-/* Global styling */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -35,9 +33,9 @@ a {
   padding-left: 16px;
   
 }
-/* Global styling */
 
-/* Header styling */
+
+
 header {
   box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
 }
@@ -53,13 +51,13 @@ header .logo {
   padding-left: 25px;
 }
 
-.header__nav {
+.header-nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.header__nav a {
+.header-nav a {
   color: #010101;
   font-size: 18px;
   text-align: center;
@@ -69,27 +67,24 @@ header .logo {
   transition: background 500ms ease, color 500ms ease;
 }
 
-.header__nav a:hover {
+.header-nav a:hover {
   background: #ff7286;
   color: #fefefe;
 }
 
-.header__nav .active {
+.header-nav .active {
   background: #ff7286;
   color: #fefefe;
 }
 
-.hamburger {
-  display: none !important;
-}
+
 
 section {
   
   margin: 50px 0;
 }
-/* Header styling */
 
-/* Description styling */
+
 
 .description .container{
  
@@ -112,159 +107,112 @@ section {
   display: inline-block;
 }
 
-.Qlist{
+.Question-list{
   color:#a3dea2;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: bold;
   cursor: default;
   display: inline-block;
 }
 
-.Qtitle{
-  font-size: 25px;
+.Question-title{
+  font-size: 18px;
   margin-left: 15px;
   cursor:pointer;
-  width: 720px;
+
 }
-
-
 
 .answer{
   text-align: justify;
   padding-left: 20px;
-  font-size: 18px;
-  margin: 15px 0;
+  font-size: 16px;
+  margin-top: 15px;
   letter-spacing : 2.5pt;
   cursor: default;
-  /* display: none; */
   max-height: 0;
   overflow: hidden;
-  transition: max-height 20000ms ease-out 0;
   
-
 }
 
-.activeKey{
-  
+.active-key{
   overflow:visible;
   max-height: 400px;
   transition: max-height  500ms ease-out;
-  /* display: inline-block;
-   */
-  /*  */
 }
 
 
-/* Description styling */
 
 
-
-/* Footer styling */
-.footer__top {
+.footer-top {
   background-color: #e8efee;
   padding: 40px 0;
   color: #484848;
 }
 
-.footer__top .container {
+.footer-top .container {
   display: flex;
   justify-content: space-between;
 }
 
-.footer__info {
+.footer-info {
   line-height: 2em;
 }
 
-.footer__sites {
+.footer-sites {
   text-align: right;
 }
 
-.footer__bottom {
+.footer-bottom {
   background: #35564b;
   color: #fff;
   text-align: center;
   padding: 15px 0;
 }
-/* Footer styling */
 
-/* RWD */
+
+
 @media(max-width: 768px) {
-
 
 
   header .container {
     align-items: center;
+    flex-direction: column;
   }
 
   header .logo {
     margin: 16px auto;
   }
-
-  .header__nav {
+  .header-nav {
     background: white;
-    position: absolute;
-    flex-direction: column;
     height: 0;
-    overflow: hidden;
     top: 50px;
-    right: 0;
     border-radius: 5px;
-    z-index: 2;
     transition: 0.5s;
+    margin: 10px 0 30px 0;
   }
 
-  .header__nav a {
+  .header-nav a {
+    padding: 5px 10px;
+    margin: 5px 5px;
+    transition: background 500ms ease, color 500ms ease;
+  }
+
+  .header-nav a {
     margin: 5px;
   }
 
-  .header__nav.show{
+  .header-nav.show{
     height: 50vh;
   }
 
-  .hamburger {
-    display: inline-block !important;
-  }
 
-  .buttons {
-    margin-bottom: 80px;
-  }
 
-  .buttons button {
-    width: 200px;
-    height: 120px;
-    font-size: 24px;
-    margin: 15px;
-  }
-
-  .menu__images {
-    flex-direction: column;
-  }
-
-  .menu__images div {
-    min-width: 100%;
-  }
-
-  .menu__images img {
-    width: 100%;
-  }
-
-  .comments__body {
-    flex-direction: column;
-  }
-
-  .comments__comment {
-    min-height: 100px;
-    max-width: 70vw;
-    margin: 50px auto 0;
-  }
-
-  .footer__top .container {
+  .footer-top .container {
     flex-direction: column-reverse;
   }
 
-  .footer__sites {
+  .footer-sites {
     text-align: center;
     margin-bottom: 40px;
   }
 }
-/* RWD */

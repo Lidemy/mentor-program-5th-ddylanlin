@@ -7,20 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>W7H2</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 
 <body>
   <header>
     <div class="container">
       <div class="logo"><a href="#">Just A Bite!</a></div>
-      <nav class="header__nav">
+      <nav class="header-nav">
         <a href="#">抽個大獎</a>
         <a href="#">我要點餐</a>
         <a href="#">查詢訂單</a>
         <a href="#" class="active">常見問題</a>
       </nav>
-      <span class="material-icons-outlined hamburger hide">menu</span>
     </div>
   </header>
 
@@ -31,9 +29,9 @@
       <h2 class="title">FAQ - 常見問題</h2>
 
       <div class='Question Q1'>
-        <span class="Qlist Q1">Q1:</span>
+        <span class="Question-list Q1">Q1:</span>
         <div>
-          <h3 class='Qtitle Q1'>如何辦理退貨？</h3>
+          <h3 class='Question-title Q1'>如何辦理退貨？</h3>
           <ul class="answer A1 Q1">
             <li class="Q1">步驟１：進入會員中心「我的帳戶>訂單查詢>取消訂單/退貨」填寫申請，依申請次日起2個工作天內我們將審核案件，通過審核後即 E-mail
               回覆通知，並委託宅配公司於5個工作天內電話連絡時間前往取回商品，並請將原商品備妥（保持商品包裝原貌）。</li>
@@ -46,9 +44,9 @@
       
 
       <div class='Question Q2'>
-        <span class="Qlist Q2">Q2:</span>
+        <span class="Question-list Q2">Q2:</span>
         <div>
-          <h3 class='Qtitle Q2'>目前提供哪些付款方式？</h3>
+          <h3 class='Question-title Q2'>目前提供哪些付款方式？</h3>
           <p class="answer A2 Q2">
             目前提供信用卡線上刷卡(包括分期)、Apple Pay、Line Pay、街口支付、ATM轉帳、超商代碼繳費(7-11、全家、萊爾富、OK 超商，另收20元金流手續費)、全家超商取貨付款等六種付款方式。
           </p>
@@ -57,9 +55,9 @@
 
      
       <div class='Question Q3'>
-        <span class="Qlist Q3">Q3:</span>
+        <span class="Question-list Q3">Q3:</span>
         <div>
-          <h3 class='Qtitle Q3'>線上刷卡如何操作呢？</h3>
+          <h3 class='Question-title Q3'>線上刷卡如何操作呢？</h3>
           <p class="answer A3 Q3">
             目前支援的信用卡分期付款之銀行：台新, 玉山, 永豐, 台北富邦, 遠東, 國泰世華, 華南, 日盛國際商銀, 台灣樂天, 安泰, 聯邦, 兆豐商銀, 台中商銀, 上海, 凱基, 匯豐, 星展, 臺灣新光, 合作金庫, 彰化, 第一, 元大（3.6.12.24期皆支援）
           </p>
@@ -68,9 +66,9 @@
 
 
       <div class='Question Q4'>
-        <span class="Qlist Q4">Q4:</span>
+        <span class="Question-list Q4">Q4:</span>
         <div>
-          <h3 class='Qtitle Q4'>如何查詢目前訂單的處理狀態？</h3>
+          <h3 class='Question-title Q4'>如何查詢目前訂單的處理狀態？</h3>
           <p class="answer A4 Q4">
             請點選「目錄」＞＞「會員登入」，輸入您的E-mail及密碼登入後，點選「目錄」＞＞「訂單」即可查詢該訂單的處理狀態。
           </p>
@@ -79,9 +77,9 @@
 
 
       <div class='Question Q5'>
-        <span class="Qlist Q5">Q5:</span>
+        <span class="Question-list Q5">Q5:</span>
         <div>
-          <h3 class='Qtitle Q5'>訂單成立後，是否可以取消或是更改訂單數量及商品？</h3>
+          <h3 class='Question-title Q5'>訂單成立後，是否可以取消或是更改訂單數量及商品？</h3>
           <p class="answer A5 Q5">
             付款完成後的訂單會由系統自動處理，因此客服窗口無法協助您更改商品品項及數量，下單前請先確認商品品項數量是否正確，以減少無法修改訂單所造成的困擾。<br>
             如要訂單內容需更改，請向客服窗口申請退貨，並重新下單訂購您所需要的商品。
@@ -90,9 +88,9 @@
       </div>
 
       <div class='Question Q6'>
-        <span class="Qlist Q6">Q6:</span>
+        <span class="Question-list Q6">Q6:</span>
         <div>
-          <h3 class='Qtitle Q6'>我想購買的商品已經缺貨，什麼時候會進貨呢？</h3>
+          <h3 class='Question-title Q6'>我想購買的商品已經缺貨，什麼時候會進貨呢？</h3>
           <p class="answer A6 Q6">
             如購物車按鈕顯示「貨到通知我」，請點選該按鈕並填寫聯絡資訊(E-mail或手機號碼)，商品到貨後系統會依登記順序及到貨數量陸續發送E-mail或簡訊通知（部份熱賣商品，如到貨數量＜貨到通知數量，則有可能無法收到通知）。
           </p>
@@ -106,51 +104,43 @@
 
   <footer>
 
-    <div class="footer__top">
+    <div class="footer-top">
       <div class="container">
-        <div class="footer__info">
+        <div class="footer-info">
           <p>餐館地址: 天上地下天堂路三分之一里六段520號</p>
           <p>訂位專線：02-1314-5566</p>
           <p>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</p>
           <p>email：service@justabite.com.tw</p>
         </div>
-        <div class="footer__sites">
+        <div class="footer-sites">
           <div class="logo"><a href="#">Just A Bite!</a></div>
           <p>Facebook / Instagram / Youtube</p>
         </div>
       </div>
     </div>
 
-    <div class="footer__bottom">
+    <div class="footer-bottom">
       <p>Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有</p>
     </div>
 
   </footer>
 
   <script>
-    const hamburger = document.querySelector('.hamburger')
-    const nav = document.querySelector('.header__nav')
-
-    hamburger.addEventListener('click', () => {
-      nav.classList.toggle('show')
-    })
 
 
     document.querySelector('section').addEventListener('click', function (e) {
-      console.log(e.target);
 
       //方法三：使用nextElementSibling方法直接對兄弟層做反應
-      if (e.target.classList.contains('Qtitle')) {
+      if (e.target.classList.contains('Question-title')) {
         
-        e.target.nextElementSibling.classList.toggle('activeKey')
-
+        e.target.nextElementSibling.classList.toggle('active-key')
       }
 
 
       // // 方法二：直接開關 class (標籤裡的class需設定好)
       // function toggleClass(Qu, An) {
       //   if (e.target.classList.contains(Qu)) {
-      //     document.querySelector(`.${An}`).classList.toggle('activeKey')
+      //     document.querySelector(`.${An}`).classList.toggle('active-key')
       //   }
       // }
 
