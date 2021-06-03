@@ -25,7 +25,7 @@
     <option>Goldfish</option>
 </select>
 ```
-表單回傳 value 指定值回伺服器。
+表單回傳 value 指定值回伺服器
 
 
 ## 請問什麼是盒模型（box modal）
