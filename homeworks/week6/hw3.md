@@ -25,11 +25,12 @@
     <option>Goldfish</option>
 </select>
 ```
-表單回傳 value 指定值回伺服器
+表單回傳 value 指定值回伺服器。
 
 
 ## 請問什麼是盒模型（box modal）
-box model 主要分兩個：  
+在盒子模式中，內容 (content) 是最內層的部分，接下來依序為留白 (padding)、邊框 (border)、以及邊界 (margin)。邊界是用來設定各個元素之間的距離。
+而合模型的 box-sizing 主要分兩個：  
 預設狀態為 `box-sizing:content-box` 將設定寬度指定給內容，若改變 padding 整體形狀只會往外擴。  
 現在大部分方便的用法是使用 `box-sizing:border-box` 將設定寬度指定給邊框，若改變 padding 整體形狀不變，會壓縮到內容。
 
