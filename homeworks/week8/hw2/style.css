@@ -80,6 +80,13 @@ main{
   padding-bottom: 2rem;
 }
 
+.fake{
+  width: 21rem;
+  height: 17rem;
+  margin: 2.5rem auto;
+  margin-top: 1rem;
+}
+
 .card{
   width: 21rem;
   height: 17rem;
@@ -172,16 +179,12 @@ button::after{
  content:'load more..'
 }
 button:hover{
-  cursor:grab;
-  transform: rotate(360deg);
+  cursor:pointer;
   transition: all 1s ease;
   background:#4C5764;
   color: aliceblue;
 }
 
-button:hover::after{
-	content: " It's enough,Don't be greedy! ";
-}
 
 
 
@@ -202,7 +205,7 @@ footer p {
 
 
   body{
-    max-width: 1280px;
+    max-width: 100vw;
   }
   header{
     width: 100%;
@@ -260,6 +263,7 @@ footer p {
 
 
   .section-block{ 
+    max-width: 65rem;
     display: flex;
     justify-content: space-around;
     flex-wrap:wrap;

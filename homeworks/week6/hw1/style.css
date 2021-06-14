@@ -16,8 +16,7 @@ a {
 }
 
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 100vw;
   padding: 0 15px;
 }
 
@@ -39,6 +38,7 @@ a {
 
 header {
   box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+  max-width: 100vw;
 }
 
 header .container {
@@ -152,6 +152,7 @@ header .logo {
 .menu__images {
   display: flex;
   margin-bottom: 80px;
+  justify-content: center;
 }
 
 .menu__images div {
@@ -229,7 +230,9 @@ h4{
 
 
 
-
+footer{
+  max-width: 100vw;
+}
 
 .footer__top {
   background-color: #e8efee;

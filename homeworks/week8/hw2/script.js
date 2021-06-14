@@ -67,31 +67,40 @@ function getStreams(game) {
           </div>
           </a>
           `
+
         document.querySelector('.section-block').appendChild(div)
       }
+
+      // 創造透明假區排版
+      const fake = document.createElement('div')
+      fake.classList.add('fake')
+      document.querySelector('.section-block').appendChild(fake)
+
+      // 創造閱讀更多的按鈕
+      const btn = document.createElement('button')
+      document.querySelector('.section-block').appendChild(btn)
 
       // 超過20後的按鈕功能
       document.querySelector('main').addEventListener('click', (e) => {
         if (e.target === document.querySelector('button')) {
-          console.log(e.target)
           for (let i = 20; i < json.streams.length; i++) {
             const div = document.createElement('div')
             div.classList.add('card')
             div.innerHTML = `
-            <a href="${json.streams[i].channel.url}">
-            <img src="${json.streams[i].preview.medium}" class="cover"></img>
-            <div class="caption">
-              <img src="${json.streams[i].channel.logo}" class="logo"></img>
-              <div class="content">
-                <p>${json.streams[i].channel.status}</p>
-                <p>${json.streams[i].channel.display_name}</p>
+              <a href="${json.streams[i].channel.url}">
+              <img src="${json.streams[i].preview.medium}" class="cover"></img>
+              <div class="caption">
+                <img src="${json.streams[i].channel.logo}" class="logo"></img>
+                <div class="content">
+                  <p>${json.streams[i].channel.status}</p>
+                  <p>${json.streams[i].channel.display_name}</p>
+                </div>
               </div>
-            </div>
-            </a>
-            `
+              </a>
+              `
             document.querySelector('.section-block').appendChild(div)
           }
-          // document.querySelector('button').remove()
+          e.target.remove()
         }
       })
     } else {

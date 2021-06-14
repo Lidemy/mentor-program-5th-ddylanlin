@@ -15,8 +15,7 @@ a {
 }
 
 .container {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 100vw;
   padding: 0 15px;
 }
 
@@ -37,6 +36,7 @@ a {
 
 
 header {
+  max-width: 100vw;
   box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
 }
 
@@ -141,7 +141,9 @@ section {
 }
 
 
-
+footer{
+  max-width: 100vw;
+}
 
 .footer-top {
   background-color: #e8efee;

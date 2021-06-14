@@ -18,27 +18,12 @@ request.onload = () => {
 
     document.querySelector('.eventMethod-block').addEventListener('click', (e) => {
       if (e.target.classList.contains('eventMethod-btn')) {
-        switch (result) {
-          case 'FIRST':
-            choose(result)
-            break
-          case 'SECOND':
-            choose(result)
-            break
-          case 'THIRD':
-            choose(result)
-            break
-          case 'NONE':
-            choose(result)
-            break
-          default:
-            alert('系統不穩定，請重新整理再試一次！')
-        }
+        result ? choose(result) : alert('系統不穩定，請重新整理再試一次！（切換錯誤）')
       }
     })
   } else {
     console.log(request.status)
-    alert('系統不穩定，請重新整理再試一次！')
+    alert(`系統不穩定，請重新整理再試一次！statusCode: ${request.status}`)
   }
 
   const background = document.querySelector('.event-bg')
@@ -56,7 +41,7 @@ request.onload = () => {
 }
 request.onerror = () => {
   console.log('error')
-  alert('系統不穩定，請重新整理再試一次！')
+  alert('系統不穩定，請重新整理再試一次！（onload失敗）')
 }
 
 request.open('GET', 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery', true)
