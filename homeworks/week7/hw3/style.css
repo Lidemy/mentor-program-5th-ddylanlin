@@ -140,7 +140,7 @@ main{
   cursor: pointer;
 }
 
-
+/* 
 .active-text{
   text-decoration: line-through;
   color: #B7B5B3;
@@ -153,6 +153,24 @@ main{
 .active-check{
   color: #B7B5B3;
   border: #B7B5B3 4px solid;
+} */
+
+.active .checkbox {
+  color: #B7B5B3;
+  border: #B7B5B3 4px solid;
+}
+
+.active .check-text {
+  text-decoration: line-through;
+  color: #B7B5B3;
+}
+
+.active .btn-edit {
+  color: #B7B5B3;
+}
+
+.active .btn-delete {
+  color: #B7B5B3;
 }
 
 @media (max-width: 768px) {

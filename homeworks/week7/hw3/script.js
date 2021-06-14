@@ -47,11 +47,15 @@ function checkboxToggleV(target) {
 }
 
 // 開關各個 active calss
+// function activeToggle(targetNode) {
+//   targetNode.childNodes[1].classList.toggle('active-check')
+//   targetNode.childNodes[3].classList.toggle('active-text')
+//   targetNode.childNodes[5].classList.toggle('active-icon')
+//   targetNode.childNodes[7].classList.toggle('active-icon')
+// }
+// 改進：可以在 row 那層設定一個 .active 樣式，然後一次套用到下面的每個元
 function activeToggle(targetNode) {
-  targetNode.childNodes[1].classList.toggle('active-check')
-  targetNode.childNodes[3].classList.toggle('active-text')
-  targetNode.childNodes[5].classList.toggle('active-icon')
-  targetNode.childNodes[7].classList.toggle('active-icon')
+  targetNode.classList.toggle('active')
 }
 
 // 隱藏文字
