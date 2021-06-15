@@ -17,7 +17,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
     }
   }
 
-  // 檢測輸入框內是否有值並做出相應的反應
+  // // 檢測輸入框內是否有值並做出相應的反應
   // function isValid(value, positionClass) {
   //   if (value === '' || value === undefined) {
   //     document.querySelector(`.${positionClass}`).parentNode.classList.remove('hide')
@@ -29,7 +29,7 @@ document.querySelector('form').addEventListener('submit', (e) => {
   // 改進方法：無論 value 是空字串跟 value 是 undefined，在判斷式裡面都會被轉型成 false，所以可以直接做三元判斷
   function isValid(value, positionClass) {
     const parentElement = document.querySelector(`.${positionClass}`).parentNode
-    value ? parentElement.classList.remove('hide') : parentElement.classList.add('hide')
+    value ? parentElement.classList.add('hide') : parentElement.classList.remove('hide')
   }
 
   isValid(nameData.value, 'notice-name')
