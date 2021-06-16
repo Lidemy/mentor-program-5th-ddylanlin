@@ -1,3 +1,15 @@
+<?php
+require_once('conn.php');
+
+$result = $conn->query('SELECT * FROM Dylan_Lazy_Events ORDER BY created_at ASC');
+if (!$result) {
+  die($conn->error);
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,18 +37,18 @@
           <th>報名類型</th>
           <th>怎麼知道這個活動的？</th>
           <th>其他</th>
-        </tr>
+        </tr>       
+        <?php while ($row = $result->fetch_assoc()) { ?>
         <tr>
-          <td>8</td>
-          <td>andy</td>
-          <td>silence469@gmail.com</td>
-          <td>0989577869</td>
-          <td>趴在地上滑手機找現成的</td>
-          <td>怎麼知道這個活動的？</td>
-          <td>其他</td>
+          <td><?php echo $row['id']?></td>
+          <td><?php echo $row['nickname']?></td>
+          <td><?php echo $row['email']?></td>
+          <td><?php echo $row['phone']?></td>
+          <td><?php echo $row['type']?></td>
+          <td><?php echo $row['how']?></td>
+          <td><?php echo $row['others']?></td>
         </tr>
-        
-
+        <?php } ?>
     
       </table>
 

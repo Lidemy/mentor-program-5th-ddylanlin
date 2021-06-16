@@ -35,7 +35,7 @@
     <div class="bottom-content">
       <h2>我要報名</h2>
       <p>還沒試過拖延救世界的快感嗎？<br>快來一起參與吧，點以下連結拯救人生</p>
-      <a class="register-btn" href="./lazy_form.html">線上報名</a>
+      <a class="register-btn" href="./lazy_form.php">線上報名</a>
     </div>
 
   </div>

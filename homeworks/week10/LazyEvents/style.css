@@ -146,16 +146,17 @@ input{
   margin-bottom: 10px;
 }
 
-button{
+.sub-btn{
   margin-top: 30px;
   width: 100px;
   height: 40px;
   background: #FAD312;
   border: none;
   border-radius: 3px;
+  color: #000;
 }
 
-button:hover{
+.sub-btn:hover{
   cursor: pointer;
 }
 
