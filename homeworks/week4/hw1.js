@@ -11,7 +11,7 @@ request(
 
     const bookArray = JSON.parse(body)
 
-    // console.log(bookArray)
+    // console.log(bookArray).
 
     for (let i = 0; i < bookArray.length; i++) {
       console.log(`${i + 1} ${bookArray[i].name}`)
