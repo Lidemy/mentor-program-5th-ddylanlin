@@ -10,18 +10,18 @@ document.querySelector('.eventMethod-block').addEventListener('click', (e) => {
       const response = request.responseText
       const json = JSON.parse(response)
       const result = json.prize
-      console.log(result)
+
       if (e.target.classList.contains('eventMethod-btn')) {
-        result ? choose(result) : alert('系統不穩定，請重新整理再試一次！（切換錯誤）')
+        result ? choose(result) : alert('系統不穩定，請再試一次！（切換錯誤）')
       }
     } else {
       console.log(request.status)
-      alert(`系統不穩定，請重新整理再試一次！statusCode: ${request.status}`)
+      alert(`系統不穩定，請再試一次！statusCode: ${request.status}`)
     }
   }
   request.onerror = () => {
     console.log('error')
-    alert('系統不穩定，請重新整理再試一次！（onload失敗）')
+    alert('系統不穩定，請再試一次！（requset失敗）')
   }
 
   request.open('GET', 'https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery', true)

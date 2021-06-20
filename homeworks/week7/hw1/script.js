@@ -38,6 +38,13 @@ document.querySelector('form').addEventListener('submit', (e) => {
   isValid(typeData.value, 'notice-type')
   isValid(howData.value, 'notice-how')
 
+  // 思考改進：利用陣列的內建函式和變數抽換，來實作重複的地方
+  // const list = ['name', 'email', 'phone-number', 'how', 'sug']
+  // list.forEach((inputName) => {
+  //   const element = document.querySelector(`input[id=${inputName}]`)
+  //   isValid(element.value, `notice-${inputName}`)
+  // })
+
   if (nameData.value !== '' && emailData.value !== '' && phoneData.value !== '' && typeData.value !== undefined && howData.value !== '') {
     alert(`
        表單完成
