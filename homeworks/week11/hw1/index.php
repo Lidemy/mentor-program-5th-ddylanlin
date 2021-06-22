@@ -5,6 +5,8 @@ require_once('utils.php');
 
 
 $username = NULL;
+$user = NULL;
+$user['role'] = NULL;
 if (!empty($_SESSION['username'])) {
   $username = $_SESSION['username'];
   $user = getUserFromUsername();
@@ -19,12 +21,12 @@ $offset = ($page-1) * $items_per_page;
 
 $stmt = $conn->prepare('SELECT 
 CC.id AS id, CC.content AS content, CC.created_at AS created_at, 
-UU.nickname AS nickname, UU.username AS username 
+UU.nickname AS nickname, UU.username AS username, UU.role AS role 
 FROM Dylan_board_comments AS CC 
 LEFT JOIN Dylan_board_users AS UU 
 ON CC.username = UU.username 
 WHERE CC.is_deleted=0 
-ORDER BY CC.id DESC 
+ORDER BY CC.id DESC  
 LIMIT ? OFFSET ?');
 
 $stmt->bind_param('ii', $items_per_page, $offset);
@@ -34,6 +36,7 @@ if (!$result) {
   die('Error: ' . $conn->error);
 }
 $result = $stmt->get_result();
+
 ?>
 
 <!DOCTYPE html>
@@ -64,8 +67,12 @@ $result = $stmt->get_result();
           <span>Change Nickname :  </span>
           <input type="text" name="nickname" />
         </div>
-      <input class="submit-btn update-nickname-btn"type="submit" value="Change"></input>
-    </form>
+        <input class="submit-btn update-nickname-btn"type="submit" value="Change"></input>
+      </form>
+
+      <?php if ($user['role'] === 'admin') { ?>
+        <a href="admin.php" class="change-nickname-btn">Administer</a>
+      <?php } ?>
 
       <h3 class="show-name">Hi, <?php echo escape($user['nickname']); ?></h3>
     <?php } ?>
@@ -86,7 +93,9 @@ $result = $stmt->get_result();
 
     <form method="POST" action="handle_add_comment.php">
       <textarea name="content" id="" cols="30" rows="10"></textarea>
-      <?php if ($username) { ?>
+      <?php if ($username && $user['role'] === 'suspend') { ?>
+        <h3>Sorry..Account was Suspended,Can not Comment..</h3>
+      <?php } else if ($username && $user['role'] !== 'suspend') { ?>
         <input class="submit-btn" type="submit" value="Submit"></input>
       <?php } else { ?>
         <h3>Login to comment</h3>
@@ -101,13 +110,17 @@ $result = $stmt->get_result();
           <div class="comment-avatar"></div>
           <div class="comment-content">
             <div class="comment-info">
-              <?php echo escape($row['nickname']) ?>
-            (@<?php echo escape($row['username']) ?>)
-              <span><?php echo escape($row['created_at']) ?></span>
-              <?php if ($row['username'] === $username) {?>
-              <a href="update_comment.php?id=<?php echo escape($row['id'])?>" id="edit-btn">edit</a>
-              <a href="handle_delete_comment.php?id=<?php echo escape($row['id'])?>" id="edit-btn">delete</a>
-              <?php }?>
+              <div>
+                <?php echo escape($row['nickname']) ?>
+              (@<?php echo escape($row['username']) ?>)
+                <span><?php echo escape($row['created_at']) ?></span>
+              </div>
+              <div>
+                <?php if ($user['role'] === 'admin' || $row['username'] === $username) {?>
+                <a href="update_comment.php?id=<?php echo escape($row['id'])?>" id="edit-btn">edit</a>
+                <a href="handle_delete_comment.php?id=<?php echo escape($row['id'])?>" id="edit-btn">delete</a>
+                <?php }?>
+              </div>
             </div>
             <div class="comment-desc"><?php echo escape($row['content']) ?></div>
           </div>

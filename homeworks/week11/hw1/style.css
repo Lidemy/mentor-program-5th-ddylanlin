@@ -50,7 +50,7 @@ h2{
 
 
 /* register-btn login-btn */
-.board a{
+a{
  text-decoration: none;
  margin: 0.5rem 0.2rem 0 0;
  border:0.1rem solid rgb(196, 166, 224);
@@ -73,6 +73,8 @@ h2{
   color: rgb(196, 166, 224);
   font-size: 1rem;
 }
+
+
 
 
 
@@ -179,12 +181,15 @@ h3{
  flex-direction: column;
  max-width: 100%;
  word-break: break-word;
+ width:100%;
 }
 
 .comment-info{
  display: inline-block;
  font-size: 1.2rem;
  color: rgb(180, 143, 214);
+ display: flex;
+ justify-content: space-between;
  
 }
 
@@ -216,3 +221,72 @@ h3{
 }
 
 
+
+h1{
+  font-size: 35px;
+  padding: 10px 0;
+}
+
+.admin-section{
+  background: white;
+  width: 75%;
+  margin: 10vh auto;
+  padding: 25px 40px;
+  border-top: 10px solid rgb(196, 166, 224);
+  box-shadow: 2px 2px 6px 0px #97a2a0;
+  min-height: calc(80vh - 60px);
+}
+
+table, th, td {
+  border: 1px solid rgb(192, 192, 192);
+  border-collapse: collapse;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+table{
+  width: 100%;
+}
+
+tr{
+  height: 40px;
+}
+
+tr:first-child{
+  background-color: #e5e5e5;
+}
+
+td:nth-child(1){
+  width: 30px;
+  text-align: center;
+}
+
+td:nth-child(n+2){
+  text-align: center;
+}
+
+
+select{
+  width: 6rem;
+  height: 2rem;
+  border: none;
+  font-size: 1rem;
+}
+
+.admin-title{
+  display: flex;
+  justify-content: space-between;
+}
+/* .adminBack-btn{
+  display: inline-block;
+} */
+
+@media (max-width: 768px) {
+
+  table{
+    display: block;
+    overflow-x: scroll;
+    white-space: nowrap;
+  }
+
+}
