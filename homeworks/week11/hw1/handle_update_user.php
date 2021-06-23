@@ -12,13 +12,9 @@ if (empty($_POST['nickname'])) {
 $username = $_SESSION['username'];
 $nickname = $_POST['nickname'];
 
-$sql = 'UPDATE Dylan_board_users SET nickname=? WHERE username=?';
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('ss', $nickname ,$username);
-$result = $stmt->execute();
-if (!$result){
- die($conn->error);
-}
+
+sql('UPDATE Dylan_board_users SET nickname=? WHERE username=?',
+'ss', $nickname, $username);
 
 header('Location: index.php');
 ?>

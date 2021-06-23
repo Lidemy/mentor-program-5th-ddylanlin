@@ -7,16 +7,17 @@ if (!empty($_SESSION['username'])) {
   $username = $_SESSION['username'];
   $user = getUserFromUsername();
   if ($user['role'] !== 'admin'){
+    header('Location: index.php?errCode=4');
     print_r('You do not have permission,please leave');
   }
+} else {
+  header('Location: index.php?errCode=4');
 }
 
-$stmt = $conn->prepare('SELECT * FROM Dylan_board_users');
-$result = $stmt->execute();
-if (!$result) {
-  die('Error: ' . $conn->error);
-}
-$result = $stmt->get_result();
+
+
+$result = sqlGet(
+'SELECT * FROM Dylan_board_users ORDER BY created_at ASC');
 $row = $result->fetch_assoc();
 
 ?>
@@ -71,7 +72,7 @@ $row = $result->fetch_assoc();
 
           <td> 
             <select name="role">
-              <option value=""><?php echo escape($row['role'])?></option>
+              <option id="target" value=""><?php echo escape($row['role'])?></option>
             　<option value="normal">normal</option>
             　<option value="suspend">suspend</option>
             　<option value="admin">admin</option>

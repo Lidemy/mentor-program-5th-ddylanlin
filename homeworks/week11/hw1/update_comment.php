@@ -10,15 +10,10 @@ if (!empty($_SESSION['username'])) {
   $user = getUserFromUsername();
 }
 
-
-$stmt = $conn->prepare('SELECT * FROM Dylan_board_comments WHERE id=?');
-$stmt->bind_param('i', $id);
-$result = $stmt->execute();
-if (!$result) {
-  die('Error: ' . $conn->error);
-}
-$result = $stmt->get_result();
+$result = sql('SELECT * FROM Dylan_board_comments WHERE id=?',
+'i', $id, NULL);
 $row = $result->fetch_assoc();
+
 ?>
 
 <!DOCTYPE html>

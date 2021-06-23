@@ -10,18 +10,16 @@ if (empty($_POST['role']) || empty($_GET['id'])) {
 
 
 $username = $_SESSION['username'];
+$user = getUserFromUsername();
 $role = $_POST['role'];
 $id = $_GET['id'];
 
 
-$sql = 'UPDATE Dylan_board_users SET role=? WHERE id=?';
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('si', $role, $id);
-$result = $stmt->execute();
-if (!$result){
- die($conn->error);
-}
+if (isPermit ($user, NULL)) {
+  sql('UPDATE Dylan_board_users SET role=? WHERE id=?',
+  'si', $role, $id);
 
-header('Location: admin.php?Code=2');
-// Update Successed
+  header('Location: admin.php?Code=2');
+  // Update Successed
+}
 ?>

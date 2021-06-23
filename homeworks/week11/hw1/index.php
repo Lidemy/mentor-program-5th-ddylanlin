@@ -19,7 +19,8 @@ if (!empty($_GET['page'])) {
 $items_per_page = 10;
 $offset = ($page-1) * $items_per_page;
 
-$stmt = $conn->prepare('SELECT 
+// utils function
+$result = sql('SELECT 
 CC.id AS id, CC.content AS content, CC.created_at AS created_at, 
 UU.nickname AS nickname, UU.username AS username, UU.role AS role 
 FROM Dylan_board_comments AS CC 
@@ -27,15 +28,8 @@ LEFT JOIN Dylan_board_users AS UU
 ON CC.username = UU.username 
 WHERE CC.is_deleted=0 
 ORDER BY CC.id DESC  
-LIMIT ? OFFSET ?');
-
-$stmt->bind_param('ii', $items_per_page, $offset);
-
-$result = $stmt->execute();
-if (!$result) {
-  die('Error: ' . $conn->error);
-}
-$result = $stmt->get_result();
+LIMIT ? OFFSET ?',
+'ii',$items_per_page, $offset);
 
 ?>
 
@@ -59,6 +53,7 @@ $result = $stmt->get_result();
     <?php if (!$username) { ?>
       <a href="register.php">Register</a>
       <a href="login.php">Login</a>
+      
     <?php } else { ?>
       <a href="handle_logout.php">Logout</a>
       <a href="#" class="change-nickname-btn">Change Nickname</a>
@@ -86,6 +81,8 @@ $result = $stmt->get_result();
 
       if ($code === '1') {
         $msg = 'Incomplete Input';
+      } else if ($code === '4') {
+        $msg = "Honey~ don't try to hack admin ; )";
       }
       echo '<h2>' . $msg . '</h2>';
     }
@@ -116,10 +113,12 @@ $result = $stmt->get_result();
                 <span><?php echo escape($row['created_at']) ?></span>
               </div>
               <div>
-                <?php if ($user['role'] === 'admin' || $row['username'] === $username) {?>
-                <a href="update_comment.php?id=<?php echo escape($row['id'])?>" id="edit-btn">edit</a>
-                <a href="handle_delete_comment.php?id=<?php echo escape($row['id'])?>" id="edit-btn">delete</a>
-                <?php }?>
+                <?php 
+                  if (isPermit($user, $row['username']) || $user['role'] === 'editor') {?>
+                  <a href="update_comment.php?id=<?php echo escape($row['id'])?>" id="edit-btn">edit</a>
+                    <?php if ($user['role'] !== 'editor' || $row['username'] === $user['username']) { ?>
+                    <a href="handle_delete_comment.php?id=<?php echo escape($row['id'])?>" id="edit-btn">delete</a>
+                <?php } }?>
               </div>
             </div>
             <div class="comment-desc"><?php echo escape($row['content']) ?></div>
@@ -132,13 +131,13 @@ $result = $stmt->get_result();
 
     
     <?php 
-    $stmt = $conn->prepare('SELECT count(id) AS count FROM Dylan_board_comments WHERE is_deleted=0');
-    $result = $stmt->execute();
-    $result = $stmt->get_result();
+    
+    $result = sqlGet('SELECT count(id) AS count FROM Dylan_board_comments WHERE is_deleted=0');
     $row = $result->fetch_assoc();
     $count = $row['count'];
     $total_page = ceil($count / $items_per_page);
     ?>
+
     <div class="page-info">
       <span>Total <span style="color:rgb(180, 143, 214);font-size:1.2rem;"><?php echo $count ?></span> comments，Page </span>
       <span style="color:rgb(180, 143, 214);font-size:1.2rem;"><?php echo $page ?></span><span> / <?php echo $total_page?></span>

@@ -11,15 +11,10 @@ if (empty($_POST['username']) || empty($_POST['password'])) {
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = 'SELECT * FROM Dylan_board_users WHERE username=?';
-$stmt = $conn->prepare($sql);
-$stmt->bind_param('s', $username);
-$result = $stmt->execute();
-if (!$result) {
-  die($conn->error);
-}
+$result = sql(
+  'SELECT * FROM Dylan_board_users WHERE username=?',
+  's', $username, NULL);
 
-$result = $stmt->get_result();
 if ($result->num_rows === 0) {
   header('Location: login.php?errCode=3'); 
   // errCode=3 Username or Password is Incorrect
