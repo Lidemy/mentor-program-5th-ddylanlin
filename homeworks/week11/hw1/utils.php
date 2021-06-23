@@ -49,6 +49,7 @@ function sqlGet($prepare) {
   return $result;
 }
 
+
 function isPermit($user, $comment){
   if (empty($user['username'])) {
     return false;
@@ -57,9 +58,6 @@ function isPermit($user, $comment){
   } else {
     return ($comment === $user['username']);
   } 
-    
-
-  
 }
 
 ?>
