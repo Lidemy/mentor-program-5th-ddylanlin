@@ -1,0 +1,401 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  font-family:sans-serif;
+}
+
+a{
+  text-decoration: none;
+  color:black;
+}
+
+body{
+  font-size: 12px;
+  width: 100%;
+  max-width: 1920px;
+  background-color: rgb(236, 236, 236);
+}
+
+h2 {
+  color: red;
+  font-size: 1rem;
+}
+
+.bug{
+  outline: red 1px solid;
+}
+
+/* header */
+header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: rgb(236, 227, 218);
+}
+
+.logo{
+  font-size: 2.8rem;
+  color: green;
+}
+
+nav{
+  display: flex;
+  align-items: center;
+}
+
+nav a{
+  color:black;
+  font-size: 1.2rem;
+  margin-left: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+nav a:nth-child(2){
+  color:#EE6124;
+}
+
+nav a:hover{
+  color:rgb(238, 223, 93);
+  font-style: italic;
+}
+
+
+
+.banner{
+  width: 100%;
+  padding: 0 0.5rem;
+}
+
+
+
+
+
+
+/* section */
+section{
+  width:65vw;
+  margin: 1rem auto;
+  position: relative;
+  
+}
+
+
+section>h2{
+  position: absolute;
+  width:100%;
+  text-align: center;
+  top:3.5rem;
+}
+
+.page{
+  display: block;
+  width:fit-content;
+  margin:1rem auto;
+  font-size: 2.5rem;
+
+}
+
+.card{
+  display: flex;
+  padding: .5rem;
+  margin:2rem .5rem;
+  position: relative;
+
+}
+
+.card-img{
+  border-radius: 5px;
+}
+
+.card-info{
+  margin-left: 1rem;
+  height: 250px;
+  overflow: hidden;
+}
+
+.card-title{
+  font-size: 1.8rem;
+  text-align:justify;
+}
+
+.card-time{
+  color: rgb(148, 148, 148);
+  font-size: 1.1rem;
+}
+
+.card-category{
+  display: flex;
+}
+.category-btn {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background-color: rgb(236, 227, 218);
+  font-size: 1.1rem;
+  margin: 0.5rem .3rem .5rem 0;
+}
+
+.card-desc{
+  max-height:6em;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  text-align:justify;
+  overflow:hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; 
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  white-space: pre-line;
+
+}
+
+.card-admin-btn{
+  position: absolute;
+  bottom: -1rem;
+  right: 0;
+  margin: .5rem;
+}
+
+.card-admin-btn a{
+  font-size: 1rem;
+  padding: .2rem .5rem;
+  background-color: khaki;
+  opacity: 0.8;
+}
+
+.card-admin-btn a:first-child:hover{
+  background-color: green;
+}
+
+.admin-btn{
+  position: absolute;
+  right: 0;
+  padding: 1rem;
+}
+
+
+.create-btn{
+  font-size: 1rem;
+  padding: .2rem .5rem;
+  background-color: khaki;
+  border-radius: 5px;
+  margin-left: .5rem;
+}
+
+.create-btn:hover{
+  background-color: green;
+  color:white;
+}
+
+
+
+
+.more-btn{
+  display: block;
+  width: fit-content;
+  margin: 3rem auto;
+  border-radius:20px;
+  font-size: 1.2rem;
+  padding: .8rem;
+}
+
+.more-btn:hover{
+  background-color: khaki;
+}
+
+footer{
+  width: 100%;
+  background-color: rgb(54, 54, 54);
+  color: white;
+  height: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 2rem;
+}
+
+
+/* login-page */
+.login-board{
+  display: block;
+  border: 2px solid forestgreen;
+  width: 30%;
+  height: 15rem;
+  margin: 10rem auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7);
+  text-align: center;
+  position: relative;
+}
+
+.lg-title{
+  font-size: 2.3rem;
+  margin:1rem 0 1.5rem 0;
+}
+
+
+
+.login-board>h2{
+  position: absolute;
+  top:3.7rem;
+  width:100%;
+}
+
+
+.username , .password{
+  font-size: 1.2rem;
+  margin:1rem 0;
+}
+
+.username>input , .password>input{
+  height: 1.5rem;
+  border-radius: 5px;
+  border:green solid 1.5px;
+  font-size: 1.2rem;
+  width: 40%;
+}
+
+.submit-btn{
+  font-size: 1.5rem;
+  background-color: rgb(236, 236, 236);
+  padding: .2rem 1rem;
+  border-radius: 5px;
+  border: 1.5px green ;
+  margin-bottom: .4rem;
+}
+
+.submit-btn:hover{
+  background-color: green;
+  color: aliceblue;
+  cursor: pointer;
+}
+
+.login-board a{
+  font-size: 1rem;
+  margin: 0 .3rem;
+  text-decoration: underline;
+}
+
+.login-board a:hover{
+  color: green;
+}
+
+
+/* edit-page */
+.panel{
+  display: block;
+  border: 2px solid forestgreen;
+  width: 70%;
+  margin: 3rem auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7);
+  text-align: center;
+}
+
+.panel-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1.2rem 4rem;
+}
+
+.ed-title{
+  font-size: 2rem;
+}
+
+.ed-back-btn{
+  font-size: 1.5rem;
+}
+
+.ed-back-btn:hover{
+  color: green;
+}
+
+textarea{
+  width: 95%;
+  border-radius: 5px;
+  border:rgb(155, 155, 155) solid 1.5px;
+  font-size: 1.6rem;
+  padding: .5rem;
+  background-color: rgb(236, 236, 236);
+}
+
+
+.delete-btn{
+  font-size: 1.5rem;
+  background-color: rgb(236, 236, 236);
+  padding: .2rem 1rem;
+  border-radius: 5px;
+  margin-bottom: .4rem;
+}
+
+.delete-btn:hover{
+  background-color: rgb(241, 52, 52);
+  color: aliceblue;
+  cursor: pointer;
+}
+
+.ed-form div{
+  margin: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+/* article-page */
+.article{
+  display: block;
+  border: 1.5px solid forestgreen;
+  width: 100%;
+  min-height: 80vh;
+  margin: 3rem auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7);
+  text-align: center;
+}
+
+.atc-title{
+  font-size: 3rem;
+  margin: 2rem 0 1rem 0;
+}
+
+.atc-category{
+  display: flex;
+  justify-content: center;
+}
+
+.atc-content{
+  font-size: 1.2rem;
+  margin:2rem;
+  text-align: justify;
+  word-break: break-all;
+  white-space: pre-line;
+}
+
+
+
+/* article-list */
+
+.list-block{
+  display: block;
+  border: 1.5px solid forestgreen;
+  width: 100%;
+  min-height: 80vh;
+  margin: 3rem auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7);
+  text-align: left;
+  padding-bottom: 2rem;
+}
+
+.list-title{
+  font-size: 1.5rem;
+  margin:1rem auto;
+  width: 70%;
+  text-align: justify;
+  word-break: break-all;
+  white-space: pre-line;
+  border-bottom: solid 1px green;
+  padding-bottom: 0.5rem;
+}
