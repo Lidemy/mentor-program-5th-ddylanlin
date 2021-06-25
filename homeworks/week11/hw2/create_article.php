@@ -8,6 +8,10 @@ if ($user['role'] !== 'admin') {
   header('Location: index.php?errCode=4');
 }
 
+
+$result = sqlGet('SELECT * FROM Dylan_blog_articles');
+$row = $result->fetch_assoc();
+
 ?>
 
 
@@ -49,16 +53,27 @@ if ($user['role'] !== 'admin') {
       echo '<h2>' . $msg . '</h2>';
     }
     ?>
-    
+    <script src="https://cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <form class="ed-form" method="POST" action="handle_create_article.php">
-      <textarea name="content" id="" cols="10" rows="10"></textarea>
+      <textarea calss="textarea-title" name="title" id="" cols="10" rows="1"></textarea>
+      <textarea name="content" id="content" cols="10" rows="10"></textarea>
+
+      <script>CKEDITOR.replace("content");</script>
+
       <div>
-        <input class="submit-btn" type="submit" value="Post"></input>
+      <select name="category">
+        <option value="">Uncategorized</option>
+      　<option value="Front-end">Front-end</option>
+      　<option value="Back-end">Back-end</option>
+      　<option value="Others">Others</option>
+      </select>
+      <input class="submit-btn" type="submit" value="Post"></input>
       </div>
       
     </form>
 
   </div>
 </body>
+
 
 </html>

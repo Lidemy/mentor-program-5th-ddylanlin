@@ -52,13 +52,25 @@ $row = $result->fetch_assoc();
       echo '<h2>' . $msg . '</h2>';
     }
     ?>
-
+    <script src="https://cdn.ckeditor.com/4.7.3/full/ckeditor.js"></script>
     <form class="ed-form" method="POST" action="handle_edit_article.php">
-      <textarea name="content" id="" cols="10" rows="10"><?php echo escape($row['content'])?></textarea>
+      <textarea calss="textarea-title" name="title" id="" cols="10" rows="1"><?php echo escape($row['title'])?></textarea>
+      <textarea name="content" id="" cols="10" rows="10"><?php echo $row['content']?></textarea>
+      <script>CKEDITOR.replace("content");</script>
       <input type="hidden" name="id" value="<?php echo escape($row['id']) ?>" />
+
       <div>
-        <input class="submit-btn" type="submit" value="Update"></input>
-        <a class="delete-btn" href="handle_delete_article.php?id=<?php echo escape($row['id']);?>">Delete</a>
+        <select name="category">
+          <option value=""><?php echo escape($row['category'])?></option>
+        　<option value="Front-end">Front-end</option>
+        　<option value="Back-end">Back-end</option>
+        　<option value="Others">Others</option>
+        </select>
+        <div>
+          <input class="submit-btn" type="submit" value="Update"></input>
+          <a class="delete-btn" href="handle_delete_article.php?id=<?php echo escape($row['id']);?>">Delete</a>
+        </div>
+        
       </div>
       
     </form>

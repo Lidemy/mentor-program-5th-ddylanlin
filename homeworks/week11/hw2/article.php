@@ -35,24 +35,23 @@ $row = $result->fetch_assoc();
   <header>
     <a class="logo" href="index.php">Blog</a>
     <nav>
-      <a href="#">About</a>
-      <a href="#">Articles</a>
-      <a href="#">Category</a>
-      <a href="#">Category</a>
-      <a href="#">Category</a>
+      <a href="page.php?page=About">About</a>
+      <a href="page.php?page=List">Articles</a>
+      <a href="page.php?page=Front-end">Front-end</a>
+      <a href="page.php?page=Back-end">Back-end</a>
+      <a href="page.php?page=Others">Others</a>
     </nav>
   </header>
 
   
   <section>
     <div class="article">
-      <div class="atc-title">我是邊提我標題我是編輯</div>
+      <div class="atc-title"><?php echo escape($row['title']) ?></div>
       <div class="atc-category">
-        <div><a class="category-btn" href="category1">category1</a></div>
-        <div><a class="category-btn" href="category2">category2</a></div>
+        <div><a class="category-btn" href="category1"><?php echo escape($row['category']) ?></a></div>
       </div>
       <div class="card-time"><?php echo escape($row['created_at']) ?></div>
-      <div class="atc-content"><?php echo escape($row['content']) ?></div>
+      <div class="atc-content"><?php echo $row['content'] ?></div>
     </div>
   </section>
 
