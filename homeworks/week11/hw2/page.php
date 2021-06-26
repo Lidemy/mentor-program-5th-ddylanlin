@@ -5,6 +5,7 @@ require_once('utils.php');
 
 if (empty( $_GET['page'])) {
   header('Location: page.php?page=list');
+  exit;
 } else {
   $page = $_GET['page'];
 }

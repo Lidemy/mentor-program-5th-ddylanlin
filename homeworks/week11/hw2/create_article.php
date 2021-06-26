@@ -6,6 +6,7 @@ $username = $_SESSION['username'];
 $user = getUserFromUsername();
 if ($user['role'] !== 'admin') {
   header('Location: index.php?errCode=4');
+  exit;
 }
 
 

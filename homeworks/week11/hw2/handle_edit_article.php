@@ -7,6 +7,7 @@ if (empty($_POST['content']) || empty($_POST['title'])){
   die('Incomplete Input');
 } else if ($user['role'] !== 'admin') {
   header('Location: index.php?errCode=4');
+  exit;
 }
 
 

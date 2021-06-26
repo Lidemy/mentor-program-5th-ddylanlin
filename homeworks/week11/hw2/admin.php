@@ -7,8 +7,10 @@ $username = $_SESSION['username'];
 $user = getUserFromUsername();
 if (!($_GET)) {
   header('Location: admin.php?page=All');
+  exit;
 } else if ($user['role'] !== 'admin') {
   header('Location: index.php?errCode=4');
+  exit;
 }
 
 
@@ -17,6 +19,7 @@ if (!empty($_GET['page'])) {
   $page = $_GET['page'];
 } else {
   header('Location: index.php?errCode=4');
+  exit;
 }
 
 

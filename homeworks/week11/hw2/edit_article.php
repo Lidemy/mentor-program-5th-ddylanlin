@@ -7,6 +7,7 @@ $username = $_SESSION['username'];
 $user = getUserFromUsername();
 if ($user['role'] !== 'admin') {
   header('Location: index.php?errCode=4');
+  exit;
 }
 
 $result = sql('SELECT * FROM Dylan_blog_articles WHERE id=?',

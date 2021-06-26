@@ -7,6 +7,7 @@ $username = $_SESSION['username'];
 $user =getUserFromUsername(); // 拿到 SESSION 裡 role 的資料
 if ($user['role'] !== 'admin') {
   header('Location: index.php?errCode=4');
+  exit;
 }
 
 

@@ -5,6 +5,7 @@ require_once('utils.php');
 
 if (empty($_GET['id']) || $_GET['id'] == NULL) {
   header('Location: index.php');
+  exit;
 }
 
 $id = $_GET['id'];
