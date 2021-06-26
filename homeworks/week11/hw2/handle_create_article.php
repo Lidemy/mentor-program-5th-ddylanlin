@@ -14,6 +14,7 @@ $user =getUserFromUsername();
 $username = $_SESSION['username'];
 $content = $_POST['content'];
 $title = $_POST['title'];
+$page = $_POST['page'];
 
 if (empty($_POST['category'])) {
   $category = 'Uncategorized';
@@ -33,7 +34,7 @@ if (!$result){
 $result = $stmt->get_result();
 
 
-header('Location: index.php');
+header('Location: ' . $page);
 ?>
 
 

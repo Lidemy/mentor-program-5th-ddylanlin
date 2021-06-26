@@ -22,12 +22,9 @@ if (!empty($_SESSION['username'])) {
 switch ($page) {
   case 'List':
     $result = sqlGet('SELECT 
-    AA.id AS id, AA.title AS title, 
-    AA.content AS content, AA.created_at AS created_at, 
-    UU.username AS username, UU.role AS role 
+    AA.id AS id, AA.title AS title, AA.category As category, 
+    AA.content AS content, AA.created_at AS created_at 
     FROM Dylan_blog_articles AS AA 
-    LEFT JOIN Dylan_blog_users AS UU 
-    ON AA.username = UU.username 
     WHERE AA.is_deleted=0 
     ORDER BY AA.id DESC');
   break;
@@ -53,9 +50,7 @@ switch ($page) {
   break;
 }
 
-
 ?>
-
 
 
 <!DOCTYPE html>
@@ -72,11 +67,11 @@ switch ($page) {
   <header>
     <a class="logo" href="index.php">Blog</a>
     <nav>
-      <a href="page.php?page=About">About</a>
-      <a href="page.php?page=List">Articles</a>
-      <a href="page.php?page=Front-end">Front-end</a>
-      <a href="page.php?page=Back-end">Back-end</a>
-      <a href="page.php?page=Others">Others</a>
+      <a id="nav1" href="page.php?page=About">About</a>
+      <a id="nav2" href="page.php?page=List">Articles</a>
+      <a id="nav3" href="page.php?page=Front-end">Front-end</a>
+      <a id="nav4" href="page.php?page=Back-end">Back-end</a>
+      <a id="nav5" href="page.php?page=Others">Others</a>
     </nav>
   </header>
 
@@ -85,20 +80,39 @@ switch ($page) {
   
     <div class="list-block">
 
+    <?php if ($user['role'] === 'admin') {?>
+    <div class="admin-btn">
+      <a class="create-btn" href="admin.php">Admin</a>
+      <a class="create-btn" href="handle_logout.php">Logout</a>
+    </div>
+    <?php } ?>
 
-      
 
       <div class="page"><?php echo escape($page); ?></div>
 
       <?php if ($page !== 'About') {?>
 
         <?php while ($row = $result->fetch_assoc()) { ?>
-          <a href="article.php?id=<?php echo escape($row['id'])?>">
-            <div class=" list-title"><?php echo escape($row['title']) ?><p><?php echo escape($row['created_at']) ?></p></div>
-          </a>
+          <div class="list-card">
+
+            <a class="" href="article.php?id=<?php echo escape($row['id'])?>">
+              <div class="list-title"><?php echo escape($row['title']) ?></div>
+            </a>
+            <div class="list-right">
+              <p class="list-time"><?php echo escape($row['created_at']) ?></p>
+
+              <?php if ($user['role'] === 'admin') { ?>
+              <div class="card-admin-btn list-admin-btn">
+                <a class="delete-btn" href="edit_article.php?id=<?php echo escape($row['id']);?>">Edit</a>
+                <a class="delete-btn" href="handle_delete_article.php?id=<?php echo escape($row['id']);?>">Delete</a>
+              </div>
+              <?php } ?>
+            </div>
+
+            </div>
         <?php } ?>
 
-        <a id="more-btn" href="#">load more..</a>
+      
 
       <?php } else { ?>
         <div class="about-card">
@@ -128,25 +142,35 @@ switch ($page) {
 
 </body>
 
-<script>
 
-const loadmore = document.querySelector('#more-btn');
-    let currentItems = 2;
-    loadmore.addEventListener('click', (e) => {
-      const elementList = [...document.querySelectorAll('.page .list-title')];
-        for (let i = currentItems; i < currentItems + 2; i++) {
-            if (elementList[i]) {
-                elementList[i].style.display = 'block';
-            }
-        }
-        currentItems += 2;
+<script> 
 
-        // Load more button will be hidden after list fully loaded
-        if (currentItems >= elementList.length) {
-            event.target.style.display = 'none';
-        }
-    })
+  const page = '<?php echo $_GET['page']?>'
+
+  switch (page) {
+    case 'About':
+      document.querySelector('#nav1').classList.add('nav-color')
+    break;
+    case 'List':
+      document.querySelector('#nav2').classList.add('nav-color')
+    break;
+  
+    case 'Front-end':
+      document.querySelector('#nav3').classList.add('nav-color')
+    break;
+
+    case 'Back-end':
+      document.querySelector('#nav4').classList.add('nav-color')
+    break;
+
+    case 'Others':
+      document.querySelector('#nav5').classList.add('nav-color')
+    break;
+
+  }
+
 
 </script>
+
 
 </html>

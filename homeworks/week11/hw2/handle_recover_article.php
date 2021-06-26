@@ -22,10 +22,10 @@ $row = $result->fetch_assoc();
 // 做條件判斷，再執行更新命令
 if (isPermit ($user, $row['username'])) {
  
-  sql('UPDATE Dylan_blog_articles SET is_deleted=1 WHERE id=?',
+  sql('UPDATE Dylan_blog_articles SET is_deleted=0 WHERE id=?',
   'i', $id, NULL);
 
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  header('Location: admin.php?page=Bin');
 }
 
 

@@ -68,6 +68,7 @@ LIMIT ? OFFSET ?',
       <?php } else { ?>
         <?php if ($user['role'] == 'admin') { ?>
           <a class="create-btn" href="create_article.php">New Post</a>
+          <a class="create-btn" href="admin.php">Admin</a>
         <?php } ?>
       <a class="create-btn" href="handle_logout.php">Logout</a>
     <?php } ?>
@@ -104,7 +105,7 @@ LIMIT ? OFFSET ?',
 
           
           <div class="card-admin-btn">
-            <a class="delete-btn" href="article.php?id=<?php echo escape($row['id']);?>">Read</a>
+            <a id="read-btn" class="delete-btn" href="article.php?id=<?php echo escape($row['id']);?>">Read</a>
             <?php if ($user['role'] === 'admin') { ?>
             <a class="delete-btn" href="edit_article.php?id=<?php echo escape($row['id']);?>">Edit</a>
             <a class="delete-btn" href="handle_delete_article.php?id=<?php echo escape($row['id']);?>">Delete</a>

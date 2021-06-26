@@ -37,7 +37,7 @@ $row = $result->fetch_assoc();
     
     <div class="panel-top">
       <div class="ed-title">Create Article</div>
-      <a class="ed-back-btn"href="index.php">Back</a>
+      <a class="ed-back-btn" onclick="history.back()">Back</a>
     </div>
 
     <?php
@@ -68,6 +68,7 @@ $row = $result->fetch_assoc();
       　<option value="Others">Others</option>
       </select>
       <input class="submit-btn" type="submit" value="Post"></input>
+      <input type="hidden" name="page" value="<?php echo $_SERVER['HTTP_REFERER']?>"/>
       </div>
       
     </form>

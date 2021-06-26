@@ -16,6 +16,7 @@ $content = $_POST['content'];
 $title = $_POST['title'];
 $category = $_POST['category'];
 $user =getUserFromUsername(); // 拿到 SESSION 裡 role 的資料
+$page = $_POST['page'];
 
 // 先抓出 CC table 裡的 username，之後要做比對
 
@@ -41,7 +42,7 @@ $result = $stmt->get_result();
 
 
 
-header('Location: index.php');
+header('Location: ' . $page);
 
 }
 

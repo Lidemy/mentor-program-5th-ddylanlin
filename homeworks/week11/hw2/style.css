@@ -14,7 +14,7 @@ body{
   font-size: 12px;
   width: 100%;
   max-width: 1920px;
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
 }
 
 h2 {
@@ -24,6 +24,7 @@ h2 {
 
 .bug{
   outline: red 1px solid;
+
 }
 
 
@@ -34,7 +35,7 @@ header{
   display: flex;
   justify-content: space-between;
   padding: 1rem 4rem;
-  background-color: rgb(236, 227, 218);
+  background-color: rgb(242 247 255);
 }
 
 .logo{
@@ -54,13 +55,17 @@ nav a{
   margin-right: 0.5rem;
 }
 
-nav a:nth-child(2){
-  color:#EE6124;
-}
+
 
 nav a:hover{
   color:rgb(51, 153, 90);
   font-style: italic;
+  font-weight: 550;
+}
+
+.nav-color{
+  color:#EE6124;
+  font-weight: 550;
 }
 
 
@@ -95,7 +100,6 @@ section>h2{
   width:fit-content;
   margin:1rem auto;
   font-size: 2.5rem;
-
 }
 
 .card{
@@ -133,7 +137,7 @@ section>h2{
   display: inline-block;
   padding: 0.5rem;
   border-radius: 10px;
-  background-color: rgb(236, 227, 218);
+  background-color: rgb(242 247 255);
   font-size: 1.1rem;
   margin: 0.5rem .3rem .5rem 0;
 }
@@ -154,7 +158,7 @@ section>h2{
 
 .card-admin-btn{
   position: absolute;
-  bottom: -1rem;
+  bottom: 0rem;
   right: 0;
   margin: .5rem;
 }
@@ -162,13 +166,18 @@ section>h2{
 .card-admin-btn a{
   font-size: 1rem;
   padding: .2rem .5rem;
-  background-color: rgb(236, 227, 218);
+  background-color: rgb(242 247 255);
   opacity: 0.8;
 }
 
-.card-admin-btn a:nth-child(-n+2):hover{
+.card-admin-btn a:hover{
   background-color: rgb(51, 153, 90);
 }
+
+.card-admin-btn a:last-child:hover{
+  background-color: rgb(241, 52, 52);
+}
+
 
 .admin-btn{
   position: absolute;
@@ -180,7 +189,7 @@ section>h2{
 .create-btn{
   font-size: 1rem;
   padding: .2rem .5rem;
-  background-color: rgb(236, 227, 218);
+  background-color: rgb(242 247 255);
   border-radius: 5px;
   margin-left: .5rem;
 }
@@ -190,7 +199,11 @@ section>h2{
   color:white;
 }
 
-
+#cke_content{
+  padding: 0;
+  margin: 1rem;
+  border-radius: 5px;
+}
 
 
 .page-info{
@@ -208,7 +221,7 @@ section>h2{
 .paginator a{
   font-size: 1rem;
   padding: .2rem .5rem;
-  background-color: rgb(236, 227, 218);
+  background-color: rgb(242 247 255);
   border-radius: 5px;
   margin-left: .5rem;
 }
@@ -273,7 +286,7 @@ footer{
 
 .submit-btn{
   font-size: 1.5rem;
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
   padding: .2rem 1rem;
   border-radius: 5px;
   border: 1.5px rgb(51, 153, 90) ;
@@ -281,7 +294,7 @@ footer{
 
 .submit-btn:hover{
   background-color: rgb(51, 153, 90);
-  color: aliceblue;
+  color: rgb(255, 255, 255);
   cursor: pointer;
 }
 
@@ -324,6 +337,7 @@ footer{
 
 .ed-back-btn:hover{
   color: rgb(51, 153, 90);
+  cursor: pointer;
 }
 
 textarea{
@@ -332,23 +346,26 @@ textarea{
   border:rgb(155, 155, 155) solid 1.2px;
   font-size: 1.6rem;
   padding: .5rem;
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
 }
 
 
 
 .delete-btn{
   font-size: 1.5rem;
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
   padding: .2rem 1rem;
   border-radius: 5px;
   line-height: 1.5rem;
 }
 
 .delete-btn:hover{
-  background-color: rgb(241, 52, 52);
-  color: aliceblue;
+  color: rgb(255, 255, 255);
   cursor: pointer;
+}
+
+#read-btn:hover{
+  background-color: rgb(51, 153, 90);
 }
 
 .ed-form>div{
@@ -363,7 +380,7 @@ select{
   width: 8rem;
   height: 2.5rem;
   border: 1px solid rgb(51, 153, 90);
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(255, 255, 255);
   font-size: 1rem;
   border-radius: 5px;
 
@@ -387,6 +404,10 @@ select{
   font-size: 3rem;
   margin-bottom:1rem;
   padding-top: 2rem;
+  padding: 3rem;
+  text-align: center;
+  word-break: break-all;
+  white-space: pre-line;
 }
 
 .atc-category{
@@ -418,33 +439,59 @@ select{
   padding-bottom: 2rem;
 }
 
-.list-title{
-  font-size: 1.5rem;
+.list-card{
   margin:1rem auto;
-  width: 70%;
-  text-align: justify;
-  word-break: break-all;
-  white-space: pre-line;
+  width: 80%;
   border-bottom: solid 1px rgb(51, 153, 90);
-  padding-bottom: 0.5rem;
+  padding: 0.5rem 0;
   display: flex;
   justify-content: space-between;
 }
 
-.list-title>p{
-  font-size: 1.1rem;
-  min-width: 6rem;
-  color: rgb(148, 148, 148);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 1rem;
+.list-title{
+  font-size: 1.5rem;
+  text-align: justify;
+  word-break: break-all;
+  white-space: pre-line;
 }
 
 .list-title:hover{
   color: green;
+  font-weight: 550;
+}
+
+
+.list-right{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  min-width: fit-content;
+}
+
+.list-time{
+  font-size: .9rem;
+  min-width: fit-content;
+  color: rgb(148, 148, 148);
+  margin-left: .5rem;
+  margin-right: .3rem;
+}
+
+
+/* admin */
+.list-admin-btn{
+  position: initial;
+  padding: 0;
+  margin:0;
 
 }
+
+.list-admin-btn>a{
+  font-size: .9rem;
+  padding: .2rem .3rem;
+  margin-left:0rem ;
+}
+
 
 
 
@@ -455,20 +502,11 @@ select{
   display: block;
 }
 
-
-
-#more-btn{
-  display: block;
-  width: fit-content;
-  margin: 3rem auto;
-  border-radius:20px;
-  font-size: 1.2rem;
-  padding: .8rem;
+.admin-select{
+  margin: 1rem;
 }
 
-#more-btn:hover{
-  background-color: rgb(236, 227, 218);
-}
+
 
 
 /* about */
@@ -508,3 +546,5 @@ h1{
   height: 2.5rem;
   margin: 0 .3rem;
 }
+
+
