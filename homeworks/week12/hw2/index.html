@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W12H1</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <script>
+
+    function escape(toOutput){
+      return toOutput.replace(/\&/g, '&amp;')
+        .replace(/\</g, '&lt;')
+        .replace(/\>/g, '&gt;')
+        .replace(/\"/g, '&quot;')
+        .replace(/\'/g, '&#x27')
+        .replace(/\//g, '&#x2F');
+    }
+
+    function appendCommentToDOM(container, comment, isPrepend) {
+      const html = `
+          <div class="card mt-2">
+            <div class="card-body">
+              <h5 class="card-title">${escape(comment.nickname)}</h5>
+              <p class="card-text">${escape(comment.content)}</p>
+            </div>
+          </div>
+          `
+      if (isPrepend) {
+        container.prepend(html)
+      } else {
+        container.append(html)
+      }
+    }
+
+    //http://localhost/dylan/W12/board/api_comments.php
+    function getCommentsAPI(siteKey, before, cb) {
+      let url = `https://mentor-program.co/mtr04group2/Dylan/W12/board/api_comments.php?site_key=${siteKey}`
+      if (before) {
+        url += '&before=' + before
+      }
+      $.ajax({
+        url,
+      }).done(function(data) {
+        cb(data)
+      });
+    }
+
+
+    const siteKey = 'dylan'
+    const loadMoreButtonHTML = '<button class="load-more btn btn-outline-primary my-3">載入更多</button>'
+    let lastId = null
+    let isEnd = false
+
+    $(document).ready(()=>{
+      const commentDOM = $('.comments')
+      getComments()
+
+      $('.comments').on('click', '.load-more', ()=> {
+        getComments()
+      })
+
+      $('.add-comment-form').submit(e => {
+        e.preventDefault()
+        const newCommentData = {
+          'site_key' : 'dylan',
+          'nickname' : $('input[name=nickname]').val(),
+          'content' : $('textarea[name=content]').val()
+        }
+
+        $.ajax({
+          type: 'POST',
+          url: 'https://mentor-program.co/mtr04group2/Dylan/W12/board/api_add_comments.php',
+          data: newCommentData
+        }).done(function(data){
+          if (!data.ok) {
+            alert(data.message)
+            return
+          }
+          $('input[name=nickname]').val(''),
+          $('textarea[name=content]').val('')
+          appendCommentToDOM(commentDOM, newCommentData, true)
+       });
+      })
+    })
+  
+    function getComments() {
+      const commentDOM = $('.comments')
+      $('.load-more').hide()
+      if (isEnd) {
+        return
+      }
+      getCommentsAPI(siteKey, lastId, data => {
+        if (!data.ok) {
+          alert(data.message)
+          return
+        }
+
+        const comments = data.discussions;
+        for (let comment of comments) {
+          appendCommentToDOM(commentDOM, comment)
+        }
+        let length = comments.length
+        if (length === 0) {
+          isEnd = true
+        } 
+        lastId = comments[length - 1].id
+        $('.comments').append(loadMoreButtonHTML)
+        
+        if (lastId === 1){
+          $('.load-more').hide()
+        }
+      })
+    }
+
+  </script>
+
+  <style>
+    /* .card{
+      display:none;
+    } 
+
+    .card:nth-child(-n+5) {
+      display: block;
+    } */
+    
+  </style>
+  
+</head>
+
+<body>
+  <div class="container">
+
+    <form class="add-comment-form my-3">
+      <div class="mb-3">
+        <label for="form-nickname" class="form-label">暱稱</label>
+        <input type="text" name="nickname" class="form-control" id="form-nickname">
+      </div>
+      <div class="mb-3">
+        <label for="content-textarea" class="form-label">留言內容</label>
+        <textarea class="form-control" name="content" id="content-textarea" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-outline-primary">送出</button>
+    </form>
+
+    <div class="comments my-3"></div>
+
+    
+
+  </div>
+</body>
+
+<script>
+
+      // '<button id="loadmore" type="button" class="btn btn-outline-primary my-3">more</button>'
+
+      // 方法二 一次載入再做處理（需更改php)
+      // $(".card").slice(0, 5).show()
+      // $("#loadmore").click( e =>{ 
+      //   $(".card:hidden").slice(0, 5).show() 
+      //   if($(".card:hidden").length == 0){ 
+      //     e.target.style.display = 'none'  
+      //   }
+      // })
+
+
+      // 方法二之原生做法
+      // let currentItems = 5;
+      // $('#loadmore').click(e =>{
+      //   const comments = [...$('.card')]
+      //   for (let i = currentItems; i < currentItems + 5; i++) {
+      //     if (comments[i]) {
+      //       comments[i].style.display = 'block'
+      //     }
+      //   }
+      //   currentItems += 5
+
+      //   if (currentItems >= comments.length) {
+      //     e.target.style.display = 'none' 
+      //     alert('No more comment')
+      //   }
+      // })
+     
+      
+</script>
+
+</html>
