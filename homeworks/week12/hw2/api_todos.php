@@ -2,23 +2,21 @@
   require_once('conn.php');
   header('Content-type:application/json;charset=utf-8');
   header('Access-Control-Allow-Origin: *');
-
-  if (empty($_POST['content']) || empty($_POST['nickname']) || empty($_POST['site_key'])) {
+  
+  if (empty($_GET['id'])) {
     $json = array(
       'ok' => false,
-      'message' => 'Please input missing fields');
+      'message' => 'Please add id in URL');
     
     $response = json_encode($json);
     echo $response;
     die();
   }
 
-  $nickname = $_POST['nickname'];
-  $site_key = $_POST['site_key'];
-  $content = $_POST['content'];
+  $id = intval($_GET['id']);
 
-  $stmt = $conn->prepare('INSERT INTO Dylan_discussions(site_key, nickname, content) VALUE (?, ?, ?)');
-  $stmt->bind_param('sss', $site_key, $nickname, $content);
+  $stmt = $conn->prepare("SELECT * FROM Dylan_todo WHERE id = ? ORDER BY id DESC");
+  $stmt->bind_param('i', $id);
   $result = $stmt->execute();
 
   if (!$result) {
@@ -31,13 +29,16 @@
     die();
   }
 
+  $result = $stmt->get_result();
+  $row = $result->fetch_assoc();
   $json = array(
     'ok' => true,
-    'message' => 'Success');
+    'data' => array(
+      'id' => $row['id'],
+      'todo' => $row['todo'],
+    ));
+
   
   $response = json_encode($json);
   echo $response;
-
-
-  
 ?>
