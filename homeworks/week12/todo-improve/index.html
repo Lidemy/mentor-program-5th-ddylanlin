@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W12H2</title>
+
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+  <style>
+
+    body{
+      background-color: rgb(240, 252, 245);
+    }
+
+    .container{
+      width: 60%;
+    }
+
+    .nav-link{
+      color: rgb(59, 59, 59);
+    }
+
+    .nav-link:hover{
+      color: rgb(42, 202, 122);
+    }
+    
+    .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+      background-color: rgb(42, 202, 122);
+    }
+
+    .nav-pills{
+      width: 50%;
+    }
+    .nav-pills a{
+      word-wrap: normal;
+      width: 33.3333%;
+    }
+  
+    .bug{
+      outline: 1px red solid;
+    }
+
+    .form-control:focus {
+      border-color: #28a745;
+      box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+    
+    .todo, .todo>div{
+      display:flex;
+    }
+
+    .divv {
+    display: flex;
+    flex: 1;
+    } 
+
+
+    .content {
+      word-break: break-word;
+      flex-grow: 1;
+    }    
+
+    .content:hover{
+      cursor: pointer;
+    }
+
+    .delete-btn {
+      opacity: 0;
+    }
+    .todo:hover .delete-btn {
+      opacity: 1;
+    }
+
+    .name{
+      display: flex;
+    }
+
+    .save-btn{
+      padding:.4rem .5rem;
+      border-radius: 5px;
+      color: rgb(58, 177, 34);
+      font-weight: 550;
+    }
+
+    .tip-btn{
+      font-size: 1.2rem;
+      color: rgb(255, 80, 80);
+      font-weight: 550;
+      border:solid 1px rgb(255, 80, 80);
+      border-radius: 10px;
+      padding:.1rem .5rem;
+    }
+
+
+    .tip-btn:hover{
+      background-color: rgb(255, 80, 80);
+      color: white;
+    }
+
+
+    #inputName{
+      /* outline: red solid 2px; */
+      width: 8rem;
+    }
+    
+
+    @media (max-width:1000px) {
+      .container{
+        width: 95%;
+      }
+      .nav-pills{
+      width: 100%;
+      }
+    } 
+
+  </style>
+
+  <script>
+
+   
+
+    let id = 1
+    let todoCount = 0
+    let unDoneCount = 0
+
+    const template = `
+      <div class="todo align-items-center justify-content-between {todoClass}">
+        <div class="divv">
+          <input class="form-check-input todo-check" type="checkbox" value="" id="todo-{id}">
+          <label for="todo-{id}" class="content text-start card-title mb-0 ms-3">{content}</label>
+        </div>
+        <button type="button" class="btn btn-outline-danger delete-btn">Delete</button>
+      </div>`
+
+
+
+    $(document).ready(function(){
+      
+      // tips鈕被點擊跳說明
+      $('.card').on('click', '.tip-btn', e =>{
+        alert('If you already have list before\nplease enter your name to get list')
+      })
+      
+      
+      const searchParams = new URLSearchParams(window.location.search)
+      const todoName = searchParams.get('site_key')
+      
+      if (todoName) {
+        $.getJSON('https://mentor-program.co/mtr04group2/Dylan/W12/todo-improve/api_todos.php?site_key=' + todoName, function(data) {
+          let todos = JSON.parse(data.data.todo)
+          restoreTodos(todos)
+        })
+      }
+      // https://mentor-program.co/mtr04group2/Dylan/W12/todo/api_todos.php
+      // http://localhost/dylan/W12/todo/api_todos.php
+
+      function restoreTodos(todos) {
+        if (todos.length === 0) return
+        id = todos[todos.length - 1].id + 1
+        for (let i = 0; i < todos.length; i++) {
+          const todo = todos[i]
+          $('.todos').append(
+          template
+            .replace('{content}', escape(todo.content))
+            .replace(/{id}/g, todo.id)
+            .replace('{todoClass}', todo.isDone ? 'checked' : '')
+          )
+          todoCount++
+          if (todo.isDone) {
+            $('#todo-' + todo.id).prop('checked', true)
+            $('#todo-' + todo.id).parent().css('color', '#888888')
+            $('#todo-' + todo.id).parent().css('text-decoration', 'line-through')
+          }
+          if (!todo.isDone) {
+            unDoneCount++
+          }
+        }
+        counter()
+      } 
+
+      // 新增
+      $('#inputArea').keydown( e => {
+        if (e.key === 'Enter') {
+          addTodo()
+        }
+      })
+        
+      // 刪除
+      $('.todos').on('click', '.delete-btn', e =>{
+        $(e.target).parent().remove()
+        if (!$(e.target).parent().find('.todo-check').prop('checked')) {
+          unDoneCount--
+        }
+        counter()
+      })
+
+      // 勾選狀態
+      $('.todos').on('click', '.todo-check', e =>{
+        const isChecked = $(e.target).prop('checked')
+        const todo = $(e.target).parent()
+
+        if (isChecked) {
+          todo.css('color', '#888888')
+          todo.css('text-decoration', 'line-through')
+          todo.parent().addClass('checked')
+          unDoneCount--
+        } else {
+          todo.css('color', 'black')
+          todo.css('text-decoration', 'none')
+          todo.parent().removeClass('checked')
+          unDoneCount++
+        }
+          counter()
+        })
+
+      // 清除
+      $('.card').on('click', '.clear-btn', e =>{
+        todoCount -= $('.todo.checked').length
+        $('.todo.checked').remove()
+      })
+
+      // active btn
+      $('nav').on('click', 'a', e =>{
+        const filter = ($(e.target).attr('data-filter'))
+        $('nav a.active').removeClass('active')
+        $(e.target).addClass('active')
+
+        switch (filter) {
+          case 'All':
+            $('.todo').show()
+          break;
+          case 'Active':
+            $('.todo').show()
+            $('.todo.checked').hide()
+          break;
+          case 'Completed':
+            $('.todo').hide()
+            $('.todo.checked').show()
+          break;
+        }
+      })
+
+      // 提取或儲存
+      $('.card').on('click', '.save-btn', e =>{
+
+        const value = $('#inputName').val() // 右上input欄位值
+        
+        if (!value) {
+          alert('If you want to save todo list\nPlease enter your name')
+          return
+        }
+
+        // 將內容存入陣列
+        let todos = []
+        $('.todo').each((i, el) => {
+          const input = $(el).find('.todo-check')
+          const content = $(el).find('.content')
+          todos.push({
+            id: input.attr('id').replace('todo-', ''),
+            content: content.text(),
+            isDone: $(el).hasClass('checked')
+          })
+        })
+        
+
+        if (todos.length === 0) { // 暫只考慮全空白為提取 非空白為存入（不設權限）
+          window.location = 'index.html?site_key=' + value
+        } else {
+          const data = JSON.stringify(todos)
+          $.ajax({
+            type: 'POST',
+            url: 'https://mentor-program.co/mtr04group2/Dylan/W12/todo-improve/api_save_todos.php',
+            data: {
+              site_key: value,
+              todo: data
+            },
+            success: function(res) {
+              const respName = res.site_key
+              const status = res.status
+              alert(status)
+              window.location = 'index.html?site_key=' + respName
+              
+            },
+            error: function() {
+              alert('Error')
+            }
+          })
+        }
+      }) // save btn
+
+
+    }) // document.ready
+
+    
+
+    function escape(unsafe) {
+      return unsafe
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+    }
+
+    function addTodo() {
+      const value = $('#inputArea').val()
+      if (!value) return
+      $('.todos').append(
+        template
+          .replace('{content}', escape(value))
+          .replace(/{id}/g, id))
+
+      id ++
+      todoCount++
+      unDoneCount++
+      counter()
+      $('#inputArea').val('')
+    }
+    
+    function counter(){
+      $('.todo-count').text(unDoneCount)
+    }
+
+
+  </script>
+
+
+</head>
+<body>
+
+  <div class="container mt-5 p-0 shadow rounded">
+
+    <div class="card text-center border-success">
+      <div class="card-header bg-transparent ">
+        <h1>To Do List</h1>
+        <a class="tip-btn nav-link text-bg-secondary position-absolute top-0 start-0 m-2" href="#">Tips</a>
+        <div class="name position-absolute top-0 end-0 m-2">
+          <input id="inputName"type="text" class="form-control" placeholder="Your Name">
+          <a class="save-btn nav-link text-bg-secondary " href="#">Take/Save</a>
+        </div>
+        
+      </div>
+      
+      <div class="card-body">
+        <div class="mb-3">
+          <input id="inputArea"type="text" class="form-control" placeholder="What need to be done?">
+        </div>
+
+        <div class="todos"></div>
+
+      </div>
+
+      <div class="card-footer">
+        <ul class="nav justify-content-between">
+
+          <li class="nav-item order-1">
+            <a class="nav-link text-secondary" href="#"><span class="todo-count">0</span> items left</a>
+          </li>
+
+          <nav class=" nav nav-pills order-3 ">
+            <a class="nav-link active" data-filter="All" href="#">All</a>     
+            <a class="nav-link " data-filter="Active" href="#">Active</a>
+            <a class="nav-link " data-filter="Completed" href="#">Completed</a>
+          </nav>
+
+          <li class="nav-item  order-2 order-lg-last">
+            <a class="clear-btn nav-link text-secondary" href="#">Clear Completed</a>
+          </li>
+
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <style>
+ 
+  </style>
+  
+</body>
+</html>
