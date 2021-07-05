@@ -1,0 +1,442 @@
+@mixin absCenter($top)
+  position: absolute
+  top: $top
+  left: 50%
+  transform: translate(-50%, -50%)
+
+@mixin flex($jc, $ai)
+  display: flex
+  justify-content: $jc
+  align-items: $ai
+
+$color-primary: #a3dea2
+$color-btn: #ff7286
+  
+* 
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  font-family: Questrial, Microsoft JhengHei
+
+section 
+  text-align: center
+
+a  
+  text-decoration: none
+  color: red
+
+.container 
+  max-width: 100vw
+  padding: 0 15px
+.logo * 
+  font-size: 36px
+  color: #489846
+.title 
+  display: inline-block
+  font-size: 36px
+  margin-bottom: 40px
+  border-left: 15px solid $color-primary
+  padding-left: 16px
+
+
+header 
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0
+  max-width: 100vw
+
+  .container 
+    +flex(space-between, unset)
+  .logo 
+    margin: auto 0
+    padding-left: 25px
+
+
+.header-nav 
+  +flex(space-around, center)
+
+  a 
+    color: #010101
+    font-size: 18px
+    text-align: center
+    padding: 14px 25px
+    border-radius: 8px
+    margin: 20px 5px
+    transition: background 500ms ease, color 500ms ease
+
+    &:hover
+      background: $color-btn
+      color: #fefefe
+
+  .active
+    background: $color-btn
+    color: #fefefe
+
+  
+
+// home page
+.banner 
+  position: relative
+  background: url("./images/homepg-banner.png") left/cover no-repeat
+  height: 580px
+  margin-bottom: 80px
+
+  &::after
+    content: ""
+    background: rgba(0, 0, 0, 0.3)
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+  h1 
+    +absCenter(50%)
+    font-size: 60px
+    color: #fff
+    z-index: 1
+
+
+
+.description p 
+  margin-bottom: 20px
+
+
+.buttons button 
+  width: 300px
+  height: 160px
+  font-size: 36px
+  font-weight: bold
+  color: #3e613d
+  margin: 80px 10px 120px
+  border: none
+  border-radius: 10px
+  cursor: pointer
+  transition: transform 300ms ease
+
+  &:hover 
+    transform: scale(1.05)
+
+
+.btn
+  &-order 
+    background: #a8e8e1
+  &-search 
+    background: #f9f9b5
+
+
+.menu-images 
+  margin-bottom: 80px
+  +flex(center, unset)
+  
+
+  div 
+    max-width: 25%
+    overflow: hidden
+  img 
+    max-width: 100%
+
+
+
+.comments 
+  margin-bottom: 90px
+
+  &-body
+    display: flex  
+    margin-top: 30px
+  &-comment
+    position: relative
+    border: 1px solid #c7e5ec
+    border-radius: 5px
+    box-shadow: -1.4px -1.4px 4px 0 #d8eaef
+    flex: 1
+    margin-top: 60px
+    margin: 0 8px
+    padding: 0 25px
+    letter-spacing: 0.14px
+    line-height: 1.5em
+
+    img
+      position: absolute
+      transform: translate(-50%, -50%)
+      border: solid 1px #c1c1c1
+      border-radius: 50%
+      background-color: #c1c1c1
+    div 
+      margin: 55px 0 50px
+      padding-top: 10px
+    p:last-child 
+      margin-top: 10px
+
+h4
+  font-size: 25px
+
+
+.location 
+  margin-bottom: 40px
+
+  iframe
+    display: block
+
+
+
+
+
+/* faq */
+
+.description 
+  margin: 50px 0
+
+  .container
+    max-width: 800px
+    margin: 0 auto
+    padding: 0 15px
+    text-align: center
+
+
+.Question
+  text-align: left
+  border-bottom: 2px solid $color-primary
+  margin: 20px 0
+  padding-bottom: 20px
+  display: flex
+
+  div
+   display: inline-block
+  &-list
+    color:$color-primary
+    font-size: 24px
+    font-weight: bold
+    cursor: default
+    display: inline-block
+  &-title
+    font-size: 18px
+    margin-left: 15px
+    
+    &:hover
+      cursor: pointer
+
+
+
+.answer
+  text-align: justify
+  padding-left: 20px
+  font-size: 16px
+  margin-top: 15px
+  letter-spacing : 2.5pt
+  cursor: default
+  max-height: 0
+  overflow: hidden
+  
+
+
+.active-key
+  overflow: visible
+  max-height: 400px
+  transition: max-height  500ms ease-out
+
+
+
+
+/* lottery */
+
+/* 換背景圖 */
+$bg-switch: (FIRST: 'flight.jpg', SECOND: 'tv.jpg', THIRD: 'youtuber.jpg', event: 'eventsbg.png')
+
+@each $type, $value in $bg-switch
+  .#{$type}-bg
+    height: 520px
+    background: url(./images/lottery-#{$value}) left/cover no-repeat 
+    position: relative
+
+
+.NONE-bg
+  width: 100%
+  height: 520px
+  background-color: rgb(27, 27, 27)
+  position: relative
+  color: white
+
+
+
+
+
+/* 活動辦法 */
+
+.eventMethod
+  &-block
+    width: 400px
+    height: 400px
+    background-color: white
+    +absCenter(50%)
+    border-radius: 16px
+
+    &:nth-child(2)
+      height: 40px
+      .description-content //例外處理
+        padding-top: 3px
+    &:nth-child(3)
+      height: 110px
+      padding: 10px 0
+    &:nth-child(4)
+      height: 130px
+      padding: 10px 0
+
+  &-title
+    width: 100%
+    height: 60px
+    font-size: 20px
+    font-weight: bold
+    color: #5ec1b6
+    +flex(center, center)
+  &-description
+    display: flex
+    margin: 0 15px
+    border-bottom:1px dashed #cdcdcd
+  &-btn
+    font-size: 18px
+    color: white
+    width: 70%
+    height: 40px
+    border-radius: 8px
+    border: none
+    background-color: $color-btn
+    +absCenter(calc(100% - 40px))
+    
+  
+
+.description
+  &-subject
+    font-size: 16px
+    font-weight: bold
+    color: #322929
+    width: 25%
+  &-content
+    font-size: 14px
+    text-align: justify
+    color: #322929
+    width: 75%
+    height: 100%
+
+
+button:hover
+  cursor: pointer 
+
+
+.hide
+  visibility: hidden
+
+
+
+/* 公布結果 */
+.announce
+  &-content
+    font-size: 28px
+    text-align: center
+    +absCenter(30%)
+  &-btn
+    font-size: 18px
+    color: white
+    width: 20%
+    height: 40px
+    border-radius: 8px
+    border: none
+    background-color: $color-btn
+    +absCenter(calc(100% - 250px))
+
+
+
+footer
+  max-width: 100vw
+
+
+.footer
+  &-top 
+    background-color: #e8efee
+    padding: 40px 0
+    color: #484848
+
+    .container 
+      +flex(space-between, unset)
+      
+  &-info 
+    line-height: 2em
+  &-sites 
+    text-align: right
+  &-bottom 
+    background: #35564b
+    color: #fff
+    text-align: center
+    padding: 15px 0
+
+
+
+@media(max-width: 768px) 
+
+  body
+    max-width: 100vw
+
+  header 
+    .container 
+      align-items: center
+      flex-direction: column
+    .logo 
+      margin: 16px auto 0
+  
+
+
+  .header-nav 
+    background: white
+    top: 50px
+    border-radius: 5px
+    transition: 0.5s
+    margin: 2px 0 10px 0
+
+    &a 
+      margin: 5px
+      padding: 14px 10px
+    &.show
+      height: 50vh
+  
+
+
+  .buttons 
+    margin-bottom: 80px
+
+    button 
+      width: 200px
+      height: 120px
+      font-size: 24px
+      margin: 15px
+  
+
+  .menu-images 
+    flex-direction: column
+
+    div 
+      min-width: 100%
+    img 
+      width: 100%
+  
+  
+  .comments
+    &-body 
+      flex-direction: column
+    &-comment 
+      min-height: 100px
+      max-width: 70vw
+      margin: 50px auto 0
+  
+  .footer
+    &-top 
+      .container 
+        flex-direction: column-reverse
+    &-sites 
+      text-align: center
+      margin-bottom: 40px
+
+
+  .announce-content
+    font-size: 4vw
+  
+  .eventMethod-block
+    max-width: 95vw
+  
+
