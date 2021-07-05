@@ -1,0 +1,464 @@
+$color-primary: rgb(51, 153, 90)
+$color-bg: rgb(242 247 255)
+$size-primary: 1.2rem
+
+@mixin flex($jc, $ai)
+  display: flex
+  justify-content: $jc
+  align-items: $ai
+
+@mixin b-radius
+  border-radius: 5px
+
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  font-family: sans-serif
+
+
+a
+  text-decoration: none
+  color: black
+
+
+body
+  width: 100%
+  max-width: 1920px
+  background-color: white
+
+
+h2 
+  color: red
+  
+
+
+
+/* header */
+header
+  width: 100%
+  +flex(space-between,unset)
+  padding: 1rem 4rem
+  background-color: $color-bg
+
+
+.logo
+  font-size: 2.8rem
+  color: $color-primary
+
+
+nav
+  +flex(unset,center)
+  a
+    color: black
+    font-size: $size-primary
+    margin-left: 1.2rem
+    margin-right: 0.5rem
+
+    &:hover
+      color: $color-primary
+      font-style: italic
+      font-weight: 550
+
+
+.nav-color
+  color: #EE6124
+  font-weight: 550
+
+
+.banner
+  width: 100%
+  padding: 0 0.5rem
+
+
+
+/* section */
+section
+  width: 65vw
+  margin: 1rem auto
+  position: relative
+  
+  h2
+    position: absolute
+    width: 100%
+    text-align: center
+    top: 3.5rem
+
+
+.page
+  display: block
+  width: fit-content
+  margin: 1rem auto
+  font-size: 2.5rem
+
+
+.card
+  display: flex
+  padding: .5rem
+  margin: 2rem .5rem
+  position: relative
+
+  &-img
+    +b-radius
+  &-info
+    margin-left: 1rem
+    height: 250px
+    overflow: hidden
+  &-title
+    font-size: 1.8rem
+    text-align: justify
+  &-time
+    color: rgb(148, 148, 148)
+    font-size: $size-primary
+  &-category
+    display: flex
+  &-desc
+    max-height: 6em
+    line-height: 1.4rem
+    text-align: justify
+    overflow: hidden
+    display: -webkit-box
+    -webkit-line-clamp: 4 
+    -webkit-box-orient: vertical
+    word-break: break-all
+    white-space: pre-line
+  &-admin
+    &-btn
+      position: absolute
+      bottom: 0rem
+      right: 0
+      margin: .5rem
+
+      a
+        padding: .2rem .5rem
+        background-color: $color-bg
+        opacity: 0.8
+
+        &:hover
+          background-color: $color-primary
+        &:last-child:hover
+          background-color: rgb(241, 52, 52)
+
+
+.admin-btn
+  position: absolute
+  right: 0
+  padding: 1rem
+
+
+.category-btn 
+  display: inline-block
+  padding: 0.5rem
+  border-radius: 10px
+  background-color: $color-bg
+  font-size: $size-primary
+  margin: 0.5rem .3rem .5rem 0
+
+.create-btn
+  padding: .2rem .5rem
+  background-color: $color-bg
+  +b-radius
+  margin-left: .5rem
+  font-size: $size-primary
+
+  &:hover
+    background-color: $color-primary
+    color: white
+
+
+#cke_content
+  padding: 0
+  margin: 1rem
+  +b-radius
+
+
+.page-info
+  text-align: center
+  margin: 0.5rem auto
+  margin-top: 1rem
+
+
+.paginator
+  +flex(center,unset)
+  margin-bottom: 1rem
+
+  a
+    padding: .2rem .5rem
+    background-color: $color-bg
+    +b-radius
+    margin-left: .5rem
+
+    &:hover
+      background-color: $color-primary
+      color: white
+
+
+footer
+  width: 100%
+  background-color: rgb(54, 54, 54)
+  color: white
+  height: 2rem
+  text-align: center
+  line-height: 2rem
+
+
+
+/* login-page */
+.login-board
+  display: block
+  border: 2px solid $color-primary
+  width: 30%
+  height: 15rem
+  margin: 10rem auto
+  +b-radius
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7)
+  text-align: center
+  position: relative
+
+  h2
+    position: absolute
+    top: 3.7rem
+    width: 100%
+
+
+.lg-title
+  font-size: 2.3rem
+  margin: 1rem 0 1.5rem 0
+
+
+.username , .password
+  font-size: $size-primary
+  margin: 1rem 0
+
+  input
+    height: 1.5rem
+    +b-radius
+    border: $color-primary solid 1.5px
+    font-size: $size-primary
+    width: 40%
+
+
+.submit-btn
+  font-size: 1.5rem
+  background-color: white
+  padding: .2rem 1rem
+  +b-radius
+  border: 1.5px $color-primary 
+
+  &:hover
+    background-color: $color-primary
+    color: white
+    cursor: pointer
+
+
+.login-board a
+  
+  margin: 0 .3rem
+  text-decoration: underline
+
+  &:hover
+    color: $color-primary
+
+
+/* edit-page */
+.panel
+  display: block
+  border: 2px solid $color-primary
+  width: 70%
+  margin: 3rem auto
+  +b-radius
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7)
+  text-align: center
+
+  &-top
+    +flex(space-between,center)
+    margin: 1.2rem 2rem
+
+
+.ed
+  &-title
+   font-size: 2rem
+
+  &-back-btn
+    font-size: $size-primary
+
+    &:hover
+      color: $color-primary
+      cursor: pointer
+  &-form>div
+    padding: 1rem
+    margin-left: 1rem
+    +flex(space-between,unset)
+
+
+textarea
+  width: 95%
+  +b-radius
+  border: rgb(155, 155, 155) solid 1.2px
+  font-size: 1.6rem
+  padding: .5rem
+  background-color: white
+
+
+.delete-btn
+  font-size: $size-primary
+  background-color: white
+  padding: .2rem 1rem
+  +b-radius
+  line-height: 1.5rem
+
+  &:hover
+    background: $color-primary
+    color: white
+    cursor: pointer
+
+
+#read-btn:hover
+  background-color: $color-primary
+
+
+select
+  width: 8rem
+  height: 2.5rem
+  border: 1px solid $color-primary
+  background-color: white
+  +b-radius
+
+
+
+/* article-page */
+.article
+  display: block
+  border: 1.5px solid $color-primary
+  width: 100%
+  min-height: 80vh
+  margin: 3rem auto
+  +b-radius
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7)
+  text-align: center
+
+
+.atc
+  &-title
+    font-size: 3rem
+    margin-bottom: 1rem
+    padding-top: 2rem
+    padding: 3rem
+    text-align: center
+    word-break: break-all
+    white-space: pre-line
+
+  &-category
+    +flex(center,unset)
+
+  &-content
+    font-size: $size-primary
+    margin:2rem
+    text-align: justify
+    word-break: break-all
+    white-space: pre-line
+
+
+/* article-list */
+
+.list
+  &-block
+    display: block
+    border: 1.5px solid $color-primary
+    width: 100%
+    min-height: 80vh
+    margin: 3rem auto
+    +b-radius
+    box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7)
+    text-align: left
+    padding-bottom: 2rem
+
+  &-card
+    margin: 1rem auto
+    width: 80%
+    border-bottom: solid 1px $color-primary
+    padding: 0.5rem 0
+    +flex(space-between,unset)
+
+  &-title
+    font-size: 1.5rem
+    text-align: justify
+    word-break: break-all
+    white-space: pre-line
+
+    &:hover
+      color: green
+      font-weight: 550
+
+  &-right
+    +flex(center,center)
+    flex-direction: row
+    min-width: fit-content
+
+  &-time
+    font-size: .9rem
+    min-width: fit-content
+    color: rgb(148, 148, 148)
+    margin-left: .5rem
+    margin-right: .3rem
+
+
+
+/* admin */
+.list-admin-btn
+  position: initial
+  padding: 0
+  margin: 0
+
+  &a
+    font-size: .9rem
+    padding: .2rem .3rem
+    margin-left:0rem 
+
+
+.page .list-title:nth-child(1) 
+  display: block
+
+.page .list-title:nth-child(2) 
+  display: block
+
+
+.admin-select
+  margin: 1rem
+
+
+
+/* about */
+.about
+  &-card
+    display: flex
+    width: 100%
+    height: 70vh
+    padding: 2rem
+
+  &-info
+    margin: 1rem
+
+    p
+      padding: 1rem 1.5rem
+      text-align: justify
+      white-space: pre-line
+      word-break: break-word
+
+h1
+  font-size: 2.5rem
+  padding: 1rem 1.5rem
+
+  
+
+.link
+  display: block
+  width: fit-content
+  margin:0 auto
+  padding-top: 1rem
+
+  &-btn
+    width: 2.5rem
+    height: 2.5rem
+    margin: 0 .3rem
