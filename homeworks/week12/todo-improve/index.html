@@ -57,16 +57,58 @@
       display:flex;
     }
 
+    .divv {
+    display: flex;
+    flex: 1;
+    } 
+
 
     .content {
       word-break: break-word;
+      flex-grow: 1;
     }    
+
+    .content:hover{
+      cursor: pointer;
+    }
 
     .delete-btn {
       opacity: 0;
     }
     .todo:hover .delete-btn {
       opacity: 1;
+    }
+
+    .name{
+      display: flex;
+    }
+
+    .save-btn{
+      padding:.4rem .5rem;
+      border-radius: 5px;
+      color: rgb(58, 177, 34);
+      font-weight: 550;
+    }
+
+    .tip-btn{
+      font-size: 1.2rem;
+      color: rgb(255, 80, 80);
+      font-weight: 550;
+      border:solid 1px rgb(255, 80, 80);
+      border-radius: 10px;
+      padding:.1rem .5rem;
+    }
+
+
+    .tip-btn:hover{
+      background-color: rgb(255, 80, 80);
+      color: white;
+    }
+
+
+    #inputName{
+      /* outline: red solid 2px; */
+      width: 8rem;
     }
     
 
@@ -91,28 +133,29 @@
 
     const template = `
       <div class="todo align-items-center justify-content-between {todoClass}">
-        <div>
+        <div class="divv">
           <input class="form-check-input todo-check" type="checkbox" value="" id="todo-{id}">
-          <h5 for="todo-{id}" class="content text-start card-title mb-0 ms-3">{content}</h5>
+          <label for="todo-{id}" class="content text-start card-title mb-0 ms-3">{content}</label>
         </div>
         <button type="button" class="btn btn-outline-danger delete-btn">Delete</button>
       </div>`
 
-    // let data = {
-    //   'site_key' : 'dylan',
-    //   'todos' : []
-    // }
 
 
     $(document).ready(function(){
       
+      // tips鈕被點擊跳說明
+      $('.card').on('click', '.tip-btn', e =>{
+        alert('If you already have list before\nplease enter your name to get list')
+      })
+      
       
       const searchParams = new URLSearchParams(window.location.search)
-      const todoId = searchParams.get('id')
+      const todoName = searchParams.get('site_key')
       
-      if (todoId) {
-        $.getJSON('http://localhost/dylan/W12/todo/api_todos.php?id=' + todoId, function(data) {
-          const todos = JSON.parse(data.data.todo)
+      if (todoName) {
+        $.getJSON('https://mentor-program.co/mtr04group2/Dylan/W12/todo-improve/api_todos.php?site_key=' + todoName, function(data) {
+          let todos = JSON.parse(data.data.todo)
           restoreTodos(todos)
         })
       }
@@ -133,6 +176,8 @@
           todoCount++
           if (todo.isDone) {
             $('#todo-' + todo.id).prop('checked', true)
+            $('#todo-' + todo.id).parent().css('color', '#888888')
+            $('#todo-' + todo.id).parent().css('text-decoration', 'line-through')
           }
           if (!todo.isDone) {
             unDoneCount++
@@ -145,21 +190,9 @@
       $('#inputArea').keydown( e => {
         if (e.key === 'Enter') {
           addTodo()
-          // data.todos.push({
-          //   'id' :`${id}`,
-          //   'info' : {
-          //     'content' : `${safeInput}`,
-          //     'checked' : false
-          //   }
-          // })
-          // console.log('add',data)
         }
       })
-      
-
-      
-      
-      
+        
       // 刪除
       $('.todos').on('click', '.delete-btn', e =>{
         $(e.target).parent().remove()
@@ -167,19 +200,7 @@
           unDoneCount--
         }
         counter()
-        // let todoId = $(e.target).parent().find('.todo-check').attr('id') 
-        // let Id = todoId.split('-')[1]
-        // data.todos.filter(function(item, index, array){
-        //   if (item.id == Id) { 
-        //     data.todos.splice(index, 1)
-        //   }
-        // })
-        // console.log('delete',data)
       })
-
-      
-
-    
 
       // 勾選狀態
       $('.todos').on('click', '.todo-check', e =>{
@@ -191,21 +212,11 @@
           todo.css('text-decoration', 'line-through')
           todo.parent().addClass('checked')
           unDoneCount--
-          // data.todos.filter(function(item, index, array){
-          //   if (item.id == Id) {
-          //     data.todos[index].info.checked = true
-          //   }
-          // })
         } else {
           todo.css('color', 'black')
           todo.css('text-decoration', 'none')
           todo.parent().removeClass('checked')
           unDoneCount++
-          // data.todos.filter(function(item, index, array){
-          //   if (item.id == Id) {
-          //     data.todos[index].info.checked = false
-          //   }
-          // })
         }
           counter()
         })
@@ -215,8 +226,6 @@
         todoCount -= $('.todo.checked').length
         $('.todo.checked').remove()
       })
-
-
 
       // active btn
       $('nav').on('click', 'a', e =>{
@@ -239,8 +248,17 @@
         }
       })
 
-
+      // 提取或儲存
       $('.card').on('click', '.save-btn', e =>{
+
+        const value = $('#inputName').val() // 右上input欄位值
+        
+        if (!value) {
+          alert('If you want to save todo list\nPlease enter your name')
+          return
+        }
+
+        // 將內容存入陣列
         let todos = []
         $('.todo').each((i, el) => {
           const input = $(el).find('.todo-check')
@@ -251,30 +269,35 @@
             isDone: $(el).hasClass('checked')
           })
         })
-        const data = JSON.stringify(todos)
         
-        $.ajax({
-          type: 'POST',
-          url: 'http://localhost/dylan/W12/todo/api_save_todos.php',
-          data: {
-            todo: data
-          },
-          success: function(res) {
-            const respId = res.id
-            window.location = 'index.html?id=' + respId
-          },
-          error: function() {
-            alert('Error')
-          }
-        })
-      })
 
-      
+        if (todos.length === 0) { // 暫只考慮全空白為提取 非空白為存入（不設權限）
+          window.location = 'index.html?site_key=' + value
+        } else {
+          const data = JSON.stringify(todos)
+          $.ajax({
+            type: 'POST',
+            url: 'https://mentor-program.co/mtr04group2/Dylan/W12/todo-improve/api_save_todos.php',
+            data: {
+              site_key: value,
+              todo: data
+            },
+            success: function(res) {
+              const respName = res.site_key
+              const status = res.status
+              alert(status)
+              window.location = 'index.html?site_key=' + respName
+              
+            },
+            error: function() {
+              alert('Error')
+            }
+          })
+        }
+      }) // save btn
 
 
-
-
-    })
+    }) // document.ready
 
     
 
@@ -302,7 +325,6 @@
       $('#inputArea').val('')
     }
     
-
     function counter(){
       $('.todo-count').text(unDoneCount)
     }
@@ -319,14 +341,21 @@
     <div class="card text-center border-success">
       <div class="card-header bg-transparent ">
         <h1>To Do List</h1>
-        <a class="save-btn nav-link text-bg-secondary position-absolute top-0 end-0 m-2" href="#">Save</a>
+        <a class="tip-btn nav-link text-bg-secondary position-absolute top-0 start-0 m-2" href="#">Tips</a>
+        <div class="name position-absolute top-0 end-0 m-2">
+          <input id="inputName"type="text" class="form-control" placeholder="Your Name">
+          <a class="save-btn nav-link text-bg-secondary " href="#">Take/Save</a>
+        </div>
+        
       </div>
       
       <div class="card-body">
         <div class="mb-3">
           <input id="inputArea"type="text" class="form-control" placeholder="What need to be done?">
         </div>
+
         <div class="todos"></div>
+
       </div>
 
       <div class="card-footer">
