@@ -38,10 +38,13 @@
     }
 
     function getCommentsAPI(siteKey, before, cb) {
-      let url = `http://localhost/dylan/W12/api_comments.php?site_key=${siteKey}`
+      
+      let url = new URL(`http://localhost/dylan/W12/board/api_comments.php`)
+      url.searchParams.set('site_key',`${siteKey}`)
       if (before) {
-        url += '&before=' + before
+        url.searchParams.set('before',`${before}`)
       }
+      
       $.ajax({
         url,
       }).done(function(data) {
