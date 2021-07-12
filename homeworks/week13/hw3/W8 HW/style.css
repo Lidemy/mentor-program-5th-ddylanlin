@@ -1,0 +1,278 @@
+*{
+  margin: 0;
+  padding: 0;
+
+}
+
+a{
+  text-decoration: none;
+}
+
+body{
+  max-width :768px;;
+  font-size: 12px;
+}
+
+/* header */
+
+header{
+  width :100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.3rem;
+}
+
+.web-title{
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 0.2rem;
+}
+
+nav{
+  margin: 0.2rem;
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+nav >a{
+  font-size: 1.15rem;
+  margin-bottom: 0.8rem;
+  color: black;
+}
+
+nav >a:hover{
+  cursor: pointer;
+  color:white;
+  background-color: #4C5764;
+}
+
+main{
+  max-width: 100%;
+  background: #4C5764;
+  display: flex;
+  flex-direction: column;
+}
+
+/* page title */
+.title-block{
+  color: rgb(226, 226, 226);
+  height: 10%;
+  text-align: center;
+  padding: 0.3rem 0;
+
+}
+
+.page-title{
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.description{
+  font-size: 1rem;
+  margin: 0.3rem 0;
+}
+
+/* card */
+.section-block{
+  width: 90%;
+  margin: 0rem auto;
+  padding-bottom: 2rem;
+}
+
+.fake{
+  width: 21rem;
+  height: 17rem;
+  margin: 2.5rem auto;
+  margin-top: 1rem;
+}
+
+.card{
+  width: 21rem;
+  height: 17rem;
+  margin: 2.5rem auto;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+  border-radius: 1rem;
+}
+
+.card >a{
+  width: 100%;
+  height: 100%;
+  background-color: #393A3C;
+}
+
+.card:hover{
+  transition: transform 0.3s ease;
+  transform:scale(1.02);
+  border-radius: 0.3rem;
+}
+
+.cover{
+  width: 100%;
+  height: 75%;
+  border-radius: 0.3rem;
+  filter: brightness(85%);
+}
+
+.cover:hover{
+  filter: brightness(110%);
+}
+.caption{
+  width: 100%;
+  height: 25%;
+  background-color: #393A3C;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 0.3rem;
+}
+
+.logo{
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.4rem;
+}
+
+.content{
+  height: 100%;
+  width: 75%;
+  margin: 0 auto;
+  position: absolute;
+  right: 0.3rem;
+  bottom: 0.3rem;
+}
+
+.content >:first-child{
+  font-size: 1.2rem;
+  overflow : hidden;
+  text-overflow : ellipsis;
+  white-space : nowrap;
+  color: white;
+  margin-top: 0.9rem;
+}
+
+.content >:last-child{
+  color: white;
+  margin-top:0.2rem;
+  font-size: 1.05rem;
+}
+
+
+
+button{
+  margin: 0 auto;
+  font-size: 1.8rem;
+  color: rgb(65, 65, 65);
+  background: rgb(243, 239, 239);
+  border:none;
+  border-radius: 0.5rem;
+  padding: 0.3rem;
+  margin-bottom: 2rem;
+}
+button::after{
+ content:'load more..'
+}
+button:hover{
+  cursor:pointer;
+  transition: all 1s ease;
+  background:#4C5764;
+  color: aliceblue;
+}
+
+
+
+
+footer {
+  max-width: 100%;
+  background: #000;
+  color: #999;
+  font-size: 1rem;
+  text-align: center;
+}
+
+footer p {
+  line-height: 2.5rem;
+}
+
+
+@media (min-width:768px){ 
+
+
+  body{
+    max-width: 100vw;
+  }
+  header{
+    width: 100%;
+    height:content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 0rem;
+  }
+
+  .web-title{
+    margin: auto 1.4rem;
+  }
+
+  nav{
+    margin: 0rem;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  nav >a{
+    margin-bottom: 0rem;
+    height: 4rem;
+    line-height: 4rem;
+    font-size: 1rem;
+    margin-left:0.5rem;
+    color: black;
+    padding: 0 0.8rem;
+  }
+  
+  nav >a:hover{
+    cursor: pointer;
+    color:white;
+    background-color: #4C5764;
+  }
+
+
+
+  .title-block{
+    color: rgb(236, 236, 236);
+    text-align: center;
+    padding: 1.5rem 0;
+  }
+  
+  .page-title{
+    font-size: 3rem;
+  }
+  
+  .description{
+    font-size: 2rem;
+    margin: 0.3rem 0;
+  }
+
+
+
+  .section-block{ 
+    max-width: 65rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap:wrap;
+    padding-bottom: 4rem;
+  } 
+
+  .card{
+    margin: 1rem auto;
+  }
+  
+}
+
