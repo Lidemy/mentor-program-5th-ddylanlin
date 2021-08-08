@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+  <title>W17 admin</title>
+</head>
+  <body>
+    
+    <header>
+      <a class="logo" href="/">Blog</a>
+      <nav>
+        <a id="nav1" href="page?page=About">About</a>
+        <a id="nav2" href="page?page=List">Articles</a>
+        <a id="nav3" href="page?page=Front-end">Front-end</a>
+        <a id="nav4" href="page?page=Back-end">Back-end</a>
+        <a id="nav5" href="page?page=Others">Others</a>
+      </nav>
+    </header>
+
+    
+    <section>
+      <div class="list-block">
+      
+      <div class="admin-btn">
+        <a class="create-btn" href="/create">New Post</a>
+        <a class="create-btn" href="/logout">Logout</a>
+      </div>
+
+
+      <form action="/admin" method="GET">
+        <select class="admin-select" name="page" onchange="submit();"> 
+          <option value="<%= page %>"><%= page %></option> 
+          <option value="All">All</option>
+          <option value="Front-end">Front-end</option>
+        　<option value="Back-end">Back-end</option>
+        　<option value="Others">Others</option>
+          <option value="Bin">Bin</option>
+        </select> 
+      </form>
+
+
+        <div class="page">Admin</div>
+          <% articles.forEach(article => { %>
+      
+            <div class="list-card">
+              <a class="" href="/article/<%= article.id %>">
+                <div class="list-title"><%= article.title %></div>
+              </a>
+              <div class="list-right">
+                <p class="list-time"><%= article.createdAt %></p>
+
+                <div class="card-admin-btn list-admin-btn">
+
+                  <% if (page !== 'Bin') { %>
+                    <a class="delete-btn" href="/update/<%= article.id %>">Edit</a>
+                    <a class="delete-btn" href="/delete/<%= article.id %>">Delete</a>
+                  <% } else { %>
+                    <a class="delete-btn" href="/recover/<%= article.id %> ">Recover</a>
+                  <% } %>
+
+
+                </div>
+              </div>
+              
+            </div>
+          
+          <% }) %>
+
+
+      </div>
+    </section>
+
+    <footer>Copyright © 2020 B612</footer>
+
+  </body>
+
+
+</html>

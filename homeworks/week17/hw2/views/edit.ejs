@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('template_head') %>
+</head>
+<body>
+
+  
+  <div class="position-relative vh-100">
+    <div class="container w-50 px-4 pb-3 position-absolute top-50 start-50 translate-middle border border-success border-2 rounded">
+      <div class="text-center p-3" >
+        <h1 class="fw-bold">修改獎項</h1>
+      </div>
+
+      <div class="text-end position-absolute top-0 end-0 pt-3 pe-3">
+        <a href="/admin" type="button" class="btn btn-outline-secondary btn-sm">返回</a>
+      </div>
+    
+      <form method="POST" action="/edit/<%= lotteries.id %>">
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label fs-4">中獎項目：</label>
+          <div class="col-sm-9">
+            <input type="text" class="form-control fs-4" name="prize" value="<%= lotteries.prize %>">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label  class="form-label fs-4">中獎描述：</label>
+          <textarea class="form-control fs-4" rows="3" name="description"><%= lotteries.description %></textarea>
+        </div>
+        
+        <div class="mb-3 row">
+          <label class="col-sm-3 col-form-label fs-4">圖片網址：</label>
+          <div class="col-sm-9">
+            <input type="url" class="form-control fs-4" name="imageURL" value="<%= lotteries.imageURL %>">
+          </div>
+        </div>
+
+        <div class="input-group mb-3 w-50">
+          <span class="input-group-text fs-4">機率：</span>
+          <input type="number" min="0" max="<%= 100-totalProbability+lotteries.probability %>" class="form-control fs-5" name="probability" value="<%= lotteries.probability %>">
+          <span class="input-group-text fs-4">%</span>
+          <p>與其他品項總機率不得大於100%</p>
+        </div>
+        
+        <div class="text-end position-absolute bottom-0 end-0 pb-4 pe-4">
+          <button type="submit" class="btn btn-outline-success fs-5">修改</button>
+          <a href="/delete/<%= lotteries.id %>" type="button" class="btn btn-outline-danger fs-5">刪除</a>
+        </div>
+
+      </form>
+      
+    </div>
+  </div>  
+
+
+</body>
+</html>
+

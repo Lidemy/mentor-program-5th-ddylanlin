@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('template_head') %>
+</head>
+  <body>
+
+    <div class="container">
+      <h1 class='mx-auto text-center mt-4'>♫.(◕∠◕).♫</h1>
+    </div>
+
+    <div class="container">
+      <div class="position-relative mx-auto text-center my-4 w-75">
+
+        <img class="rounded w-100" style="opacity: 0.4;height: 75vh;" src="<%= result.imageURL %>">
+
+        <div class="hide card-body position-absolute bottom-0 start-50 translate-middle-x mb-5">
+          <h5 class="card-title fs-1 fw-bold"><%= result.prize %></h5>
+          <p class="card-text fs-4" style="white-space: pre;"><%= result.description %></p>
+          <a href="/" id="try-btn" class="btn btn-secondary fs-4">再試一次</a>
+        </div>
+
+        <a href="admin" class="position-absolute top-100 end-0">獎項自己決定啦</a>
+
+      </div>
+    </div>
+
+  </body>
+
+  <script>
+    console.log('測試browser接API：')
+    fetch('/lottery')
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => error(err));
+  </script>
+
+</html>

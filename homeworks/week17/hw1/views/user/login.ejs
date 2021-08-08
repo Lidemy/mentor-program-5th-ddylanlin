@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W17Login</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  
+
+  <div class="login-board">
+
+ 
+    <div class="lg-title">Admin Login</div>
+
+    <% if (errorMessage && errorMessage.length > 0) { %> 
+      <h2><%= errorMessage %></h2>
+    <% } %> 
+
+    <form method="POST" action="/login">
+
+      <div class='username'>
+        <span>Username: </span>
+        <input type="text" name="username" />
+      </div>
+
+      <div class='password'>
+        <span>Password :  </span>
+        <input type="password" name="password" />
+      </div>
+      
+      <input class="submit-btn"type="submit" value="Submit"></input>
+
+    </form>
+
+    <a href="/">Back</a>
+    <a href="/register">Register</a>
+    
+  </div>
+
+</body>
+</html>
