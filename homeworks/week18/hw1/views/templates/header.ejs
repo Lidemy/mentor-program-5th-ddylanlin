@@ -1,0 +1,39 @@
+<header>
+  <div class="container">
+    <div class="logo"><a href="/">Just A Bite!</a></div>
+    <nav class="header-nav">
+      <a class="nav-lottery" href="/lottery">抽個大獎</a>
+      <a class="nav-empty" href="#">我要點餐</a>
+      <a class="nav-empty" href="#">查詢訂單</a>
+      <a class="nav-faq" href="/faq">常見問題</a>
+    </nav>
+  </div>
+</header>
+
+
+<script>
+  
+  const params = window.location.pathname
+  switchNav(params)
+
+  function switchNav(params) {
+    switch (params) {
+      case '/lottery':
+        document.querySelector('.nav-lottery').classList.add('active')
+        break;
+      
+      case '#':
+        document.querySelector('.nav-empty').classList.add('active')
+        break;
+    
+      case '#':
+        document.querySelector('.nav-empty').classList.add('active')
+        break;
+    
+      case '/faq':
+        document.querySelector('.nav-faq').classList.add('active')
+        break;
+      }
+  }
+
+</script>
