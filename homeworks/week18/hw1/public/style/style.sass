@@ -18,6 +18,9 @@ $color-btn: #ff7286
   padding: 0
   font-family: Questrial, Microsoft JhengHei
 
+body
+  max-width: 1920px
+
 section 
   text-align: center
 
@@ -92,6 +95,13 @@ header
     font-size: 60px
     color: #fff
     z-index: 1
+  
+  &-menu
+    position: relative
+    background: url("../images/menu-banner.png") center/cover no-repeat
+    width: 100%
+    height: 280px
+    margin-bottom: 80px
 
 
 
@@ -199,7 +209,7 @@ h4
   display: flex
 
   div
-   display: inline-block
+   //display: inline-block
   &-list
     color:$color-primary
     font-size: 24px
@@ -207,7 +217,7 @@ h4
     cursor: default
     display: inline-block
   &-title
-    font-size: 18px
+    font-size: 24px
     margin-left: 15px
     
     &:hover
@@ -370,11 +380,266 @@ button:hover
     background-color: $color-btn
     // +absCenter(calc(100% - 250px))
 
+.tt
+  outline: 2px solid red
+
+// 點餐
+.menu-images 
+  div
+    max-width: 557px
+    position: relative
+    &::before
+      content: ""
+      background: rgba(255, 255, 255, 0.5)
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+    &::after
+      content: "售完"
+      color: white
+      font-size: 1.2rem
+      +absCenter(50%)
+      width: 60px
+      height: 60px
+      background: #2f2f2f
+      border-radius: 50%
+      +flex(center, center)
+
+.menu-intro
+  margin: 7rem 7rem
+  display: flex
+  img
+    max-width: 674px
+    width: 40%
+  &-txt
+    height: fit-content
+    margin: 0 2rem
+    text-align: start
+    display: flex
+    flex-direction: column
+    align-self: center
+    h3
+      color: #489846
+      font-size: 26px
+      margin: 1rem 0
+
+
+.middle-info
+  font-size: 18px
+  margin: 1rem auto 6rem
+  +flex(center, inherit)
+  position: relative
+
+  &::after
+    content: ""
+    width: 14px
+    height: 14px
+    border-bottom: 1px solid #000
+    border-right: 1px solid #000
+    transform: rotate(45deg)
+    position: absolute
+    top: 180%
+
+  &::before
+    content: ""
+    width: 15px
+    height: 15px
+    border-bottom: 1px solid #000
+    border-right: 1px solid #000
+    transform: rotate(45deg)
+    position: absolute
+    top: 150%
+
+.dishes
+  max-width: 80%
+  margin: 4rem auto
+  +flex(center, inherit)
+  flex-wrap: wrap
+  position: relative
+
+  &-card
+    margin: 0 1rem 4rem
+    & img
+      max-height: 292px
+      max-width: 292px
+  &-info
+    +flex(center, inherit)
+    color: #3f633c
+    font-weight: 600
+    margin: .6rem 0
+  &-btn
+    width: 292px
+    height: 46px
+    font-size: 1rem
+    border: solid 1px #3f633c
+    background-color: #f1fff2
+    border-radius: 3px
+
+.cart-icon
+  width: 60px
+  height: 60px
+  +flex(center, center)
+  background: #30762f
+  border-radius: 50%
+  position: absolute
+  right: 0
+  bottom: 0
+  transform: translate(50%, 50%)
+  img
+    width: 60%
+  &-count
+    content: ""
+    background: $color-btn
+    border-radius: 50%
+    position: absolute
+    width: 20px
+    height: 20px
+    top: -10%
+    right: 0
+    color: #FFF
+    +flex(center, center)
+  &:hover
+    cursor: pointer
+
+.fake
+  height: 292px
+  width: 292px 
+
+
+
+
+// 後台
+.manage
+  margin: 3rem auto
+  width: 65%
+  min-height: 50vh
+
+.admin-btn
+  font-size: 1.5rem
+  button
+    font-size: 1.2rem
+    border-radius: 5px
+    background: white
+    padding: .2rem .8rem
+    margin-left: .6rem
+    border: 1px solid 
+  &-first
+    color: #198754
+    border: #198754
+    &:hover
+      color: white
+      background-color: #198754
+  &-second
+    color: #dc3545
+    border: #dc3545
+    &:hover
+      color: white
+      background-color: #dc3545
+
+.manage-btn
+  +flex(flex-end,inherit)
+  margin-bottom: 2rem
+  button
+    color: #464646
+    border: #464646 1px solid 
+    &:hover
+      background-color: #464646
+
+.lottery
+  &-card
+    display: flex
+    margin: 0rem 0rem 2rem
+    border: 2px solid #aaaaaa
+    border-radius: 5px
+    height: 250px
+    position: relative    
+    img
+      width: 300px
+      height: 100%
+      max-width: 40%
+      border-radius: 3px
+
+    .lose-info
+      +flex(center,center)
+      flex-direction: column
+      .lottery-desc
+        height: unset
+  &-info
+    width: 100%
+    margin: 1rem
+    text-align: start
+  &-prize
+    font-size: 2.5rem
+    height: 30%
+    overflow: hidden
+  &-desc
+    font-size: 1.5rem
+    height: 50%
+    overflow: hidden
+  &-others
+    position: relative
+    +flex(flex-end,inherit)
+    font-size: 1.5rem
+    height: 20%
+    right: 2%
+    .percent
+      font-size: 2rem
+      margin: 0 2rem
+  &-admin-btn
+    position: absolute
+    height: 40px
+    right: 0
+    top: -22%
+    button
+      margin: 0 0 0 1rem 
+      color: #464646
+      border: #464646 1px solid 
+      &:hover
+        background-color: #464646
+
+
+
+.qa-card
+  margin: 1rem .5rem 2rem
+  flex-direction: column
+  .card-answer
+    text-align: justify
+    padding-left: 20px
+    font-size: 16px
+    margin-top: 15px
+    letter-spacing : 2.5pt
+    cursor: default
+    overflow: hidden
+
+.qa-btn
+  +flex(flex-end,inherit) 
+  
+.admin-dishes
+  max-width: 100%
+  margin: 1rem .5rem 2rem
+  +flex(space-between,inherit) 
+  .dishes-card
+    margin: 0
+    max-width: 260px
+    max-height: 260px
+    margin-bottom: 8rem
+    img
+      max-height: 100%
+      max-width: 100%
+    .dishes-info
+      margin: 1rem 0
+
+.menu-btn
+  justify-content: center
+
+
+
 
 
 footer
   max-width: 100vw
-
 
 .footer
   &-top 
@@ -397,7 +662,7 @@ footer
 
 
 
-@media(max-width: 768px) 
+@media(max-width: 768px)
 
   body
     max-width: 100vw
@@ -452,7 +717,56 @@ footer
       min-height: 100px
       max-width: 70vw
       margin: 50px auto 0
+
+  .banner-menu
+    height: 60px
+
+  .menu-intro
+    margin: 3rem 0 
+    flex-direction: column
+    img
+      width: 100%
+    &-txt
+      margin: 0 2rem
+    &-name
+      font-weight: 700
   
+  .dishes
+    margin-bottom: 3rem 
+    padding-bottom: 1rem
+    &-card
+      margin-bottom: 2rem
+  
+  .fake
+    display: none
+
+  .cart-icon
+    width: 50px
+    height: 50px
+    right: 5%
+    bottom: 0%
+  
+  .manage
+    width: 90%
+   
+  .lottery
+    &-card
+      flex-direction: column
+      margin: 3rem 0 1.5rem 0
+      height: fit-content
+      width: fit-content
+      img
+        width: 100%
+        max-width: 100%
+    &-info
+      width: fit-content
+      margin: .6rem
+    &-prize
+      margin-bottom: .5rem
+    &-desc
+      margin-bottom: 1rem
+
+
   .footer
     &-top 
       .container 
@@ -460,6 +774,7 @@ footer
     &-sites 
       text-align: center
       margin-bottom: 40px
+
 
 
   .announce-content

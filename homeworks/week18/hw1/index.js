@@ -37,6 +37,22 @@ app.get('/lottery', (req, res) => {
   res.render('lottery')
 })
 
+app.get('/menu', (req, res) => {
+  res.render('menu')
+})
+
+app.get('/manage-lottery', (req, res) => {
+  res.render('manage-lottery')
+})
+
+app.get('/manage-faq', (req, res) => {
+  res.render('manage-faq')
+})
+
+app.get('/manage-menu', (req, res) => {
+  res.render('manage-menu')
+})
+
 // app.get('/page', articleController.page)
 // app.get('/article/:id', articleController.view)
 // app.get('/create', articleController.create)

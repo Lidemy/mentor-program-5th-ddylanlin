@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('templates/head') %>
+  <title>JB-Manage</title>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="logo"><a href="/">Just A Bite!</a></div>
+      <nav class="header-nav">
+        <a class="nav-lottery" href="/lottery">抽個大獎</a>
+        <a class="nav-empty" href="#">我要點餐</a>
+        <a class="nav-empty" href="#">查詢訂單</a>
+        <a class="nav-faq" href="/faq">常見問題</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <section class="manage">
+    <h2 class="title">後台-獎項管理</h2>
+
+    <div class="admin-btn manage-btn">
+      <button class="admin-btn-first">登出</button>
+      <button class="admin-btn-second">新增</button>
+    </div>
+    
+    <div class="lottery-card">
+      <img src="https://pse.is/3fgu8w" alt="">
+      <div class="lottery-info lose-info">
+        <div class="lottery-prize">空歡喜一場</div>
+        <div class="lottery-desc">落空機率：60%</div>
+      </div>
+
+    </div>
+
+
+    <div class="lottery-card">
+      <img src="https://pse.is/3j49xu" alt="">
+      <div class="lottery-info">
+        <div class="lottery-prize ">搭乘 Blue Origin 飛向宇宙</div>
+        <div class="lottery-desc ">恭喜你可以乘坐藍色起源前往外太空</div>
+        <div class="admin-btn lottery-others">
+          <p class="percent">10%</p>
+          <button class="admin-btn-first">修改</button>
+          <button class="admin-btn-second">刪除</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="lottery-card">
+      <img src="https://pse.is/3j49xu" alt="">
+      <div class="lottery-info">
+        <div class="lottery-prize ">搭乘 Blue Origin 飛向宇宙</div>
+        <div class="lottery-desc ">恭喜你可以乘坐藍色起源前往外太空</div>
+        <div class="admin-btn lottery-others">
+          <p class="percent">10%</p>
+          <button class="admin-btn-first">修改</button>
+          <button class="admin-btn-second">刪除</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <%- include ('templates/footer') %> 
+</body>
+
+</html>

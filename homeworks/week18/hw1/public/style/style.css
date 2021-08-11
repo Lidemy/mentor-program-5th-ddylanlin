@@ -6,6 +6,10 @@
   font-family: Questrial, Microsoft JhengHei;
 }
 
+body {
+  max-width: 1920px;
+}
+
 section {
   text-align: center;
 }
@@ -93,6 +97,13 @@ header .logo {
   font-size: 60px;
   color: #fff;
   z-index: 1;
+}
+.banner-menu {
+  position: relative;
+  background: url("../images/menu-banner.png") center/cover no-repeat;
+  width: 100%;
+  height: 280px;
+  margin-bottom: 80px;
 }
 
 .description p {
@@ -199,9 +210,6 @@ h4 {
   padding-bottom: 20px;
   display: flex;
 }
-.Question div {
-  display: inline-block;
-}
 .Question-list {
   color: #a3dea2;
   font-size: 24px;
@@ -210,7 +218,7 @@ h4 {
   display: inline-block;
 }
 .Question-title {
-  font-size: 18px;
+  font-size: 24px;
   margin-left: 15px;
 }
 .Question-title:hover {
@@ -360,6 +368,322 @@ button:hover {
   background-color: #ff7286;
 }
 
+.tt {
+  outline: 2px solid red;
+}
+
+.menu-images div {
+  max-width: 557px;
+  position: relative;
+}
+.menu-images div::before {
+  content: "";
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.menu-images div::after {
+  content: "售完";
+  color: white;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: #2f2f2f;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-intro {
+  margin: 7rem 7rem;
+  display: flex;
+}
+.menu-intro img {
+  max-width: 674px;
+  width: 40%;
+}
+.menu-intro-txt {
+  height: fit-content;
+  margin: 0 2rem;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+.menu-intro-txt h3 {
+  color: #489846;
+  font-size: 26px;
+  margin: 1rem 0;
+}
+
+.middle-info {
+  font-size: 18px;
+  margin: 1rem auto 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: inherit;
+  position: relative;
+}
+.middle-info::after {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 180%;
+}
+.middle-info::before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  transform: rotate(45deg);
+  position: absolute;
+  top: 150%;
+}
+
+.dishes {
+  max-width: 80%;
+  margin: 4rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: inherit;
+  flex-wrap: wrap;
+  position: relative;
+}
+.dishes-card {
+  margin: 0 1rem 4rem;
+}
+.dishes-card img {
+  max-height: 292px;
+  max-width: 292px;
+}
+.dishes-info {
+  display: flex;
+  justify-content: center;
+  align-items: inherit;
+  color: #3f633c;
+  font-weight: 600;
+  margin: 0.6rem 0;
+}
+.dishes-btn {
+  width: 292px;
+  height: 46px;
+  font-size: 1rem;
+  border: solid 1px #3f633c;
+  background-color: #f1fff2;
+  border-radius: 3px;
+}
+
+.cart-icon {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #30762f;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+}
+.cart-icon img {
+  width: 60%;
+}
+.cart-icon-count {
+  content: "";
+  background: #ff7286;
+  border-radius: 50%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -10%;
+  right: 0;
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cart-icon:hover {
+  cursor: pointer;
+}
+
+.fake {
+  height: 292px;
+  width: 292px;
+}
+
+.manage {
+  margin: 3rem auto;
+  width: 65%;
+  min-height: 50vh;
+}
+
+.admin-btn {
+  font-size: 1.5rem;
+}
+.admin-btn button {
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background: white;
+  padding: 0.2rem 0.8rem;
+  margin-left: 0.6rem;
+  border: 1px solid;
+}
+.admin-btn-first {
+  color: #198754;
+  border: #198754;
+}
+.admin-btn-first:hover {
+  color: white;
+  background-color: #198754;
+}
+.admin-btn-second {
+  color: #dc3545;
+  border: #dc3545;
+}
+.admin-btn-second:hover {
+  color: white;
+  background-color: #dc3545;
+}
+
+.manage-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: inherit;
+  margin-bottom: 2rem;
+}
+.manage-btn button {
+  color: #464646;
+  border: #464646 1px solid;
+}
+.manage-btn button:hover {
+  background-color: #464646;
+}
+
+.lottery-card {
+  display: flex;
+  margin: 0rem 0rem 2rem;
+  border: 2px solid #aaaaaa;
+  border-radius: 5px;
+  height: 250px;
+  position: relative;
+}
+.lottery-card img {
+  width: 300px;
+  height: 100%;
+  max-width: 40%;
+  border-radius: 3px;
+}
+.lottery-card .lose-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.lottery-card .lose-info .lottery-desc {
+  height: unset;
+}
+.lottery-info {
+  width: 100%;
+  margin: 1rem;
+  text-align: start;
+}
+.lottery-prize {
+  font-size: 2.5rem;
+  height: 30%;
+  overflow: hidden;
+}
+.lottery-desc {
+  font-size: 1.5rem;
+  height: 50%;
+  overflow: hidden;
+}
+.lottery-others {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: inherit;
+  font-size: 1.5rem;
+  height: 20%;
+  right: 2%;
+}
+.lottery-others .percent {
+  font-size: 2rem;
+  margin: 0 2rem;
+}
+.lottery-admin-btn {
+  position: absolute;
+  height: 40px;
+  right: 0;
+  top: -22%;
+}
+.lottery-admin-btn button {
+  margin: 0 0 0 1rem;
+  color: #464646;
+  border: #464646 1px solid;
+}
+.lottery-admin-btn button:hover {
+  background-color: #464646;
+}
+
+.qa-card {
+  margin: 1rem 0.5rem 2rem;
+  flex-direction: column;
+}
+.qa-card .card-answer {
+  text-align: justify;
+  padding-left: 20px;
+  font-size: 16px;
+  margin-top: 15px;
+  letter-spacing: 2.5pt;
+  cursor: default;
+  overflow: hidden;
+}
+
+.qa-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: inherit;
+}
+
+.admin-dishes {
+  max-width: 100%;
+  margin: 1rem 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: inherit;
+}
+.admin-dishes .dishes-card {
+  margin: 0;
+  max-width: 260px;
+  max-height: 260px;
+  margin-bottom: 8rem;
+}
+.admin-dishes .dishes-card img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.admin-dishes .dishes-card .dishes-info {
+  margin: 1rem 0;
+}
+
+.menu-btn {
+  justify-content: center;
+}
+
 footer {
   max-width: 100vw;
 }
@@ -442,6 +766,68 @@ footer {
     min-height: 100px;
     max-width: 70vw;
     margin: 50px auto 0;
+  }
+
+  .banner-menu {
+    height: 60px;
+  }
+
+  .menu-intro {
+    margin: 3rem 0;
+    flex-direction: column;
+  }
+  .menu-intro img {
+    width: 100%;
+  }
+  .menu-intro-txt {
+    margin: 0 2rem;
+  }
+  .menu-intro-name {
+    font-weight: 700;
+  }
+
+  .dishes {
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+  }
+  .dishes-card {
+    margin-bottom: 2rem;
+  }
+
+  .fake {
+    display: none;
+  }
+
+  .cart-icon {
+    width: 50px;
+    height: 50px;
+    right: 5%;
+    bottom: 0%;
+  }
+
+  .manage {
+    width: 90%;
+  }
+
+  .lottery-card {
+    flex-direction: column;
+    margin: 3rem 0 1.5rem 0;
+    height: fit-content;
+    width: fit-content;
+  }
+  .lottery-card img {
+    width: 100%;
+    max-width: 100%;
+  }
+  .lottery-info {
+    width: fit-content;
+    margin: 0.6rem;
+  }
+  .lottery-prize {
+    margin-bottom: 0.5rem;
+  }
+  .lottery-desc {
+    margin-bottom: 1rem;
   }
 
   .footer-top .container {

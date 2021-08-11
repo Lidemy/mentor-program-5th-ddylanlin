@@ -1,25 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="../public/style/style.css">
+  <%- include ('templates/head') %>
   <title>JB-Manage</title>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><a href="/">Just A Bite!</a></div>
-      <nav class="header-nav">
-        <a class="nav-lottery" href="/lottery">抽個大獎</a>
-        <a class="nav-empty" href="#">我要點餐</a>
-        <a class="nav-empty" href="#">查詢訂單</a>
-        <a class="nav-faq" href="/faq">常見問題</a>
-      </nav>
-    </div>
-  </header>
+  <%- include ('templates/header') %>
 
 
   <section class="manage manage-menu">
@@ -33,7 +20,7 @@
     <section class="dishes admin-dishes ">
 
       <div class="dishes-card ">
-        <img src="../public/images/dishes-f1.png" alt="">
+        <img src="/images/dishes-f1.png" alt="">
         <div class="dishes-info ">
           <p class="dishes-name">輕盈高麗卷湘南</p>&nbsp|&nbsp<p class="dishes-price">$280</p>
         </div>
@@ -44,7 +31,7 @@
       </div>
   
       <div class="dishes-card ">
-        <img src="../public/images/dishes-f1.png" alt="">
+        <img src="/images/dishes-f1.png" alt="">
         <div class="dishes-info ">
           <p class="dishes-name">輕盈高麗卷湘南</p>&nbsp|&nbsp<p class="dishes-price">$280</p>
         </div>
@@ -55,7 +42,7 @@
       </div>
 
       <div class="dishes-card ">
-        <img src="../public/images/dishes-f1.png" alt="">
+        <img src="/images/dishes-f1.png" alt="">
         <div class="dishes-info ">
           <p class="dishes-name">輕盈高麗卷湘南</p>&nbsp|&nbsp<p class="dishes-price">$280</p>
         </div>
@@ -66,7 +53,7 @@
       </div>
 
       <div class="dishes-card ">
-        <img src="../public/images/dishes-f1.png" alt="">
+        <img src="/images/dishes-f1.png" alt="">
         <div class="dishes-info ">
           <p class="dishes-name">輕盈高麗卷湘南</p>&nbsp|&nbsp<p class="dishes-price">$280</p>
         </div>
@@ -77,7 +64,7 @@
       </div>
 
       <div class="dishes-card ">
-        <img src="../public/images/dishes-f1.png" alt="">
+        <img src="/images/dishes-f1.png" alt="">
         <div class="dishes-info ">
           <p class="dishes-name">輕盈高麗卷湘南</p>&nbsp|&nbsp<p class="dishes-price">$280</p>
         </div>
@@ -91,41 +78,14 @@
   
       
     </section>
-
-
-   
-
-
-
+    
   </section>
-
-
  
 
 
 
 
-
-  <footer>
-    <div class="footer-top">
-      <div class="container">
-        <div class="footer-info">
-          <p>餐館地址: 天上地下天堂路三分之一里六段520號</p>
-          <p>訂位專線：02-1314-5566</p>
-          <p>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</p>
-          <p>email：service@justabite.com.tw</p>
-        </div>
-        <div class="footer-sites">
-          <div class="logo"><a href="#">Just A Bite!</a></div>
-          <p>Facebook / Instagram / Youtube</p>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>Copyright © 2020 Just A Bite All Rights Reserved.<br>咬一口股份有限公司版權所有</p>
-    </div>
-
-  <script src="../public/scripts/lottery.js"></script>
+    <%- include ('templates/footer') %> 
 </body>
 
 </html>
