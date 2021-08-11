@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../style.css">
+  <title>W17 View</title>
+</head>
+  <body>
+    
+    <header>
+      <a class="logo" href="/">Blog</a>
+      <nav>
+        <a href="../page?page=About">About</a>
+        <a href="../page?page=List">Articles</a>
+        <a href="../page?page=Front-end">Front-end</a>
+        <a href="../page?page=Back-end">Back-end</a>
+        <a href="../page?page=Others">Others</a>
+      </nav>
+    </header>
+
+    
+    <section>
+      <div class="article">
+        <div class="atc-title"><%= articles.title %></div>
+        <div class="atc-category">
+          <div><a class="category-btn" href="../page?page=<%= articles.category %>"><%= articles.category %></a></div>
+        </div>
+        <div class="card-time"><%= articles.createdAt %></div>
+        <div class="atc-content"><%= articles.content %></div>
+      </div>
+    </section>
+
+    <footer>Copyright © 2020 B612</footer>
+
+
+
+  </body>
+</html>

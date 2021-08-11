@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('template_head') %>
+</head>
+<body>
+  
+  <div class="container w-50">
+    
+    <div class="mt-4 text-center py-3" >
+      <h1 class="fw-bold">獎項管理</h1>
+      <div class="text-end">
+        <a href="/" type="button" class="btn btn-outline-secondary btn-sm">回去抽獎</a>
+        <a href="create" type="button" class="btn btn-outline-primary btn-sm">新增</a>
+      </div>
+    </div>
+
+
+    <div class="card mb-4 " style="height: 200px;" >
+      <div class="row g-0 h-100">
+        <div class="col-md-4 h-100">
+          <img src="https://pse.is/3fgu8w" class="rounded img-fluid rounded-start h-100 w-100"  alt="找不到圖片">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body position-relative h-100">
+            <div class="position-absolute top-50 start-50 translate-middle">
+              <h3 class="card-title overflow-hidden" style="white-space: pre;text-overflow: ellipsis;">空歡喜一場</h3>
+              <h5 class="pt-2">落空機率：<%= 100-totalProbability %>%</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <% lotteries.forEach(lottery => { %>
+      <div class="card mb-4 position-relative" style="height: 200px;" >
+        <div class="row g-0 h-100">
+          <div class="col-md-4 h-100">
+            <img src="<%= lottery.imageURL %>" class="rounded img-fluid rounded-start h-100 w-100"  alt="找不到圖片">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h3 class="card-title overflow-hidden" style="white-space: pre;text-overflow: ellipsis;"><%= lottery.prize %></h3>
+              <p class="card-text overflow-hidden" style="height: 70px; text-overflow: ellipsis; display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical; white-space: pre;"><%= lottery.description %></p>
+              <div class="text-start">
+                <h4><%= lottery.probability %>%</h4>
+              </div>
+              <div class="position-absolute bottom-0 end-0 p-3">
+                <a href="/edit/<%= lottery.id %>" type="button" class="btn btn-outline-success">修改</a>
+                <a href="/delete/<%= lottery.id %>" type="button" class="btn btn-outline-danger">刪除</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% }) %> 
+    
+  </div>
+
+
+</body>
+</html>
+

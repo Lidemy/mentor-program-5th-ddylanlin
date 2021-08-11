@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link type="text/css" rel="stylesheet" href="/style.css">
+  <script type="text/javascript" src="article/page.js"></script>
+  <title>W17 Page</title>
+</head>
+<body>
+
+  <header>
+    <a class="logo" href="/">Blog</a>
+    <nav>
+      <a id="nav1" href="page?page=About">About</a>
+      <a id="nav2" href="page?page=List">Articles</a>
+      <a id="nav3" href="page?page=Front-end">Front-end</a>
+      <a id="nav4" href="page?page=Back-end">Back-end</a>
+      <a id="nav5" href="page?page=Others">Others</a>
+    </nav>
+  </header>
+
+  <section>
+  
+    <div class="list-block">
+
+    <% if (role === 'admin') {%>
+    <div class="admin-btn">
+      <a class="create-btn" href="/admin">Admin</a>
+      <a class="create-btn" href="/logout">Logout</a>
+    </div>
+    <% } %>
+
+      <div class="page"><%= page  %></div>
+
+      <% if (page !== 'About') { %>
+
+        <% articles.forEach(article => { %>
+          <div class="list-card">
+
+            <a class="" href="/article/<%= article.id %>">
+              <div class="list-title"><%= article.title %></div>
+            </a>
+            <div class="list-right">
+              <p class="list-time"><%= moment(article.createdAt).format('YYYY-MM-DD hh:mm') %></p> 
+              
+
+              <% if (role === 'admin') { %>
+              <div class="card-admin-btn list-admin-btn">
+                <a class="delete-btn" href="/update/<%= article.id %>">Edit</a>
+                <a class="delete-btn" href="/delete/<%= article.id %>">Delete</a>
+              </div>
+              <% } %>
+            </div>
+
+            </div>
+        <% }) %>
+
+      
+
+      <% } else { %>
+        <div class="about-card">
+          <img src="/article/Mr._Meeseeks.png" alt="">
+          <div class=" about-info">
+            <h1>Mr. Meeseeks</h1>
+            <p>Mr. Meeseeks is a recurring fictional species in the American  animated television series Rick and Morty. 
+
+            Mr. Meeseeks  is the name of all the Meeseeks summoned by activating a Mr. Meeseeks Box. The Meeseeks appear in the fifth episode of the first season, "Meeseeks and Destroy" as the main antagonists. They are known to inhabit planets across the universe.</p>
+            <div class=" link">
+              <a href="https://www.facebook.com/themrmeeseeks"><img class="link-btn" src="https://image.flaticon.com/icons/png/512/733/733547.png" alt="facebook-icon"></a>
+              <a class="link-btn" href="https://www.instagram.com/explore/tags/mrmeeseeks"><img class="link-btn" src="https://image.flaticon.com/icons/png/512/2111/2111463.png" alt="instagram-icon-icon"></a>
+              <a class="link-btn" href="https://youtu.be/LHuAFTyXP8Y"><img class="link-btn" src="https://image.flaticon.com/icons/png/512/174/174883.png" alt="youtube-icon"></a>
+            </div>
+          </div>
+        </div>
+      <% } %>
+
+    </div>
+  </section>
+  
+  
+  <footer>Copyright © 2020 B612</footer>
+
+</body>
+
+
+
+</html>
+
