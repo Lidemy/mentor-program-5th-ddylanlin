@@ -7,7 +7,7 @@ const port = process.env.PORT || 5001
 
 // const userController = require('./controllers/user')
 // const articleController = require('./controllers/article')
-
+// test
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.use(session({
