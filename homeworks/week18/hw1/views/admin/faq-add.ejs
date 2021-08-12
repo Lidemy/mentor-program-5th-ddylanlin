@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('../templates/head') %>
+  <title>JB-Manage</title>
+</head>
+
+<body>
+
+  <div class="faq-add-board">
+
+ 
+    <div class="lg-title">新增常見問題</div>
+
+
+    <div class="admin-btn manage-btn">
+      <input type="button" class="admin-btn-first" value="返回"></input>
+    </div>
+
+    <form  method="POST" action="/register">
+
+      <div class='faq-question'>
+        <div >常見問題： </div>
+        <textarea name="password" rows="2" /></textarea>
+      </div>
+
+      <div class='faq-answer'>
+        <div>回答：</div>
+        <textarea name="password" rows="4" /></textarea>
+      </div>
+
+
+      <div class='faq-order'>
+        <span>順序：</span>
+        <input type="url" name="username" />
+      </div>
+
+      <div class="admin-btn">
+        <input type="button" class="admin-btn-first" value="編輯"></input>
+        <input type="submit" class="admin-btn-second" value="建立"></input>
+      </div>
+
+    </form>
+
+    
+    
+  </div>
+
+</body>
+
+</html>
