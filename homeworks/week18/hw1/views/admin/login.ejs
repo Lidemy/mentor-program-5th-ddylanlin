@@ -10,17 +10,21 @@
   <div class="login-board">
 
  
-    <div class="lg-title">Register</div>
+    <div class="lg-title"><%= page.current %> </div>
 
-    <form method="POST" action="/register">
+    <% if (errorMessage && errorMessage.length > 0) { %> 
+      <h5><%= errorMessage %></h5>
+    <% } %> 
+
+    <form method="POST" action=<%= page.formAction %> >
 
       <div class='username'>
-        <span>Username: </span>
+        <span>Username：</span>
         <input type="text" name="username" />
       </div>
 
       <div class='password'>
-        <span>Password :  </span>
+        <span>Password：</span>
         <input type="password" name="password" />
       </div>
       
@@ -30,7 +34,7 @@
 
     <div class="login-board-bottom">
       <a href="/">Back</a>
-      <a href="/login">Login</a>
+      <a href=<%= page.href %> ><%= page.switch %> </a>
     </div>
     
   </div>

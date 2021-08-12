@@ -5,68 +5,54 @@ const flash = require('connect-flash')
 const app = express()
 const port = process.env.PORT || 5001
 
-// const userController = require('./controllers/user')
-// const articleController = require('./controllers/article')
-// test
+const userController = require('./controllers/user')
+const lotteryController = require('./controllers/lottery')
+const faqController = require('./controllers/faq')
+const menuController = require('./controllers/menu')
+
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(flash())
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
 }))
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-app.use(flash())
 
 app.use((req, res, next) => {
+  res.locals.username = req.session.username
+  res.locals.role = req.session.role
   res.locals.errorMessage = req.flash('errorMessage')
   next()
 })
+
+function redirectBack(req, res) {
+  res.redirect('back')
+}
 
 app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.get('/faq', (req, res) => {
-  res.render('faq')
-})
+app.get('/login', userController.login)
+app.post('/login', userController.handleLogin, redirectBack)
+app.get('/register', userController.register)
+app.post('/register', userController.handleRegister, redirectBack)
+app.get('/logout', userController.logout)
 
-app.get('/lottery', (req, res) => {
-  res.render('lottery')
-})
+app.get('/lottery', lotteryController.index)
+app.get('/manage-lottery', lotteryController.manage)
+app.get('/lottery-add', lotteryController.add)
 
-app.get('/menu', (req, res) => {
-  res.render('menu')
-})
+app.get('/faq', faqController.index)
+app.get('/manage-faq', faqController.manage)
+app.get('/faq-add', faqController.add)
 
-app.get('/manage-lottery', (req, res) => {
-  res.render('admin/manage-lottery')
-})
-
-app.get('/manage-faq', (req, res) => {
-  res.render('admin/manage-faq')
-})
-
-app.get('/manage-menu', (req, res) => {
-  res.render('admin/manage-menu')
-})
-
-app.get('/login', (req, res) => {
-  res.render('admin/login')
-})
-
-app.get('/lottery-add', (req, res) => {
-  res.render('admin/lottery-add')
-})
-
-app.get('/faq-add', (req, res) => {
-  res.render('admin/faq-add')
-})
-
-app.get('/menu-add', (req, res) => {
-  res.render('/admin/menu-add')
-})
+app.get('/menu', menuController.index)
+app.get('/manage-menu', menuController.manage)
+app.get('/menu-add', menuController.add)
 
 // app.get('/page', articleController.page)
 // app.get('/article/:id', articleController.view)

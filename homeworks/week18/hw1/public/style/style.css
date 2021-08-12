@@ -3,6 +3,12 @@
   outline: 1px solid red;
 }
 
+h5 {
+  position: absolute;
+  color: red;
+  font-size: 1rem;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -740,6 +746,10 @@ button:hover {
 }
 .login-board a:hover {
   color: #33995a;
+}
+.login-board h5 {
+  left: 0;
+  top: -10%;
 }
 
 .lottery-add-board {
