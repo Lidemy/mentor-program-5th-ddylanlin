@@ -1,30 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include ('templates/head') %>
+  <%- include ('../templates/head') %>
   <title>JB-Manage</title>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="logo"><a href="/">Just A Bite!</a></div>
-      <nav class="header-nav">
-        <a class="nav-lottery" href="/lottery">抽個大獎</a>
-        <a class="nav-empty" href="#">我要點餐</a>
-        <a class="nav-empty" href="#">查詢訂單</a>
-        <a class="nav-faq" href="/faq">常見問題</a>
-      </nav>
-    </div>
-  </header>
+  <%- include ('../templates/header') %>
 
 
   <section class="manage">
     <h2 class="title">後台-獎項管理</h2>
 
     <div class="admin-btn manage-btn">
-      <button class="admin-btn-first">登出</button>
-      <button class="admin-btn-second">新增</button>
+      <input type="button" class="admin-btn-first" value="登出"></input>
+        <input type="submit" class="admin-btn-second" value="新增"></input>
     </div>
     
     <div class="lottery-card">
@@ -44,8 +34,8 @@
         <div class="lottery-desc ">恭喜你可以乘坐藍色起源前往外太空</div>
         <div class="admin-btn lottery-others">
           <p class="percent">10%</p>
-          <button class="admin-btn-first">修改</button>
-          <button class="admin-btn-second">刪除</button>
+          <input type="button" class="admin-btn-first" value="修改"></input>
+        <input type="submit" class="admin-btn-second" value="刪除"></input>
         </div>
       </div>
     </div>
@@ -66,7 +56,7 @@
   </section>
 
 
-  <%- include ('templates/footer') %> 
+  <%- include ('../templates/footer') %> 
 </body>
 
 </html>

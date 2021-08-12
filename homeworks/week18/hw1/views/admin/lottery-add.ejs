@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('../templates/head') %>
+  <title>JB-Manage</title>
+</head>
+
+<body>
+
+  <div class="lottery-add-board">
+
+ 
+    <div class="lg-title">建立新獎項</div>
+
+
+    <div class="admin-btn manage-btn">
+      <input type="button" class="admin-btn-first" value="返回"></input>
+    </div>
+
+    <form  method="POST" action="/register">
+
+      <div class='prize-name'>
+        <span >中獎項目： </span>
+        <input type="text" name="username" />
+      </div>
+
+      <div class='prize-desc'>
+        <div>獎項描述：</div>
+        <textarea name="password" rows="4" /></textarea>
+      </div>
+
+      <div class='prize-name prize-url'>
+        <span>圖片網址：</span>
+        <input type="url" name="username" />
+      </div>
+
+      <div class='prize-name prize-percent'>
+        <span>機率：</span>
+        <input type="url" name="username" />
+        <span>%</span>
+        <p>與其他獎項加總機率不得大於100%</p>
+      </div>
+
+      <div class="admin-btn">
+        <input type="button" class="admin-btn-first" value="編輯"></input>
+        <input type="submit" class="admin-btn-second" value="建立"></input>
+      </div>
+
+    </form>
+
+    
+    
+  </div>
+
+</body>
+
+</html>

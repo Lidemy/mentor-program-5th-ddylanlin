@@ -1,5 +1,4 @@
 const express = require('express')
-const bodyParser = require('body-parser')
 const session = require('express-session')
 const flash = require('connect-flash')
 
@@ -16,8 +15,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 app.use(flash())
 
 app.use((req, res, next) => {
@@ -42,15 +41,31 @@ app.get('/menu', (req, res) => {
 })
 
 app.get('/manage-lottery', (req, res) => {
-  res.render('manage-lottery')
+  res.render('admin/manage-lottery')
 })
 
 app.get('/manage-faq', (req, res) => {
-  res.render('manage-faq')
+  res.render('admin/manage-faq')
 })
 
 app.get('/manage-menu', (req, res) => {
-  res.render('manage-menu')
+  res.render('admin/manage-menu')
+})
+
+app.get('/login', (req, res) => {
+  res.render('admin/login')
+})
+
+app.get('/lottery-add', (req, res) => {
+  res.render('admin/lottery-add')
+})
+
+app.get('/faq-add', (req, res) => {
+  res.render('admin/faq-add')
+})
+
+app.get('/menu-add', (req, res) => {
+  res.render('/admin/menu-add')
 })
 
 // app.get('/page', articleController.page)

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include ('templates/head') %>
+  <%- include ('../templates/head') %>
   <title>JB-Manage</title>
 </head>
 
 <body>
-  <%- include ('templates/header') %>
+  <%- include ('../templates/header') %>
 
 
   <section class="manage">
     <h2 class="title">後台-常見問題</h2>
 
     <div class="admin-btn manage-btn">
-      <button class="admin-btn-first">登出</button>
-      <button class="admin-btn-second">新增</button>
+      <input type="button" class="admin-btn-first" value="登出"></input>
+        <input type="submit" class="admin-btn-second" value="新增"></input>
     </div>
   
     <div class='Question qa-card '>
@@ -23,8 +23,8 @@
         <div class='card-answer'>如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？</div>
       </div>
       <div class="admin-btn qa-btn ">
-        <button class="admin-btn-first">編輯</button>
-        <button class="admin-btn-second">刪除</button>
+        <input type="button" class="admin-btn-first" value="編輯"></input>
+        <input type="submit" class="admin-btn-second" value="刪除"></input>
       </div>
     </div>
 
@@ -44,7 +44,7 @@
 
 
 
-  <%- include ('templates/footer') %> 
+  <%- include ('../templates/footer') %> 
 </body>
 
 </html>

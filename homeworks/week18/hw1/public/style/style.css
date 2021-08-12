@@ -1,4 +1,8 @@
 @charset "UTF-8";
+.tt {
+  outline: 1px solid red;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -243,7 +247,6 @@ h4 {
 }
 
 /* lottery */
-/* 換背景圖 */
 .event-bg {
   height: 520px;
   background: url(../images/lottery-eventsbg.png) left/cover no-repeat;
@@ -366,10 +369,6 @@ button:hover {
   border-radius: 8px;
   border: none;
   background-color: #ff7286;
-}
-
-.tt {
-  outline: 2px solid red;
 }
 
 .menu-images div {
@@ -534,13 +533,16 @@ button:hover {
 .admin-btn {
   font-size: 1.5rem;
 }
-.admin-btn button {
+.admin-btn input {
   font-size: 1.2rem;
   border-radius: 5px;
   background: white;
   padding: 0.2rem 0.8rem;
   margin-left: 0.6rem;
   border: 1px solid;
+}
+.admin-btn input:hover {
+  cursor: pointer;
 }
 .admin-btn-first {
   color: #198754;
@@ -682,6 +684,272 @@ button:hover {
 
 .menu-btn {
   justify-content: center;
+}
+
+.login-board {
+  display: block;
+  border: 2px solid #33995a;
+  width: 30%;
+  height: 17rem;
+  margin: 10rem auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7);
+  text-align: center;
+  position: relative;
+}
+.login-board .lg-title {
+  font-size: 2.3rem;
+  margin: 1rem 0 1.5rem 0;
+}
+.login-board h2 {
+  position: absolute;
+  top: 3.7rem;
+  width: 100%;
+}
+.login-board .username, .login-board .password {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.login-board .username input, .login-board .password input {
+  height: 1.8rem;
+  border-radius: 5px;
+  border: 1.5px #33995a solid;
+  font-size: 1.2rem;
+  width: 40%;
+}
+.login-board .submit-btn {
+  font-size: 1.5rem;
+  background-color: white;
+  padding: 0.2rem 1rem;
+  border-radius: 5px;
+  border: 1.5px #33995a;
+}
+.login-board .submit-btn:hover {
+  background-color: #33995a;
+  color: white;
+  cursor: pointer;
+}
+.login-board-bottom {
+  margin: 0.5rem;
+}
+.login-board a {
+  font-size: 1rem;
+  margin: 0 0.3rem;
+  color: black;
+  text-decoration: underline;
+}
+.login-board a:hover {
+  color: #33995a;
+}
+
+.lottery-add-board {
+  display: block;
+  border: 2px solid #33995a;
+  width: 40%;
+  height: fit-content;
+  margin: 2rem auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.lottery-add-board .lg-title {
+  font-size: 2.3rem;
+  margin: 1rem 0 0rem 0;
+  font-weight: 600;
+  align-self: center;
+}
+.lottery-add-board form {
+  width: 90%;
+  margin: 0 auto 1rem;
+}
+.lottery-add-board .prize-name {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.lottery-add-board .prize-name span {
+  max-width: 30%;
+}
+.lottery-add-board .prize-name input {
+  height: 1.8rem;
+  border-radius: 5px;
+  border: 1px #33995a solid;
+  font-size: 1.2rem;
+  width: 70%;
+}
+.lottery-add-board .prize-desc {
+  font-size: 1.5rem;
+  margin: 1rem 0.5rem 1rem 0;
+}
+.lottery-add-board .prize-desc textarea {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 1px #33995a solid;
+  font-size: 1.2rem;
+  width: 100%;
+}
+.lottery-add-board .prize-percent input {
+  width: 3rem;
+}
+.lottery-add-board .prize-percent p {
+  font-size: 1rem;
+}
+.lottery-add-board .admin-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: inherit;
+  margin-top: -2rem;
+}
+.lottery-add-board .manage-btn {
+  position: absolute;
+  right: 2%;
+  top: 9%;
+}
+.lottery-add-board .manage-btn input {
+  font-size: 1rem;
+}
+
+.menu-add-board {
+  display: block;
+  border: 2px solid #33995a;
+  width: 40%;
+  height: fit-content;
+  margin: 8rem auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.menu-add-board form {
+  width: 95%;
+  margin: 0 auto;
+}
+.menu-add-board .lg-title {
+  font-size: 2.3rem;
+  margin: 1rem 0 0rem 0;
+  font-weight: 600;
+  align-self: center;
+}
+.menu-add-board .dish-name {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.menu-add-board .dish-name span {
+  max-width: 30%;
+}
+.menu-add-board .dish-name input {
+  height: 1.8rem;
+  border-radius: 5px;
+  border: 1px #33995a solid;
+  font-size: 1.2rem;
+  width: 70%;
+}
+.menu-add-board .dish-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: inherit;
+  font-size: 1.5rem;
+}
+.menu-add-board .dish-info .dish-prices {
+  width: 40%;
+}
+.menu-add-board .dish-info .dish-prices span {
+  width: 45%;
+}
+.menu-add-board .dish-info .dish-prices input {
+  height: 1.8rem;
+  border-radius: 5px;
+  border: 1px #33995a solid;
+  font-size: 1.2rem;
+  width: 40%;
+}
+.menu-add-board .dish-info .dish-img {
+  width: 60%;
+}
+.menu-add-board .dish-info .dish-img span {
+  width: 45%;
+}
+.menu-add-board .dish-info .dish-img input {
+  height: 1.8rem;
+  border-radius: 5px;
+  border: 1px #33995a solid;
+  font-size: 1.2rem;
+  width: 70%;
+}
+.menu-add-board .admin-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: inherit;
+  margin: 1rem 0.1rem 0.5rem 0;
+}
+.menu-add-board .manage-btn {
+  position: absolute;
+  right: 2%;
+  top: -2%;
+}
+.menu-add-board .manage-btn input {
+  font-size: 1rem;
+}
+
+.faq-add-board {
+  display: block;
+  border: 2px solid #33995a;
+  width: 40%;
+  height: fit-content;
+  margin: 2rem auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px rgba(131, 131, 131, 0.7);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.faq-add-board form {
+  width: 95%;
+  margin: 0 auto;
+}
+.faq-add-board .lg-title {
+  font-size: 2.3rem;
+  margin: 1rem 0 0rem 0;
+  font-weight: 600;
+  align-self: center;
+}
+.faq-add-board .faq-question, .faq-add-board .faq-answer {
+  font-size: 1.5rem;
+  margin: 0.5rem 0.5rem;
+}
+.faq-add-board .faq-question textarea, .faq-add-board .faq-answer textarea {
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  border: 1px #33995a solid;
+  font-size: 1.2rem;
+  width: 100%;
+}
+.faq-add-board .faq-order {
+  font-size: 1.5rem;
+  margin: 1rem 0.5rem;
+}
+.faq-add-board .faq-order input {
+  width: 3rem;
+  height: 1.8rem;
+  border-radius: 5px;
+  border: 1px #33995a solid;
+  font-size: 1.2rem;
+}
+.faq-add-board .admin-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: inherit;
+  margin: -2rem 0.5rem 0.5rem 0;
+}
+.faq-add-board .manage-btn {
+  position: absolute;
+  right: 0%;
+  top: 10%;
+}
+.faq-add-board .manage-btn input {
+  font-size: 1rem;
 }
 
 footer {
@@ -828,6 +1096,79 @@ footer {
   }
   .lottery-desc {
     margin-bottom: 1rem;
+  }
+
+  .login-board {
+    width: 90%;
+    margin: 2rem auto;
+  }
+  .login-board .username, .login-board .password {
+    font-size: 1.2rem;
+  }
+  .login-board .username input, .login-board .password input {
+    height: 1.3rem;
+    border-radius: 5px;
+    border: 1.5px #33995a solid;
+    font-size: 1.2rem;
+    width: 60%;
+  }
+
+  .lottery-add-board {
+    width: 90%;
+  }
+  .lottery-add-board .prize-name input {
+    width: 100%;
+  }
+  .lottery-add-board .prize-percent input {
+    width: 3rem;
+  }
+  .lottery-add-board .admin-btn {
+    margin-top: -0.5rem;
+  }
+  .lottery-add-board .manage-btn {
+    right: 2%;
+    top: 4%;
+  }
+  .lottery-add-board .manage-btn input {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.2rem;
+  }
+
+  .faq-add-board {
+    width: 90%;
+  }
+  .faq-add-board .manage-btn input {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.2rem;
+  }
+
+  .menu-add-board {
+    width: 90%;
+  }
+  .menu-add-board .dish-info {
+    flex-direction: column;
+  }
+  .menu-add-board .dish-info .dish-prices {
+    width: 100%;
+  }
+  .menu-add-board .dish-info .dish-prices span {
+    width: fit-content;
+  }
+  .menu-add-board .dish-info .dish-prices input {
+    width: 60%;
+  }
+  .menu-add-board .dish-info .dish-img {
+    width: 100%;
+  }
+  .menu-add-board .dish-info .dish-img span {
+    width: fit-content;
+  }
+  .menu-add-board .dish-info .dish-img input {
+    width: 60%;
+  }
+  .menu-add-board .manage-btn input {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.2rem;
   }
 
   .footer-top .container {

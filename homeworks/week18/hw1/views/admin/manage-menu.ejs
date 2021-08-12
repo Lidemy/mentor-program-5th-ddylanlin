@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <%- include ('templates/head') %>
+  <%- include ('../templates/head') %>
   <title>JB-Manage</title>
 </head>
 
 <body>
-  <%- include ('templates/header') %>
+  <%- include ('../templates/header') %>
 
 
   <section class="manage manage-menu">
     <h2 class="title">後台-菜單管理</h2>
 
     <div class="admin-btn manage-btn">
-      <button class="admin-btn-first">登出</button>
-      <button class="admin-btn-second">新增</button>
+      <input type="button" class="admin-btn-first" value="登出"></input>
+        <input type="submit" class="admin-btn-second" value="新增"></input>
     </div>
   
     <section class="dishes admin-dishes ">
@@ -25,8 +25,8 @@
           <p class="dishes-name">輕盈高麗卷湘南</p>&nbsp|&nbsp<p class="dishes-price">$280</p>
         </div>
         <div class="admin-btn menu-btn">
-          <button class="admin-btn-first">編輯</button>
-          <button class="admin-btn-second">刪除</button>
+          <input type="button" class="admin-btn-first" value="編輯"></input>
+        <input type="submit" class="admin-btn-second" value="刪除"></input>
         </div>
       </div>
   
@@ -85,7 +85,7 @@
 
 
 
-    <%- include ('templates/footer') %> 
+    <%- include ('../templates/footer') %> 
 </body>
 
 </html>
