@@ -1,154 +1,122 @@
-// const db = require('../models')
+const { body, validationResult } = require('express-validator')
+const db = require('../models')
 
-// const { Faq } = db
+const { Faq } = db
 
 const faqController = {
 
   index: (req, res) => {
-    res.render('faq')
+    Faq.findAll({
+      order: [['id', 'DESC']]
+    }).then((faqs) => {
+      res.render('faq', {
+        faqs
+      })
+    })
   },
 
   manage: (req, res) => {
-    res.render('admin/manage-faq')
+    const { role } = req.session
+    if (role === 'admin') {
+      Faq.findAll({
+        order: [['id', 'DESC']]
+      }).then((faqs) => {
+        res.render('admin/manage-faq', {
+          faqs
+        })
+      })
+    } else {
+      res.redirect('/')
+    }
   },
 
   add: (req, res) => {
-    res.render('admin/faq-add')
+    const { role } = req.session
+    const faqs = {}
+    if (role === 'admin') {
+      res.render('admin/faq-add', {
+        page: '新增',
+        formAction: '/faq-add',
+        faqs
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  handleAdd: (
+    body('title').isEmail(),
+    body('content').isLength({ min: 5 }),
+    (req, res) => {
+      const errors = validationResult(req)
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() })
+      }
+      console.log(errors.array())
+      const { title, content, order } = req.body
+      Faq.create({
+        title,
+        content,
+        order
+      }).then(() => {
+        res.redirect('/manage-faq')
+      }).catch((err) => {
+        req.flash('errorMessage', err.toString())
+      })
+    }),
+
+  update: (req, res) => {
+    const { role } = req.session
+    if (role === 'admin') {
+      Faq.findOne({
+        where: {
+          id: req.params.id
+        }
+      }).then((faqs) => {
+        res.render('admin/faq-add', {
+          faqs,
+          page: '編輯',
+          formAction: '/update/faq/'
+        })
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  handleUpdate: (req, res) => {
+    Faq.findOne({
+      where: {
+        id: req.params.id
+      }
+      /* eslint-disable-next-line */
+    }).then((faqs) => {
+      return faqs.update({
+        title: req.body.title,
+        content: req.body.content,
+        order: req.body.order
+      })
+    }).then(() => {
+      res.redirect('/manage-faq')
+    }).catch(() => {
+      res.redirect('/')
+    })
+  },
+
+  delete: (req, res) => {
+    Faq.findOne({
+      where: {
+        id: req.params.id
+      }
+      /* eslint-disable-next-line */
+    }).then((faq) => {
+      return faq.destroy()
+    }).then(() => {
+      res.redirect('/manage-faq')
+    }).catch(() => {
+      res.redirect('/manage-faq')
+    })
   }
-
-  // page: (req, res) => {
-  //   switch (req.query.page) {
-  //     case 'List':
-  //       quickFindAll('article/page', req, res)
-  //       break
-
-  //     case 'Front-end':
-  //       quickFindPage('article/page', 'Front-end', req, res)
-  //       break
-
-  //     case 'Back-end':
-  //       quickFindPage('article/page', 'Back-end', req, res)
-  //       break
-
-  //     case 'Others':
-  //       quickFindPage('article/page', 'Others', req, res)
-  //       break
-
-  //     case 'About':
-  //       quickFindPage('article/page', 'About', req, res)
-  //       break
-
-  //     default:
-  //       res.redirect('/page?page=List')
-  //       break
-  //   }
-  // },
-
-  // view: (req, res) => {
-  //   Article.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   }).then((articles) => {
-  //     res.render('article/article', {
-  //       articles
-  //     })
-  //   })
-  // },
-
-  // create: (req, res) => {
-  //   const { role } = req.session.role
-  //   if (role === 'admin') {
-  //     res.render('article/create_article', {
-  //       returnTo: req.session.returnTo
-  //     })
-  //   } else {
-  //     res.redirect('/')
-  //   }
-  // },
-
-  // handleCreate: (req, res, next) => {
-  //   const { title, content, category } = req.body
-  //   // if (!title) {
-  //   //   req.flash('errorMessage', '請輸入文章標題')
-  //   //   return next()
-  //   // }
-  //   // if (!content) {
-  //   //   req.flash('errorMessage', '請輸入文章內容')
-  //   //   return next()
-  //   // }
-  //   // if (category === 'Uncategorized') {
-  //   //   req.flash('errorMessage', '請選擇文章分類')
-  //   //   return next()
-  //   // }
-  //   Article.create({
-  //     title,
-  //     content,
-  //     category,
-  //     username: req.session.username
-  //   }).then(() => {
-  //     res.redirect(req.session.returnTo)
-  //   }).catch((err) => {
-  //     req.flash('errorMessage', err.toString())
-  //     return next()
-  //   })
-  // },
-
-  // delete: (req, res) => {
-  //   Article.findOne({
-  //     where: {
-  //       id: req.params.id,
-  //       username: req.session.username
-  //     }
-  //     /* eslint-disable-next-line */
-  //   }).then((articles) => {
-  //     return articles.update({
-  //       is_deleted: 1
-  //     })
-  //   }).then(() => {
-  //     res.redirect('/')
-  //   }).catch(() => {
-  //     res.redirect('/')
-  //   })
-  // },
-
-  // update: (req, res) => {
-  //   const { role } = req.session.role
-  //   if (role === 'admin') {
-  //     Article.findOne({
-  //       where: {
-  //         id: req.params.id
-  //       }
-  //     }).then((articles) => {
-  //       res.render('article/edit_article', {
-  //         articles,
-  //         returnTo: req.session.returnTo
-  //       })
-  //     })
-  //   } else {
-  //     res.redirect('/')
-  //   }
-  // },
-
-  // handleUpdate: (req, res) => {
-  //   Article.findOne({
-  //     where: {
-  //       id: req.params.id,
-  //       username: req.session.username
-  //     }
-  //     /* eslint-disable-next-line */
-  //   }).then((articles) => {
-  //     return articles.update({
-  //       title: req.body.title,
-  //       content: req.body.content,
-  //       category: req.body.category
-  //     })
-  //   }).then(() => {
-  //     res.redirect('back')
-  //   }).catch(() => {
-  //     res.redirect('/')
-  //   })
-  // }
 
 }
 

@@ -7,56 +7,43 @@
 
 <body>
   <%- include ('../templates/header') %>
-
+  <%- include ('../templates/admin-bar') %>
 
   <section class="manage">
     <h2 class="title">後台-獎項管理</h2>
 
     <div class="admin-btn manage-btn">
-      <input type="button" class="admin-btn-first" value="登出"></input>
-        <input type="submit" class="admin-btn-second" value="新增"></input>
+      <a class="admin-btn-second" href="/lottery-add">新增</a>
     </div>
     
     <div class="lottery-card">
       <img src="https://pse.is/3fgu8w" alt="">
       <div class="lottery-info lose-info">
         <div class="lottery-prize">空歡喜一場</div>
-        <div class="lottery-desc">落空機率：60%</div>
+        <div class="lottery-desc">落空機率：<%= 100-totalProbability %>%</div>
       </div>
 
     </div>
 
-
-    <div class="lottery-card">
-      <img src="https://pse.is/3j49xu" alt="">
-      <div class="lottery-info">
-        <div class="lottery-prize ">搭乘 Blue Origin 飛向宇宙</div>
-        <div class="lottery-desc ">恭喜你可以乘坐藍色起源前往外太空</div>
-        <div class="admin-btn lottery-others">
-          <p class="percent">10%</p>
-          <input type="button" class="admin-btn-first" value="修改"></input>
-        <input type="submit" class="admin-btn-second" value="刪除"></input>
+    <% lotteries.forEach((lottery) => { %> 
+      <div class="lottery-card">
+        <img src=<%= lottery.imageURL %>>
+        <div class="lottery-info">
+          <div class="lottery-prize "><%= lottery.prize %></div>
+          <div class="lottery-desc "><%= lottery.desc %></div>
+          <div class="admin-btn lottery-others">
+            <p class="percent"><%= lottery.probability %>%</p>
+            <a class="admin-btn-first" href="/update/lottery/<%= lottery.id %>">編輯</a>
+            <a class="admin-btn-second" href="/delete/lottery/<%= lottery.id %>">刪除</a>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="lottery-card">
-      <img src="https://pse.is/3j49xu" alt="">
-      <div class="lottery-info">
-        <div class="lottery-prize ">搭乘 Blue Origin 飛向宇宙</div>
-        <div class="lottery-desc ">恭喜你可以乘坐藍色起源前往外太空</div>
-        <div class="admin-btn lottery-others">
-          <p class="percent">10%</p>
-          <button class="admin-btn-first">修改</button>
-          <button class="admin-btn-second">刪除</button>
-        </div>
-      </div>
-    </div>
+    <% }) %> 
 
   </section>
 
 
   <%- include ('../templates/footer') %> 
-</body>
+</body> 
 
 </html>

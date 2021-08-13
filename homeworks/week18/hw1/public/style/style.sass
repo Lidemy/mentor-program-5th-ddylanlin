@@ -55,7 +55,7 @@ a
 header 
   box-shadow: -1.4px -1.4px 6px 0 #97a2a0
   max-width: 100vw
-
+  position: relative
   .container 
     +flex(space-between, unset)
   .logo 
@@ -244,6 +244,7 @@ h4
   cursor: default
   max-height: 0
   overflow: hidden
+  white-space: break-spaces
   
 
 
@@ -374,7 +375,7 @@ button:hover
 
 
 // 點餐
-.menu-images 
+.menu-sell
   div
     max-width: 557px
     position: relative
@@ -454,6 +455,8 @@ button:hover
     & img
       max-height: 292px
       max-width: 292px
+      height: 100%
+      width: 100%
   &-info
     +flex(center, inherit)
     color: #3f633c
@@ -508,7 +511,16 @@ button:hover
 
 .admin-btn
   font-size: 1.5rem
-  input
+  button
+    font-size: 1.2rem
+    border-radius: 5px
+    background: white
+    padding: .2rem .8rem
+    margin-left: .6rem
+    border: 1px solid 
+    &:hover
+      cursor: pointer
+  a
     font-size: 1.2rem
     border-radius: 5px
     background: white
@@ -533,7 +545,7 @@ button:hover
 .manage-btn
   +flex(flex-end,inherit)
   margin-bottom: 2rem
-  button
+  a
     color: #464646
     border: #464646 1px solid 
     &:hover
@@ -558,6 +570,7 @@ button:hover
       flex-direction: column
       .lottery-desc
         height: unset
+        white-space: pre-line
   &-info
     width: 100%
     margin: 1rem
@@ -574,10 +587,10 @@ button:hover
     position: relative
     +flex(flex-end,inherit)
     font-size: 1.5rem
-    height: 20%
+    height: 18%
     right: 2%
     .percent
-      font-size: 2rem
+      font-size: 1.5rem
       margin: 0 2rem
   &-admin-btn
     position: absolute
@@ -585,7 +598,13 @@ button:hover
     right: 0
     top: -22%
     button
-      margin: 0 0 0 1rem 
+      margin: 0 0 0 0rem 
+      color: #464646
+      border: #464646 1px solid 
+      &:hover
+        background-color: #464646
+    a
+      margin: 0 0 0 0rem 
       color: #464646
       border: #464646 1px solid 
       &:hover
@@ -620,6 +639,8 @@ button:hover
     img
       max-height: 100%
       max-width: 100%
+      height: 100%
+      width: 100%
     .dishes-info
       margin: 1rem 0
 
@@ -736,7 +757,7 @@ button:hover
     position: absolute
     right: 2%
     top: 9%
-    input
+    a
       font-size: 1rem
 
 // menu add & edit
@@ -803,7 +824,7 @@ button:hover
     position: absolute
     right: 2%
     top: -2%
-    input
+    a
       font-size: 1rem
 
     
@@ -854,10 +875,39 @@ button:hover
     position: absolute
     right: 0%
     top: 10%
-    input
+    a
       font-size: 1rem
 
-    
+.admin-bar
+  position: absolute
+  top: 30%
+  left: 2%
+  text-align: center
+  &-btn
+    border: 1.5px solid $color-primary
+    border-radius: 5px
+    a
+      display: block
+      color: black
+      padding: .3rem .8rem
+      border: 1px solid $color-primary
+      &:hover
+        cursor: pointer
+        background: $color-primary
+  &-desc
+    margin-bottom: .3rem
+ 
+.backend-btn
+  position: absolute
+  right: 2%
+  bottom: -40%
+  z-index: 2
+  a
+    background: $color-primary
+    border-radius: 5px
+    padding: .2rem .6rem
+    color: black
+    font-size: 1rem
 
 footer
   max-width: 100vw
@@ -1012,14 +1062,14 @@ footer
     .manage-btn
       right: 2%
       top: 4%
-      input
+      a
         padding: .2rem .4rem
         font-size: .2rem
 
   .faq-add-board
     width: 90%
     .manage-btn
-      input
+      a
         padding: .2rem .4rem
         font-size: .2rem
 
@@ -1041,7 +1091,7 @@ footer
           width: 60%
 
     .manage-btn
-      input
+      a
         padding: .2rem .4rem
         font-size: .2rem
 

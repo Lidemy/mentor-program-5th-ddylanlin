@@ -8,36 +8,39 @@
 <body>
 
   <div class="faq-add-board">
-
  
-    <div class="lg-title">新增常見問題</div>
+    <div class="lg-title"><%= page %>常見問題</div>
 
 
     <div class="admin-btn manage-btn">
-      <input type="button" class="admin-btn-first" value="返回"></input>
+      <a href="/manage-faq" class="admin-btn-first">返回</a>
     </div>
 
-    <form  method="POST" action="/register">
+    <form  method="POST" action=<%= formAction %><%= faqs.id %> >
 
       <div class='faq-question'>
-        <div >常見問題： </div>
-        <textarea name="password" rows="2" /></textarea>
+        <div >常見問題：</div>
+        <textarea name="title" rows="2" /><%= faqs.title %></textarea>
       </div>
 
       <div class='faq-answer'>
         <div>回答：</div>
-        <textarea name="password" rows="4" /></textarea>
+        <textarea name="content" rows="4" /><%= faqs.content %></textarea>
       </div>
 
 
       <div class='faq-order'>
         <span>順序：</span>
-        <input type="url" name="username" />
+        <input type="number" name="order" value="<%= faqs.order %>"/>
       </div>
 
       <div class="admin-btn">
-        <input type="button" class="admin-btn-first" value="編輯"></input>
-        <input type="submit" class="admin-btn-second" value="建立"></input>
+        <% if (page === '新增') { %> 
+          <button type="submit" class="admin-btn-second">建立</button>
+        <% } else { %>
+          <button type="submit" class="admin-btn-first">更新</button>
+          <a href="/delete/faq/<%= faqs.id %>" class="admin-btn-second">刪除</a>
+        <% } %>  
       </div>
 
     </form>

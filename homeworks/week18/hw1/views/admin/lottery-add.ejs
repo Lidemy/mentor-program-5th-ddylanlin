@@ -10,40 +10,48 @@
   <div class="lottery-add-board">
 
  
-    <div class="lg-title">建立新獎項</div>
+    <div class="lg-title"><%= page %>獎項</div>
 
 
     <div class="admin-btn manage-btn">
-      <input type="button" class="admin-btn-first" value="返回"></input>
+      <a href="/manage-lottery" class="admin-btn-first">返回</a>
     </div>
 
-    <form  method="POST" action="/register">
+    <form  method="POST" action=<%= formAction %><%= lotteries.id %>>
 
       <div class='prize-name'>
         <span >中獎項目： </span>
-        <input type="text" name="username" />
+        <input type="text" name="prize" value=<%= lotteries.prize %>>
       </div>
 
       <div class='prize-desc'>
         <div>獎項描述：</div>
-        <textarea name="password" rows="4" /></textarea>
+        <textarea name="desc" rows="4" /><%= lotteries.desc %></textarea>
       </div>
 
       <div class='prize-name prize-url'>
         <span>圖片網址：</span>
-        <input type="url" name="username" />
+        <input type="url" name="imageURL" value=<%= lotteries.imageURL %>>
       </div>
 
       <div class='prize-name prize-percent'>
         <span>機率：</span>
-        <input type="url" name="username" />
+        <% if (page === '建立') { %>
+          <input type="number" min="0" max="<%= 100-totalProbability %>" name="probability" value=<%= lotteries.probability %>>
+        <% } else { %>
+          <input type="number" min="0" max="<%= 100-totalProbability+lotteries.probability %>" name="probability" value=<%= lotteries.probability %>>
+        <% } %> 
         <span>%</span>
         <p>與其他獎項加總機率不得大於100%</p>
       </div>
 
       <div class="admin-btn">
-        <input type="button" class="admin-btn-first" value="編輯"></input>
-        <input type="submit" class="admin-btn-second" value="建立"></input>
+        <% if (page === '建立') { %> 
+          <button type="submit" class="admin-btn-second">建立</button>
+        <% } else { %>
+          <button type="submit" class="admin-btn-first">更新</button>
+          <a href="/delete/lottery/<%= lotteries.id %>" class="admin-btn-second">刪除</a>
+        <% } %>  
       </div>
 
     </form>

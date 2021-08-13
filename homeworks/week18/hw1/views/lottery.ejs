@@ -32,13 +32,8 @@
       </div>
 
       <form class="announce-block hide">
-        <!-- <div class="announce-content FIRST hide">恭喜你中頭獎了！日本東京來回雙人遊！</div>
-        <div class="announce-content SECOND hide">二獎！90 吋電視一台！</div>
-        <div class="announce-content THIRD hide">恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！</div>
-        <div class="announce-content NONE hide">銘謝惠顧</div> -->
         <div class="announce-content lottery-result"></div>
         <div class="announce-desc"></div>
-        <!-- 重新整理在按鈕標籤直接加 onclick="javascript:window.location.reload()" -->
         <button type="submit" value="Submit" class="announce-btn">再抽一次</button>
       </form>
 
@@ -47,26 +42,7 @@
 
 
 
-  <footer>
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="footer-info">
-          <p>餐館地址: 天上地下天堂路三分之一里六段520號</p>
-          <p>訂位專線：02-1314-5566</p>
-          <p>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</p>
-          <p>email：service@justabite.com.tw</p>
-        </div>
-        <div class="footer-sites">
-          <div class="logo"><a href="#">Just A Bite!</a></div>
-          <p>Facebook / Instagram / Youtube</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有</p>
-    </div>
+  <%- include ('templates/footer') %>
 
   <script src="/scripts/lottery.js"></script>
 </body>

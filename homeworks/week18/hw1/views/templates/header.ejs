@@ -2,6 +2,13 @@
   <div class="container">
     <div class="logo"><a href="/">Just A Bite!</a></div>
     <a href="/login">登入</a>
+
+    <% if (locals.role === 'admin') { %> 
+      <div class="backend-btn">
+        <a href="/manage-menu">管理</a>
+      </div>
+    <% } %> 
+
     <nav class="header-nav">
       <a class="nav-lottery" href="/lottery">抽個大獎</a>
       <a class="nav-menu" href="/menu">我要點餐</a>

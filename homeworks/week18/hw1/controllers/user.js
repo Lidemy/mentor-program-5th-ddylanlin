@@ -42,7 +42,7 @@ const userController = {
         }
         req.session.username = user.username
         req.session.role = user.role
-        res.redirect('/')
+        res.redirect('/manage-menu')
       })
     }).catch((err) => {
       req.flash('errorMessage', err.toString())
@@ -54,6 +54,7 @@ const userController = {
     const page = {
       current: 'Register',
       switch: 'Login',
+      formAction: '/register',
       href: '/login'
     }
     res.render('admin/login', { page })
@@ -87,7 +88,7 @@ const userController = {
   },
 
   logout: (req, res) => {
-    req.session.username.destroy()
+    req.session.destroy()
     res.redirect('/')
   }
 

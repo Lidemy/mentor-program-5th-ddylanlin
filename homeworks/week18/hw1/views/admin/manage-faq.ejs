@@ -7,38 +7,28 @@
 
 <body>
   <%- include ('../templates/header') %>
-
+  <%- include ('../templates/admin-bar') %>
 
   <section class="manage">
     <h2 class="title">後台-常見問題</h2>
 
     <div class="admin-btn manage-btn">
-      <input type="button" class="admin-btn-first" value="登出"></input>
-        <input type="submit" class="admin-btn-second" value="新增"></input>
+      <a class="admin-btn-first" href="/faq-add" >新增</a>
     </div>
   
-    <div class='Question qa-card '>
-      <div>
-        <h3 class='Question-title '><span class="Question-list">Q1:</span>&nbsp&nbsp如何辦理退貨？</h3>
-        <div class='card-answer'>如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？</div>
+    <% faqs.forEach((faq) => { %> 
+      <div class='Question qa-card '>
+        <div>
+          <h3 class='Question-title '><span class="Question-list">Q:</span>&nbsp&nbsp<%= faq.title %> </h3>
+          <div class='card-answer'><%= faq.content %></div>
+        </div>
+        <div class="admin-btn qa-btn ">
+          <a class="admin-btn-first" href="/update/faq/<%= faq.id %>">編輯</a>
+          <a class="admin-btn-second" href="/delete/faq/<%= faq.id %>">刪除</a>
+        </div>
       </div>
-      <div class="admin-btn qa-btn ">
-        <input type="button" class="admin-btn-first" value="編輯"></input>
-        <input type="submit" class="admin-btn-second" value="刪除"></input>
-      </div>
-    </div>
+    <% }) %> 
 
-
-    <div class='Question qa-card '>
-      <div>
-        <h3 class='Question-title '><span class="Question-list">Q1:</span>&nbsp&nbsp如何辦理退貨？</h3>
-        <div class='card-answer'>如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？如何辦理退貨？</div>
-      </div>
-      <div class="admin-btn qa-btn ">
-        <button class="admin-btn-first">編輯</button>
-        <button class="admin-btn-second">刪除</button>
-      </div>
-    </div>
 
   </section>
 

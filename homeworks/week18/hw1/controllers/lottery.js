@@ -10,11 +10,124 @@ const lotteryController = {
   },
 
   manage: (req, res) => {
-    res.render('admin/manage-lottery')
+    const { role } = req.session
+    if (role === 'admin') {
+      Lottery.findAll({
+        order: [['probability', 'DESC']]
+      }).then((lotteries) => {
+        totalProbability = 0
+        lotteries.forEach((element) => {
+          totalProbability += element.probability
+        })
+        res.render('admin/manage-lottery', {
+          lotteries,
+          totalProbability
+        })
+      })
+    } else {
+      res.redirect('/')
+    }
   },
 
   add: (req, res) => {
-    res.render('admin/lottery-add')
+    const { role } = req.session
+    const lotteries = {}
+    if (role === 'admin') {
+      res.render('admin/lottery-add', {
+        totalProbability,
+        page: '建立',
+        formAction: '/lottery-add',
+        lotteries
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  handleAdd: (req, res, next) => {
+    const { prize, desc, imageURL, probability } = req.body
+    const { role } = req.session
+    if (role === 'admin') {
+      Lottery.create({
+        prize,
+        desc,
+        imageURL,
+        probability
+      }).then(() => {
+        res.redirect('/manage-lottery')
+      }).catch((err) => {
+        console.log(err)
+        return res.send('handleCreate 錯誤：', err)
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  update: (req, res) => {
+    const { role } = req.session
+    if (role === 'admin') {
+      Lottery.findOne({
+        where: {
+          id: req.params.id
+        }
+      }).then((lotteries) => {
+        res.render('admin/lottery-add', {
+          lotteries,
+          page: '編輯',
+          totalProbability,
+          formAction: '/update/lottery/'
+        })
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  handleUpdate: (req, res, next) => {
+    const { prize, desc, imageURL, probability } = req.body
+    const { role } = req.session
+    if (role === 'admin') {
+      Lottery.findOne({
+        where: {
+          id: req.params.id
+        } // eslint-disable-next-line
+      }).then((lotteries) => {
+        return lotteries.update({
+          prize,
+          desc,
+          imageURL,
+          probability
+        })
+      }).then(() => {
+        res.redirect('/manage-lottery')
+      }).catch((err) => {
+        console.log(err)
+        return res.send('handleEdit 錯誤：', err)
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  delete: (req, res) => {
+    const { role } = req.session
+    if (role === 'admin') {
+      Lottery.findOne({
+        where: {
+          id: req.params.id
+        } // eslint-disable-next-line
+      }).then((lotteries) => {
+        return lotteries.destroy()
+      }).then(() => {
+        res.redirect('/manage-lottery')
+      }).catch((err) => {
+        console.log(err)
+        return res.send('delete 錯誤：', err)
+      })
+    } else {
+      res.redirect('/')
+    }
   },
 
   lottery: (req, res) => {
@@ -51,7 +164,7 @@ const lotteryController = {
       if (num > sumRate(lotteries.length - 1)) {
         const fault = {
           prize: '你失敗了',
-          description: '再試一次',
+          desc: '再試一次',
           imageURL: 'https://pse.is/3fgu8w'
         }
         console.log('你失敗了')
@@ -83,106 +196,20 @@ const lotteryController = {
           description: 'ㄏㄏ 再試一次吧',
           imageURL: 'https://pse.is/3fgu8w'
         }
-        return res.render('result', {
+        return res.render('lottery', {
           result: fault
         })
       }
       // eslint-disable-next-line
       for (let i in lotteries) {
         if (num <= sumRate(i)) {
-          return res.render('result', {
+          return res.render('lottery', {
             result: lotteries[i]
           })
         }
       }
     }).catch(() => {
       res.redirect('/')
-    })
-  },
-
-  admin: (req, res) => {
-    Lottery.findAll({
-      order: [['probability', 'DESC']]
-    }).then((lotteries) => {
-      totalProbability = 0
-      lotteries.forEach((element) => { // 每刷新一次頁面重新計算所有獎項機率加總值
-        totalProbability += element.probability
-      })
-      console.log(totalProbability)
-      res.render('admin', {
-        lotteries,
-        totalProbability
-      })
-    })
-  },
-
-  create: (req, res) => {
-    res.render('create', {
-      totalProbability
-    })
-  },
-
-  handleCreate: (req, res, next) => {
-    const { prize, description, imageURL, probability } = req.body
-    Lottery.create({
-      prize,
-      description,
-      imageURL,
-      probability
-    }).then(() => {
-      res.redirect('admin')
-    }).catch((err) => {
-      console.log(err)
-      return res.send('handleCreate 錯誤：', err)
-    })
-  },
-
-  edit: (req, res) => {
-    Lottery.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then((lotteries) => {
-      res.render('edit', {
-        lotteries,
-        totalProbability
-      })
-    })
-  },
-
-  handleEdit: (req, res, next) => {
-    const { prize, description, imageURL, probability } = req.body
-    Lottery.findOne({
-      where: {
-        id: req.params.id
-      } // eslint-disable-next-line
-    }).then((lotteries) => {
-      return lotteries.update({
-        prize,
-        description,
-        imageURL,
-        probability
-      })
-    }).then(() => {
-      res.redirect('/admin')
-    }).catch((err) => {
-      console.log(err)
-      return res.send('handleEdit 錯誤：', err)
-    })
-  },
-
-  delete: (req, res) => {
-    Lottery.findOne({
-      where: {
-        id: req.params.id
-      } // eslint-disable-next-line
-    }).then((lotteries) => {
-      return lotteries.destroy()
-    }).then(() => {
-      res.redirect('/admin')
-    }).catch((err) => {
-      console.log(err)
-      return res.send('delete 錯誤：', err)
     })
   }
 

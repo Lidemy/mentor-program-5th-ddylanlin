@@ -10,35 +10,39 @@
   <div class="menu-add-board">
 
  
-    <div class="lg-title">新增料理</div>
+    <div class="lg-title"><%= page %>料理</div>
 
 
     <div class="admin-btn manage-btn">
-      <input type="button" class="admin-btn-first" value="返回"></input>
+      <a href="/manage-menu" class="admin-btn-first">返回</a>
     </div>
 
-    <form  method="POST" action="/register">
+    <form  method="POST" action=<%= formAction %><%= menus.id %>>
 
       <div class='dish-name'>
         <span >料理名稱：</span>
-        <input name="password"  />
+        <input type="text" name="dish" value=<%= menus.dish %>>
       </div>
 
       <div class="dish-info">
         <div class='dish-prices'>
           <span >價格：</span>
-          <input  name="password"  />
+          <input type="number" min="0" name="price" value=<%= menus.price %>>
         </div>
         
         <div class='dish-img'>
           <span >圖片：</span>
-          <input  name="password"  />
+          <input type="url" name="imageURL" value=<%= menus.imageURL %>>
         </div>
       </div>
 
       <div class="admin-btn">
-        <input type="button" class="admin-btn-first" value="編輯"></input>
-        <input type="submit" class="admin-btn-second" value="建立"></input>
+        <% if (page === '新增') { %> 
+          <button type="submit" class="admin-btn-second">新增</button>
+        <% } else { %>
+          <button type="submit" class="admin-btn-first">更新</button>
+          <a href="/delete/menu/<%= menus.id %>" class="admin-btn-second">刪除</a>
+        <% } %>  
       </div>
 
     </form>

@@ -1,107 +1,130 @@
-// const db = require('../models')
+const db = require('../models')
 
-// const { Menu } = db
+const { Menu } = db
 
 const menuController = {
 
   index: (req, res) => {
-    res.render('menu')
+    Menu.findAll({
+      order: [['id', 'DESC']]
+    }).then((menus) => {
+      res.render('menu', {
+        menus
+      })
+    })
   },
 
   manage: (req, res) => {
-    res.render('admin/manage-menu')
+    const { role } = req.session
+    if (role === 'admin') {
+      Menu.findAll({
+        order: [['id', 'DESC']]
+      }).then((menus) => {
+        res.render('admin/manage-menu', {
+          menus
+        })
+      })
+    } else {
+      res.redirect('/')
+    }
   },
 
   add: (req, res) => {
-    res.render('admin/menu-add')
+    const { role } = req.session
+    const menus = {}
+    if (role === 'admin') {
+      res.render('admin/menu-add', {
+        page: '新增',
+        formAction: '/menu-add',
+        menus
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  handleAdd: (req, res, next) => {
+    const { dish, price, imageURL } = req.body
+    const { role } = req.session
+    if (role === 'admin') {
+      Menu.create({
+        dish,
+        price,
+        imageURL
+      }).then(() => {
+        res.redirect('/manage-menu')
+      }).catch((err) => {
+        console.log(err)
+        return res.send('handleCreate 錯誤：', err)
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  update: (req, res) => {
+    const { role } = req.session
+    if (role === 'admin') {
+      Menu.findOne({
+        where: {
+          id: req.params.id
+        }
+      }).then((menus) => {
+        res.render('admin/menu-add', {
+          menus,
+          page: '調整',
+          formAction: '/update/menu/'
+        })
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  handleUpdate: (req, res, next) => {
+    const { dish, price, imageURL } = req.body
+    const { role } = req.session
+    if (role === 'admin') {
+      Menu.findOne({
+        where: {
+          id: req.params.id
+        } // eslint-disable-next-line
+      }).then((menus) => {
+        return menus.update({
+          dish,
+          price,
+          imageURL
+        })
+      }).then(() => {
+        res.redirect('/manage-menu')
+      }).catch((err) => {
+        console.log(err)
+        return res.send('handleEdit 錯誤：', err)
+      })
+    } else {
+      res.redirect('/')
+    }
+  },
+
+  delete: (req, res) => {
+    const { role } = req.session
+    if (role === 'admin') {
+      Menu.findOne({
+        where: {
+          id: req.params.id
+        } // eslint-disable-next-line
+      }).then((menus) => {
+        return menus.destroy()
+      }).then(() => {
+        res.redirect('/manage-Menu')
+      }).catch((err) => {
+        console.log(err)
+        return res.send('delete 錯誤：', err)
+      })
+    } else {
+      res.redirect('/')
+    }
   }
-
-  // admin: (req, res) => {
-  //   Lottery.findAll({
-  //     order: [['probability', 'DESC']]
-  //   }).then((lotteries) => {
-  //     totalProbability = 0
-  //     lotteries.forEach((element) => { // 每刷新一次頁面重新計算所有獎項機率加總值
-  //       totalProbability += element.probability
-  //     })
-  //     console.log(totalProbability)
-  //     res.render('admin', {
-  //       lotteries,
-  //       totalProbability
-  //     })
-  //   })
-  // },
-
-  // create: (req, res) => {
-  //   res.render('create', {
-  //     totalProbability
-  //   })
-  // },
-
-  // handleCreate: (req, res, next) => {
-  //   const { prize, description, imageURL, probability } = req.body
-  //   Lottery.create({
-  //     prize,
-  //     description,
-  //     imageURL,
-  //     probability
-  //   }).then(() => {
-  //     res.redirect('admin')
-  //   }).catch((err) => {
-  //     console.log(err)
-  //     return res.send('handleCreate 錯誤：', err)
-  //   })
-  // },
-
-  // edit: (req, res) => {
-  //   Lottery.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     }
-  //   }).then((lotteries) => {
-  //     res.render('edit', {
-  //       lotteries,
-  //       totalProbability
-  //     })
-  //   })
-  // },
-
-  // handleEdit: (req, res, next) => {
-  //   const { prize, description, imageURL, probability } = req.body
-  //   Lottery.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     } // eslint-disable-next-line
-  //   }).then((lotteries) => {
-  //     return lotteries.update({
-  //       prize,
-  //       description,
-  //       imageURL,
-  //       probability
-  //     })
-  //   }).then(() => {
-  //     res.redirect('/admin')
-  //   }).catch((err) => {
-  //     console.log(err)
-  //     return res.send('handleEdit 錯誤：', err)
-  //   })
-  // },
-
-  // delete: (req, res) => {
-  //   Lottery.findOne({
-  //     where: {
-  //       id: req.params.id
-  //     } // eslint-disable-next-line
-  //   }).then((lotteries) => {
-  //     return lotteries.destroy()
-  //   }).then(() => {
-  //     res.redirect('/admin')
-  //   }).catch((err) => {
-  //     console.log(err)
-  //     return res.send('delete 錯誤：', err)
-  //   })
-  // }
-
 }
 
 module.exports = menuController

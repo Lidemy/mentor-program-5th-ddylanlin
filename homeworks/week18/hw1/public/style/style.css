@@ -50,6 +50,7 @@ a {
 header {
   box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
   max-width: 100vw;
+  position: relative;
 }
 header .container {
   display: flex;
@@ -244,6 +245,7 @@ h4 {
   cursor: default;
   max-height: 0;
   overflow: hidden;
+  white-space: break-spaces;
 }
 
 .active-key {
@@ -377,11 +379,11 @@ button:hover {
   background-color: #ff7286;
 }
 
-.menu-images div {
+.menu-sell div {
   max-width: 557px;
   position: relative;
 }
-.menu-images div::before {
+.menu-sell div::before {
   content: "";
   background: rgba(255, 255, 255, 0.5);
   position: absolute;
@@ -390,7 +392,7 @@ button:hover {
   bottom: 0;
   left: 0;
 }
-.menu-images div::after {
+.menu-sell div::after {
   content: "售完";
   color: white;
   font-size: 1.2rem;
@@ -473,6 +475,8 @@ button:hover {
 .dishes-card img {
   max-height: 292px;
   max-width: 292px;
+  height: 100%;
+  width: 100%;
 }
 .dishes-info {
   display: flex;
@@ -539,7 +543,7 @@ button:hover {
 .admin-btn {
   font-size: 1.5rem;
 }
-.admin-btn input {
+.admin-btn button {
   font-size: 1.2rem;
   border-radius: 5px;
   background: white;
@@ -547,7 +551,18 @@ button:hover {
   margin-left: 0.6rem;
   border: 1px solid;
 }
-.admin-btn input:hover {
+.admin-btn button:hover {
+  cursor: pointer;
+}
+.admin-btn a {
+  font-size: 1.2rem;
+  border-radius: 5px;
+  background: white;
+  padding: 0.2rem 0.8rem;
+  margin-left: 0.6rem;
+  border: 1px solid;
+}
+.admin-btn a:hover {
   cursor: pointer;
 }
 .admin-btn-first {
@@ -573,11 +588,11 @@ button:hover {
   align-items: inherit;
   margin-bottom: 2rem;
 }
-.manage-btn button {
+.manage-btn a {
   color: #464646;
   border: #464646 1px solid;
 }
-.manage-btn button:hover {
+.manage-btn a:hover {
   background-color: #464646;
 }
 
@@ -603,6 +618,7 @@ button:hover {
 }
 .lottery-card .lose-info .lottery-desc {
   height: unset;
+  white-space: pre-line;
 }
 .lottery-info {
   width: 100%;
@@ -625,11 +641,11 @@ button:hover {
   justify-content: flex-end;
   align-items: inherit;
   font-size: 1.5rem;
-  height: 20%;
+  height: 18%;
   right: 2%;
 }
 .lottery-others .percent {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 0 2rem;
 }
 .lottery-admin-btn {
@@ -639,11 +655,19 @@ button:hover {
   top: -22%;
 }
 .lottery-admin-btn button {
-  margin: 0 0 0 1rem;
+  margin: 0 0 0 0rem;
   color: #464646;
   border: #464646 1px solid;
 }
 .lottery-admin-btn button:hover {
+  background-color: #464646;
+}
+.lottery-admin-btn a {
+  margin: 0 0 0 0rem;
+  color: #464646;
+  border: #464646 1px solid;
+}
+.lottery-admin-btn a:hover {
   background-color: #464646;
 }
 
@@ -683,6 +707,8 @@ button:hover {
 .admin-dishes .dishes-card img {
   max-height: 100%;
   max-width: 100%;
+  height: 100%;
+  width: 100%;
 }
 .admin-dishes .dishes-card .dishes-info {
   margin: 1rem 0;
@@ -816,7 +842,7 @@ button:hover {
   right: 2%;
   top: 9%;
 }
-.lottery-add-board .manage-btn input {
+.lottery-add-board .manage-btn a {
   font-size: 1rem;
 }
 
@@ -899,7 +925,7 @@ button:hover {
   right: 2%;
   top: -2%;
 }
-.menu-add-board .manage-btn input {
+.menu-add-board .manage-btn a {
   font-size: 1rem;
 }
 
@@ -958,7 +984,45 @@ button:hover {
   right: 0%;
   top: 10%;
 }
-.faq-add-board .manage-btn input {
+.faq-add-board .manage-btn a {
+  font-size: 1rem;
+}
+
+.admin-bar {
+  position: absolute;
+  top: 30%;
+  left: 2%;
+  text-align: center;
+}
+.admin-bar-btn {
+  border: 1.5px solid #a3dea2;
+  border-radius: 5px;
+}
+.admin-bar-btn a {
+  display: block;
+  color: black;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid #a3dea2;
+}
+.admin-bar-btn a:hover {
+  cursor: pointer;
+  background: #a3dea2;
+}
+.admin-bar-desc {
+  margin-bottom: 0.3rem;
+}
+
+.backend-btn {
+  position: absolute;
+  right: 2%;
+  bottom: -40%;
+  z-index: 2;
+}
+.backend-btn a {
+  background: #a3dea2;
+  border-radius: 5px;
+  padding: 0.2rem 0.6rem;
+  color: black;
   font-size: 1rem;
 }
 
@@ -1139,7 +1203,7 @@ footer {
     right: 2%;
     top: 4%;
   }
-  .lottery-add-board .manage-btn input {
+  .lottery-add-board .manage-btn a {
     padding: 0.2rem 0.4rem;
     font-size: 0.2rem;
   }
@@ -1147,7 +1211,7 @@ footer {
   .faq-add-board {
     width: 90%;
   }
-  .faq-add-board .manage-btn input {
+  .faq-add-board .manage-btn a {
     padding: 0.2rem 0.4rem;
     font-size: 0.2rem;
   }
@@ -1176,7 +1240,7 @@ footer {
   .menu-add-board .dish-info .dish-img input {
     width: 60%;
   }
-  .menu-add-board .manage-btn input {
+  .menu-add-board .manage-btn a {
     padding: 0.2rem 0.4rem;
     font-size: 0.2rem;
   }

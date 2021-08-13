@@ -10,46 +10,56 @@
 
 <body>
 
-  
-  <div class="menu-add-board">
+  <header>
+    <div class="container">
+      <div class="logo"><a href="/">Just A Bite!</a></div>
+      <div class="backend-btn">
+        <a href="/manage-menu">管理</a>
+      </div>
+      <nav class="header-nav">
+        <a class="nav-lottery" href="/lottery">抽個大獎</a>
+        <a class="nav-menu" href="/menu">我要點餐</a>
+        <a class="nav-empty" href="#">查詢訂單</a>
+        <a class="nav-faq" href="/faq">常見問題</a>
+      </nav>
+    </div>
+  </header>
 
- 
-    <div class="lg-title">新增料理</div>
 
+
+  <section class="manage">
+    <h2 class="title">後台-獎項管理</h2>
 
     <div class="admin-btn manage-btn">
-      <input type="button" class="admin-btn-first" value="返回"></input>
+      <a class="admin-btn-second" href="/lottery-add">新增</a>
+    </div>
+    
+    <div class="lottery-card">
+      <img src="https://pse.is/3fgu8w" alt="">
+      <div class="lottery-info lose-info">
+        <div class="lottery-prize">空歡喜一場</div>
+        <div class="lottery-desc">落空機率：<%= 100-totalProbability %>%</div>
+      </div>
+
     </div>
 
-    <form  method="POST" action="/register">
-
-      <div class='dish-name'>
-        <span >料理名稱：</span>
-        <input name="password"  />
-      </div>
-
-      <div class="dish-info">
-        <div class='dish-prices'>
-          <span >價格：</span>
-          <input  name="password"  />
-        </div>
-        
-        <div class='dish-img'>
-          <span >圖片：</span>
-          <input  name="password"  />
+    <% lotteries.forEach((lottery) => { %> 
+      <div class="lottery-card">
+        <img src=<%= lottery.imageURL %>>
+        <div class="lottery-info">
+          <div class="lottery-prize "><%= lottery.prize %></div>
+          <div class="lottery-desc "><%= lottery.desc %></div>
+          <div class="admin-btn lottery-others">
+            <p class="percent"><%= lottery.probability %>%</p>
+            <a class="admin-btn-first" href="/update/lottery/<%= lottery.id %>">編輯</a>
+            <a class="admin-btn-second" href="/delete/lottery/<%= lottery.id %>">刪除</a>
+          </div>
         </div>
       </div>
+    <% }) %> 
 
-      <div class="admin-btn">
-        <input type="button" class="admin-btn-first" value="編輯"></input>
-        <input type="submit" class="admin-btn-second" value="建立"></input>
-      </div>
+  </section>
 
-    </form>
-
-    
-    
-  </div>
 
 </body>
 

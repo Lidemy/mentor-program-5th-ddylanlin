@@ -4,7 +4,8 @@ const isAnnounce = document.querySelector('.announce-block')
 
 async function lotteryData() {
   try {
-    const response = await fetch('https://lit-stream-79960.herokuapp.com/lottery')
+    const response = await fetch('/lottery/api')
+    // https://lit-stream-79960.herokuapp.com/lottery
     if (!response.ok) {
       console.log(response.status)
       alert(`系統不穩定，請再試一次！statusCode: ${response.status}`)
@@ -19,7 +20,7 @@ async function lotteryData() {
 async function renderResult() {
   const result = await lotteryData()
   document.querySelector('.lottery-result').innerText = result.prize
-  document.querySelector('.announce-desc').innerText = result.description
+  document.querySelector('.announce-desc').innerText = result.desc
   isMethod.classList.add('hide')
   isAnnounce.classList.remove('hide')
   background.style.backgroundImage = `url(${result.imageURL})`
