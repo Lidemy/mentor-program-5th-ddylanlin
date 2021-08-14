@@ -11,6 +11,9 @@
  
     <div class="lg-title"><%= page %>常見問題</div>
 
+    <% if (errorMessage && errorMessage.length > 0) { %> 
+      <h5><%= errorMessage %></h5>
+    <% } %> 
 
     <div class="admin-btn manage-btn">
       <a href="/manage-faq" class="admin-btn-first">返回</a>

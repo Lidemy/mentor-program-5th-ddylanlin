@@ -1,4 +1,4 @@
-const { body, validationResult } = require('express-validator')
+const { validationResult } = require('express-validator')
 const db = require('../models')
 
 const { Faq } = db
@@ -7,7 +7,7 @@ const faqController = {
 
   index: (req, res) => {
     Faq.findAll({
-      order: [['id', 'DESC']]
+      order: [['order', 'DESC']]
     }).then((faqs) => {
       res.render('faq', {
         faqs
@@ -19,7 +19,7 @@ const faqController = {
     const { role } = req.session
     if (role === 'admin') {
       Faq.findAll({
-        order: [['id', 'DESC']]
+        order: [['order', 'DESC']]
       }).then((faqs) => {
         res.render('admin/manage-faq', {
           faqs
@@ -31,57 +31,50 @@ const faqController = {
   },
 
   add: (req, res) => {
-    const { role } = req.session
     const faqs = {}
-    if (role === 'admin') {
-      res.render('admin/faq-add', {
-        page: '新增',
-        formAction: '/faq-add',
-        faqs
-      })
-    } else {
-      res.redirect('/')
-    }
+    res.render('admin/faq-add', {
+      page: '新增',
+      formAction: '/faq-add',
+      faqs
+    })
   },
 
-  handleAdd: (
-    body('title').isEmail(),
-    body('content').isLength({ min: 5 }),
-    (req, res) => {
-      const errors = validationResult(req)
-      if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() })
-      }
-      console.log(errors.array())
-      const { title, content, order } = req.body
-      Faq.create({
-        title,
-        content,
-        order
-      }).then(() => {
-        res.redirect('/manage-faq')
-      }).catch((err) => {
-        req.flash('errorMessage', err.toString())
+  handleAdd: (req, res) => {
+    const { title, content, order } = req.body
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).render('admin/faq-add', {
+        errorMessage: '欄位不得為空',
+        page: '新增',
+        formAction: '/faq-add',
+        faqs: {
+          title,
+          content,
+          order
+        }
       })
-    }),
+    }
+    Faq.create({
+      title,
+      content,
+      order
+    }).then(() => {
+      res.redirect('/manage-faq')
+    }).catch((err) => console.log(err))
+  },
 
   update: (req, res) => {
-    const { role } = req.session
-    if (role === 'admin') {
-      Faq.findOne({
-        where: {
-          id: req.params.id
-        }
-      }).then((faqs) => {
-        res.render('admin/faq-add', {
-          faqs,
-          page: '編輯',
-          formAction: '/update/faq/'
-        })
+    Faq.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then((faqs) => {
+      res.render('admin/faq-add', {
+        faqs,
+        page: '編輯',
+        formAction: '/update/faq/'
       })
-    } else {
-      res.redirect('/')
-    }
+    })
   },
 
   handleUpdate: (req, res) => {

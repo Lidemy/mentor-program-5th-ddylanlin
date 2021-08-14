@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator')
 const db = require('../models')
 
 const { Lottery } = db
@@ -10,124 +11,107 @@ const lotteryController = {
   },
 
   manage: (req, res) => {
-    const { role } = req.session
-    if (role === 'admin') {
-      Lottery.findAll({
-        order: [['probability', 'DESC']]
-      }).then((lotteries) => {
-        totalProbability = 0
-        lotteries.forEach((element) => {
-          totalProbability += element.probability
-        })
-        res.render('admin/manage-lottery', {
-          lotteries,
-          totalProbability
-        })
+    Lottery.findAll({
+      order: [['probability', 'DESC']]
+    }).then((lotteries) => {
+      totalProbability = 0
+      lotteries.forEach((element) => {
+        totalProbability += element.probability
       })
-    } else {
-      res.redirect('/')
-    }
+      res.render('admin/manage-lottery', {
+        lotteries,
+        totalProbability
+      })
+    })
   },
 
   add: (req, res) => {
-    const { role } = req.session
     const lotteries = {}
-    if (role === 'admin') {
-      res.render('admin/lottery-add', {
-        totalProbability,
-        page: '建立',
-        formAction: '/lottery-add',
-        lotteries
-      })
-    } else {
-      res.redirect('/')
-    }
+    res.render('admin/lottery-add', {
+      totalProbability,
+      page: '建立',
+      formAction: '/lottery-add',
+      lotteries
+    })
   },
 
   handleAdd: (req, res, next) => {
     const { prize, desc, imageURL, probability } = req.body
-    const { role } = req.session
-    if (role === 'admin') {
-      Lottery.create({
-        prize,
-        desc,
-        imageURL,
-        probability
-      }).then(() => {
-        res.redirect('/manage-lottery')
-      }).catch((err) => {
-        console.log(err)
-        return res.send('handleCreate 錯誤：', err)
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).render('admin/lottery-add', {
+        errorMessage: '欄位不得為空',
+        page: '建立',
+        formAction: '/lottery-add',
+        totalProbability,
+        lotteries: {
+          prize,
+          desc
+        }
       })
-    } else {
-      res.redirect('/')
     }
+    Lottery.create({
+      prize,
+      desc,
+      imageURL,
+      probability
+    }).then(() => {
+      res.redirect('/manage-lottery')
+    }).catch((err) => {
+      console.log(err)
+      return res.send('handleCreate 錯誤：', err)
+    })
   },
 
   update: (req, res) => {
-    const { role } = req.session
-    if (role === 'admin') {
-      Lottery.findOne({
-        where: {
-          id: req.params.id
-        }
-      }).then((lotteries) => {
-        res.render('admin/lottery-add', {
-          lotteries,
-          page: '編輯',
-          totalProbability,
-          formAction: '/update/lottery/'
-        })
+    Lottery.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then((lotteries) => {
+      res.render('admin/lottery-add', {
+        lotteries,
+        page: '編輯',
+        totalProbability,
+        formAction: '/update/lottery/'
       })
-    } else {
-      res.redirect('/')
-    }
+    })
   },
 
   handleUpdate: (req, res, next) => {
     const { prize, desc, imageURL, probability } = req.body
-    const { role } = req.session
-    if (role === 'admin') {
-      Lottery.findOne({
-        where: {
-          id: req.params.id
-        } // eslint-disable-next-line
-      }).then((lotteries) => {
-        return lotteries.update({
-          prize,
-          desc,
-          imageURL,
-          probability
-        })
-      }).then(() => {
-        res.redirect('/manage-lottery')
-      }).catch((err) => {
-        console.log(err)
-        return res.send('handleEdit 錯誤：', err)
+    Lottery.findOne({
+      where: {
+        id: req.params.id
+      } // eslint-disable-next-line
+    }).then((lotteries) => {
+      return lotteries.update({
+        prize,
+        desc,
+        imageURL,
+        probability
       })
-    } else {
-      res.redirect('/')
-    }
+    }).then(() => {
+      res.redirect('/manage-lottery')
+    }).catch((err) => {
+      console.log(err)
+      return res.send('handleEdit 錯誤：', err)
+    })
   },
 
   delete: (req, res) => {
-    const { role } = req.session
-    if (role === 'admin') {
-      Lottery.findOne({
-        where: {
-          id: req.params.id
-        } // eslint-disable-next-line
-      }).then((lotteries) => {
-        return lotteries.destroy()
-      }).then(() => {
-        res.redirect('/manage-lottery')
-      }).catch((err) => {
-        console.log(err)
-        return res.send('delete 錯誤：', err)
-      })
-    } else {
-      res.redirect('/')
-    }
+    Lottery.findOne({
+      where: {
+        id: req.params.id
+      } // eslint-disable-next-line
+    }).then((lotteries) => {
+      return lotteries.destroy()
+    }).then(() => {
+      res.redirect('/manage-lottery')
+    }).catch((err) => {
+      console.log(err)
+      return res.send('delete 錯誤：', err)
+    })
   },
 
   lottery: (req, res) => {
@@ -169,44 +153,6 @@ const lotteryController = {
         }
         console.log('你失敗了')
         return res.send(JSON.stringify(fault, null, 4))
-      }
-    }).catch(() => {
-      res.redirect('/')
-    })
-  },
-
-  // 方法同上，改成render頁面
-  result: (req, res) => {
-    Lottery.findAll({
-      order: [['probability', 'ASC']]
-    }).then((lotteries) => {
-      function sumRate(num) {
-        let rate = 0
-        for (let i = 0; i <= num; i++) {
-          rate += lotteries[i].probability
-        }
-        return rate
-      }
-
-      const num = Math.floor(Math.random() * 100) + 1
-
-      if (num > sumRate(lotteries.length - 1)) {
-        const fault = {
-          prize: '空歡喜一場',
-          description: 'ㄏㄏ 再試一次吧',
-          imageURL: 'https://pse.is/3fgu8w'
-        }
-        return res.render('lottery', {
-          result: fault
-        })
-      }
-      // eslint-disable-next-line
-      for (let i in lotteries) {
-        if (num <= sumRate(i)) {
-          return res.render('lottery', {
-            result: lotteries[i]
-          })
-        }
       }
     }).catch(() => {
       res.redirect('/')

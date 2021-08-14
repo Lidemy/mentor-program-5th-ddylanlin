@@ -42,7 +42,7 @@ const userController = {
         }
         req.session.username = user.username
         req.session.role = user.role
-        res.redirect('/manage-menu')
+        res.redirect('/manage-faq')
       })
     }).catch((err) => {
       req.flash('errorMessage', err.toString())
