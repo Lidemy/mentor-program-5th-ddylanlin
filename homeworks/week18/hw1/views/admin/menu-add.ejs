@@ -39,6 +39,7 @@
         </div>
       </div>
 
+
       <div class="admin-btn">
         <% if (page === '新增') { %> 
           <button type="submit" class="admin-btn-second">新增</button>
@@ -50,7 +51,10 @@
 
     </form>
 
-    
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+      <input type="file" name="myFile">
+      <input type="submit">
+    </form>
     
   </div>
 

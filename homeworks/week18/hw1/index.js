@@ -2,9 +2,22 @@ const express = require('express')
 const session = require('express-session')
 const flash = require('connect-flash')
 const { body } = require('express-validator')
+const multer = require('multer')
 
 const app = express()
 const port = process.env.PORT || 5001
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './public/upload')
+  },
+  filename: (req, file, cb) => {
+    console.log(file)
+    cb(null, Date.now() + (file.originalname))
+  }
+})
+
+const upload = multer({ storage })
 
 const userController = require('./controllers/user')
 const lotteryController = require('./controllers/lottery')
@@ -21,6 +34,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+
+app.post('/upload', upload.single('myFile'), menuController.upload)
+// app.post('/upload', upload.single('myFile'), menuController.handleUpload)
 
 app.use((req, res, next) => {
   res.locals.username = req.session.username

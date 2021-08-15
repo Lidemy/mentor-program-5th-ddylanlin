@@ -2,8 +2,14 @@ const { validationResult } = require('express-validator')
 const db = require('../models')
 
 const { Menu } = db
+let imgPath = ''
 
 const menuController = {
+
+  upload: (req, res) => {
+    imgPath = `/upload/${req.file.filename}`
+    console.log(imgPath)
+  },
 
   index: (req, res) => {
     Menu.findAll({
@@ -47,12 +53,20 @@ const menuController = {
         }
       })
     }
+
+    let image = ''
+    if (imageURL) {
+      image = imageURL
+    } else {
+      image = imgPath
+    }
     Menu.create({
       dish,
       price,
-      imageURL
+      image
     }).then(() => {
       res.redirect('/manage-menu')
+      imgPath = ''
     }).catch((err) => {
       console.log(err)
       return res.send('handleCreate 錯誤：', err)
