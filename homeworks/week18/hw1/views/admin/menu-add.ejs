@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <%- include ('../templates/head') %>
+  <meta name="referrer" content="no-referrer" />
   <title>JB-Manage</title>
 </head>
 
@@ -32,13 +33,9 @@
           <span >價格：</span>
           <input type="number" min="0" name="price" value=<%= menus.price %>>
         </div>
-        
-        <div class='dish-img'>
-          <span >圖片：</span>
-          <input type="url" name="imageURL" value=<%= menus.imageURL %>>
-        </div>
       </div>
 
+      <input id="hidden-url" type="hidden" name='image' value=<%= menus.image %>>
 
       <div class="admin-btn">
         <% if (page === '新增') { %> 
@@ -49,14 +46,41 @@
         <% } %>  
       </div>
 
+
     </form>
 
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-      <input type="file" name="myFile">
-      <input type="submit">
-    </form>
+    <div class="img-upload-block">
+      <!-- <form class="upload-img" action="/upload" method="POST" enctype="multipart/form-data"> -->
+      <input id="upload-file" type="file" >
+        <!-- <input type="button" value="上傳"> -->
+      <!-- </form> -->
+      <img class="preview" src="https://pse.is/3mrnke">
+      
+    </div>
     
   </div>
+
+  <script>
+    const file = document.getElementById('upload-file')
+    const img = document.querySelector('.preview')
+    const sendUrl = document.getElementById('hidden-url')
+
+    file.addEventListener('change', (e) => {
+      const formData = new FormData()
+      formData.append('image', e.target.files[0])
+      fetch('https://api.imgur.com/3/image',{
+        method: 'POST',
+        headers: {
+          Authorization: 'client-ID f000253619fe8c5'
+        },
+        body: formData
+      }).then(response => response.json())
+        .then(result => {
+          img.src = result.data.link
+          sendUrl.value = result.data.link
+        }).catch(error => console.log('erroro', error))
+    })
+  </script>
 
 </body>
 

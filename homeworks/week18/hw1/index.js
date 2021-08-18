@@ -3,17 +3,16 @@ const session = require('express-session')
 const flash = require('connect-flash')
 const { body } = require('express-validator')
 const multer = require('multer')
+const cors = require('cors')
+const path = require('path')
 
 const app = express()
 const port = process.env.PORT || 5001
 
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './public/upload')
-  },
-  filename: (req, file, cb) => {
-    console.log(file)
-    cb(null, Date.now() + (file.originalname))
+  destination: './uploads',
+  filename: (req, file, cb) => { // eslint-disable-next-line
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
   }
 })
 
@@ -28,15 +27,14 @@ app.use(express.static('public'))
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cors())
 app.use(flash())
+app.use(upload.any())
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true
 }))
-
-app.post('/upload', upload.single('myFile'), menuController.upload)
-// app.post('/upload', upload.single('myFile'), menuController.handleUpload)
 
 app.use((req, res, next) => {
   res.locals.username = req.session.username
@@ -44,6 +42,9 @@ app.use((req, res, next) => {
   res.locals.errorMessage = req.flash('errorMessage')
   next()
 })
+
+// app.post('/upload', upload.single('myFile'), menuController.upload)
+// // app.post('/upload', upload.single('myFile'), menuController.handleUpload)
 
 function redirectBack(req, res) {
   res.redirect('back')
@@ -58,6 +59,10 @@ function isAdmin(req, res, next) {
 
 app.get('/', (req, res) => {
   res.render('index')
+})
+
+app.get('/test', (req, res) => {
+  res.render('test')
 })
 
 app.get('/login', userController.login)
@@ -90,6 +95,7 @@ app.post('/menu-add', isAdmin, body('dish').notEmpty(), menuController.handleAdd
 app.get('/update/menu/:id', isAdmin, menuController.update)
 app.post('/update/menu/:id', isAdmin, menuController.handleUpdate)
 app.get('/delete/menu/:id', isAdmin, menuController.delete)
+// app.post('/upload', isAdmin, menuController.upload)
 
 app.listen(port, () => {
   console.log(`♫.(◕∠◕).♫ http://localhost:${port}  ♫.(◕∠◕).♫`)

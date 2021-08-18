@@ -1,14 +1,24 @@
 const { validationResult } = require('express-validator')
+const imgur = require('imgur')
+const fs = require('fs')
 const db = require('../models')
 
 const { Menu } = db
-let imgPath = ''
 
 const menuController = {
 
-  upload: (req, res) => {
-    imgPath = `/upload/${req.file.filename}`
-    console.log(imgPath)
+  upload: async(req, res) => {
+    const file = req.files[0]
+    console.log('req.files', req.files)
+    try {
+      const url = await imgur.uploadFile(`./uploads/${file.filename}`)
+      res.render('admin/menu-add', {
+        url: url.link
+      })
+      fs.unlinkSync(`./uploads/${file.filename}`)
+    } catch (err) {
+      res.status(500).json({ message: 'server error' })
+    }
   },
 
   index: (req, res) => {
@@ -41,7 +51,7 @@ const menuController = {
   },
 
   handleAdd: (req, res, next) => {
-    const { dish, price, imageURL } = req.body
+    const { dish, price, image } = req.body
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       return res.status(422).render('admin/menu-add', {
@@ -49,16 +59,10 @@ const menuController = {
         page: '新增',
         formAction: '/menu-add',
         menus: {
-          dish
+          dish,
+          image
         }
       })
-    }
-
-    let image = ''
-    if (imageURL) {
-      image = imageURL
-    } else {
-      image = imgPath
     }
     Menu.create({
       dish,
@@ -66,7 +70,6 @@ const menuController = {
       image
     }).then(() => {
       res.redirect('/manage-menu')
-      imgPath = ''
     }).catch((err) => {
       console.log(err)
       return res.send('handleCreate 錯誤：', err)
@@ -88,7 +91,7 @@ const menuController = {
   },
 
   handleUpdate: (req, res, next) => {
-    const { dish, price, imageURL } = req.body
+    const { dish, price, image } = req.body
     Menu.findOne({
       where: {
         id: req.params.id
@@ -97,7 +100,7 @@ const menuController = {
       return menus.update({
         dish,
         price,
-        imageURL
+        image
       })
     }).then(() => {
       res.redirect('/manage-menu')

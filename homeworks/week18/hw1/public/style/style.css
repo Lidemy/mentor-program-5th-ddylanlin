@@ -884,12 +884,16 @@ button:hover {
 }
 .menu-add-board .dish-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: inherit;
   font-size: 1.5rem;
+  margin-bottom: 10rem;
 }
 .menu-add-board .dish-info .dish-prices {
-  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: inherit;
+  width: 35%;
 }
 .menu-add-board .dish-info .dish-prices span {
   width: 45%;
@@ -900,19 +904,6 @@ button:hover {
   border: 1px #33995a solid;
   font-size: 1.2rem;
   width: 40%;
-}
-.menu-add-board .dish-info .dish-img {
-  width: 60%;
-}
-.menu-add-board .dish-info .dish-img span {
-  width: 45%;
-}
-.menu-add-board .dish-info .dish-img input {
-  height: 1.8rem;
-  border-radius: 5px;
-  border: 1px #33995a solid;
-  font-size: 1.2rem;
-  width: 70%;
 }
 .menu-add-board .admin-btn {
   display: flex;
@@ -927,6 +918,28 @@ button:hover {
 }
 .menu-add-board .manage-btn a {
   font-size: 1rem;
+}
+.menu-add-board .img-upload-block {
+  position: absolute;
+  height: 13rem;
+  bottom: 5%;
+  left: 3%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.menu-add-board .img-upload-block .upload-img {
+  max-width: 21rem;
+  width: 100%;
+}
+.menu-add-board .img-upload-block .upload-img input {
+  font-size: 0.9rem;
+}
+.menu-add-board .img-upload-block .preview {
+  margin-top: 1rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 5px;
 }
 
 .faq-add-board {
@@ -1221,9 +1234,13 @@ footer {
   }
   .menu-add-board .dish-info {
     flex-direction: column;
+    margin-bottom: 14rem;
   }
   .menu-add-board .dish-info .dish-prices {
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: inherit;
   }
   .menu-add-board .dish-info .dish-prices span {
     width: fit-content;
@@ -1243,6 +1260,13 @@ footer {
   .menu-add-board .manage-btn a {
     padding: 0.2rem 0.4rem;
     font-size: 0.2rem;
+  }
+  .menu-add-board .img-upload-block {
+    bottom: 10%;
+  }
+  .menu-add-board .img-upload-block .upload-img {
+    max-width: 19rem;
+    display: flex;
   }
 
   .footer-top .container {
