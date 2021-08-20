@@ -5,14 +5,15 @@ const { body } = require('express-validator')
 const multer = require('multer')
 const cors = require('cors')
 const path = require('path')
+require('dotenv').config()
 
 const app = express()
 const port = process.env.PORT || 5001
 
 const storage = multer.diskStorage({
   destination: './uploads',
-  filename: (req, file, cb) => { // eslint-disable-next-line
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
+  filename: (req, file, cb) => {
+    cb(null, `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`)
   }
 })
 
@@ -31,7 +32,7 @@ app.use(cors())
 app.use(flash())
 app.use(upload.any())
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))

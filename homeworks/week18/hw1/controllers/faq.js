@@ -7,7 +7,7 @@ const faqController = {
 
   index: (req, res) => {
     Faq.findAll({
-      order: [['order', 'DESC']]
+      order: [['order', 'ASC']]
     }).then((faqs) => {
       res.render('faq', {
         faqs
@@ -19,7 +19,7 @@ const faqController = {
     const { role } = req.session
     if (role === 'admin') {
       Faq.findAll({
-        order: [['order', 'DESC']]
+        order: [['order', 'ASC']]
       }).then((faqs) => {
         res.render('admin/manage-faq', {
           faqs
