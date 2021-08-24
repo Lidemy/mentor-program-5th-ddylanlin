@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('templates/head') %>
+  <title>JB-lottery</title>
+</head>
+
+<body>
+  <%- include ('templates/header') %>
+
+
+
+  <section>
+    <div class="container event-bg">
+
+      <div class="eventMethod-block ">
+        <div class="eventMethod-title ">2048 美夢成真抽獎特賞！</div>
+        <div class="eventMethod-description ">
+          <div class="description-subject ">活動期間：</div>
+          <div class="description-content ">2048/06/06~2049/08/07</div>
+        </div>
+        <div class="eventMethod-description ">
+          <div class="description-subject ">活動說明：</div>
+          <div class="description-content ">只要不要失敗，包準你開心ㄉ飛上天</div>
+        </div>
+        <div class="eventMethod-description ">
+          <div class="description-subject ">獎  項：</div>
+          <div class="description-content ">搭乘blue Origin<br>成為Coding大神 <br>獲得一架鋼彈<br><br>更多秘密獎項等你來抽</div>
+        </div>
+
+        <button type="submit" value="Submit" class="eventMethod-btn">我要抽獎</button>
+      </div>
+
+      <form class="announce-block hide">
+        <div class="announce-content lottery-result"></div>
+        <div class="announce-desc"></div>
+        <button type="submit" value="Submit" class="announce-btn">再抽一次</button>
+      </form>
+
+    </div>
+  </section>
+
+
+
+  <%- include ('templates/footer') %>
+
+  <script src="/scripts/lottery.js"></script>
+</body>
+
+</html>

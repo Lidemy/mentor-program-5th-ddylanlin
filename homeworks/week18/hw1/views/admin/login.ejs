@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('../templates/head') %>
+  <title>JB-L&R</title>
+</head>
+
+<body>
+
+  <div class="login-board">
+
+ 
+    <div class="lg-title"><%= page.current %> </div>
+
+    <% if (errorMessage && errorMessage.length > 0) { %> 
+      <h5><%= errorMessage %></h5>
+    <% } %> 
+
+    <form method="POST" action=<%= page.formAction %> >
+
+      <div class='username'>
+        <span>Username：</span>
+        <input type="text" name="username" />
+      </div>
+
+      <div class='password'>
+        <span>Password：</span>
+        <input type="password" name="password" />
+      </div>
+      
+      <input class="submit-btn" type="submit" value="Submit"></input>
+
+    </form>
+
+    <div class="login-board-bottom">
+      <a href="/">Back</a>
+      <a href=<%= page.href %> ><%= page.switch %> </a>
+    </div>
+    
+  </div>
+
+</body>
+
+</html>

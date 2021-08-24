@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('templates/head') %>
+  <title>JB-FAQ</title>
+</head>
+
+<body>
+  <%- include ('templates/header') %>
+
+
+  <section class="description">
+    <div class="container">
+      <h2 class="title">FAQ - 常見問題</h2>
+
+      <% faqs.forEach((faq) => { %>
+        <div class='Question '>
+          <span class="Question-list ">Q:</span>
+          <div>
+            <h3 class='Question-title'><%= faq.title %></h3>
+            <p class="answer"><%= faq.content %></p>
+          </div>
+        </div>
+      <% }) %> 
+
+    </div>
+  </section>
+
+
+  <%- include ('templates/footer') %> 
+
+  <script>
+    document.querySelector('section').addEventListener('click', function (e) {
+
+      if (e.target.classList.contains('Question-title')) {
+        e.target.nextElementSibling.classList.toggle('active-key')
+      }
+    })
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../public/style/style.css">
+  <title>JB-Manage</title>
+</head>
+
+<body>
+
+  <div class="menu-add-board">
+
+ 
+    <div class="lg-title">料理</div>
+
+
+    <div class="admin-btn manage-btn">
+      <a href="/manage-menu" class="admin-btn-first">返回</a>
+    </div>
+
+    <form  method="POST" >
+
+      <div class='dish-name'>
+        <span >料理名稱：</span>
+        <input type="text" name="dish" >
+      </div>
+
+      <div class="dish-info ">
+        <div class='dish-prices '>
+          <span >價格：</span>
+          <input type="number" min="0" name="price" >
+        </div>
+      </div>
+
+
+      <div class="admin-btn">
+        <button type="submit" class="admin-btn-first">更新</button>
+        <a href="/delete/menu/" class="admin-btn-second">刪除</a>
+      </div>
+
+    </form>
+
+    
+
+    <div class="img-upload-block">
+      <form class="upload-img" action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="myFile">
+        <input type="submit" value="上傳">
+      </form>
+      <img class="preview" src="https://pse.is/3mrnke">
+    </div>
+    
+  </div>
+
+
+</body>
+
+</html>

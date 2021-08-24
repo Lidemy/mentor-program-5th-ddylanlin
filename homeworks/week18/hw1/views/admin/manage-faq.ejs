@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include ('../templates/head') %>
+  <title>JB-Manage</title>
+</head>
+
+<body>
+  <%- include ('../templates/header') %>
+  <%- include ('../templates/admin-bar') %>
+
+  <section class="manage">
+    <h2 class="title">後台-常見問題</h2>
+
+    <div class="admin-btn manage-btn">
+      <a class="admin-btn-first" href="/faq-add" >新增</a>
+    </div>
+  
+    <% faqs.forEach((faq) => { %> 
+      <div class='Question qa-card '>
+        <div>
+          <h3 class='Question-title '><span class="Question-list">Q:</span>&nbsp&nbsp<%= faq.title %> </h3>
+          <div class='card-answer'><%= faq.content %></div>
+        </div>
+        <div class="admin-btn qa-btn ">
+          <a class="admin-btn-first" href="/update/faq/<%= faq.id %>">編輯</a>
+          <a class="admin-btn-second" href="/delete/faq/<%= faq.id %>">刪除</a>
+        </div>
+      </div>
+    <% }) %> 
+
+
+  </section>
+
+
+
+  <%- include ('../templates/footer') %> 
+</body>
+
+</html>
