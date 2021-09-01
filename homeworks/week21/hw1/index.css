@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #effbf4;
+  font-family: sans-serif;
+  max-width: 100vw;
+}
+
+.active { 
+  background-color: #2aca7a !important;
+  color: white !important;
+}
