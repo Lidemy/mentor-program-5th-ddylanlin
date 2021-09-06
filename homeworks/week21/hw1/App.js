@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved, arrow-parens, no-unused-vars */
 import styled from 'styled-components'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { TodoBottom, TodoItem } from './TodoElements'
 
 const MEDIA_QUERY_MD = '@media screen and (min-width: 768px)'
@@ -42,14 +42,29 @@ const TodoWrapper = styled.div`
   border-top: 2px solid #ced4da;
   padding: .5rem 0;
 `
+function todosToLocalStorage(todos) {
+  window.localStorage.setItem('todos', JSON.stringify(todos))
+}
 
 function App() {
-  const [todos, setTodos] = useState([])
   const id = useRef(1)
+  const [todos, setTodos] = useState(() => {
+    let todoData = window.localStorage.getItem('todos') || ''
+    if (todoData) {
+      todoData = JSON.parse(todoData)
+      id.current = todoData[0].id + 1
+    } else {
+      todoData = []
+    }
+    return todoData
+  })
 
   const [value, setValue] = useState('')
-
   const [status, setStatus] = useState('All')
+
+  useEffect(() => {
+    todosToLocalStorage(todos)
+  }, [todos])
 
   const handleInputChange = e => {
     setValue(e.target.value)
@@ -86,7 +101,8 @@ function App() {
 
   const unDone = todos.filter(todo => todo.isDone === false)
   const Done = todos.filter(todo => todo.isDone === true)
-  const handleClear = () => {
+
+  const handleClear = e => {
     setTodos(unDone)
   }
 
