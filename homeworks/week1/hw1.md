@@ -12,3 +12,5 @@
 9. 切換到 master：git checkout master
 10. 把最新的改動拉下來：git pull origin master
 11. 刪除已經 merge 的 branch：git branch -d week1
+
+tehhjjjj
